@@ -1,24 +1,7 @@
 import { useState } from "react";
+import PropTypes from 'prop-types'
+import { capitalizeString } from "../scripts/utilities";
 
-const ContactAdder = function () {
-  const [newContact, setNewContact] = useState(''); 
-
-  const handleNewContact = function (event) {
-    setNewContact(event.target.value);
-  }
-
-  const handleAddNewContact = function () {
-    const contactGrp = document.querySelector('.contact-grp');
-
-  }
-
-  return (
-    <>
-      <input onChange={handleNewContact} type='text' placeholder="e.g. Phone, LinkedIn, E-mail"></input>
-      <button onClick={handleAddNewContact} value={newContact}>Add Contact Info</button>
-    </>
-  )
-}
 
 const ContactField = function ({label, assignId, removeFieldFunc}) {
   const [inputValue, setInputValue] = useState('');
@@ -27,7 +10,7 @@ const ContactField = function ({label, assignId, removeFieldFunc}) {
     setInputValue(event.target.value);
   }
 
-  const contactLabel = `${label.slice(0,1).toUpperCase()}${label.slice(1).toLowerCase()}:`;
+  const contactLabel = `${capitalizeString(label)}:`;
 
   return (
     <div className='contact-cont'>
@@ -42,6 +25,12 @@ const ContactField = function ({label, assignId, removeFieldFunc}) {
         <button type='button' onClick={removeFieldFunc} value={assignId}>x</button>
       </div>
   )
+}
+
+ContactField.propTypes = {
+  label: PropTypes.string,
+  assignId: PropTypes.string,
+  removeFieldFunc: PropTypes.func
 }
 
 
@@ -65,25 +54,36 @@ const ContactInfo = function () {
     
   });
 
-  // 
   const handleContactValueChange = function (event) {
     setNewContact(event.target.value)
   }
 
   const handleAddNewContact = function (event) {
-    const keyId = crypto.randomUUID();
-    setContact([...contacts, {label:event.target.value, id:keyId}]);
+    if (event.target.value.length < 1) {
+      return
+    }
+
+    if (event.keyCode === 13 || event.type === 'click' ) {
+      const keyId = crypto.randomUUID();
+      setContact([...contacts, {label:event.target.value, id:keyId}]);
+      // Clear input field after adding new contact
+      setNewContact('');
+    }
   }
 
   return (
     <div className="contact-info info-grp">
       <h3>Contact</h3>
       <>{ContactFields}</>
-
-      <input type="text" value={newContact} onChange={handleContactValueChange} />
+      <label htmlFor="contact-adder">Add Contact Info</label>
+      <input 
+        type="text" 
+        id="contact-adder"
+        value={newContact}
+        onChange={handleContactValueChange}
+        onKeyDown={handleAddNewContact}
+        placeholder="e.g. LinkedIn, E-mail, Github" />
       <button type="button" value={newContact} onClick={handleAddNewContact}>Add Contact</button>
-      
-      
     </div>
   )
 }
