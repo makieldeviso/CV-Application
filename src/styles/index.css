@@ -3,3 +3,26 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --padding: calc(8px + 1vw);
+  --margin: calc(16px + 1vw);
+}
+
+
+.info-grp {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: var(--padding);
+  border: 1px solid black;
+  gap: var(--margin);
+}
+
+.input-cont {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 70%;
+  gap: 2px;
+}
