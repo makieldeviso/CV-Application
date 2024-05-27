@@ -22,32 +22,61 @@ const basicInfoDetails = [
   }
 ];
 
+const BaseInputField = function ({refObj, changeValueFunc, activeValue}) {
+  
+  return (
+    <div className='input-cont' key={refObj.keyId}>
+      <label className='input-label' htmlFor={refObj.assignId}>{`${refObj.label}:`}</label>
+      <input
+        data-key={refObj.assignId}
+        className='input-field'
+        type={refObj.type}
+        name={refObj.assignId}
+        id={refObj.assignId}
+        onChange={changeValueFunc}
+        value={activeValue}
+      />
+    </div>
+  )
+}
 
-const BaseInputField = function () {
-  const [basicInfo, setBasicInfo] = useState(basicInfoDetails);
+BaseInputField.propTypes = {
+  refObj: PropTypes.shape({
+    label: PropTypes.string,
+    assignId: PropTypes.string,
+    type: PropTypes.string,
+    keyId: PropTypes.string,
+  }),
+  changeValueFunc: PropTypes.func,
+  activeValue: PropTypes.string
+}
 
-  const basicInputArr = basicInfo.map((infoObj) => {
-    const labelText = `${infoObj.label}:`;
+const BasicInfo = function () {
+  const [basicValue, setBasicValue] = useState({
+    name: '',
+    expertise: '',
+    address: ''
+  });
 
+  const handleValueChange = function (event) {
+    const keyName = event.target.dataset.key;
+    setBasicValue({...basicValue, [keyName]: event.target.value});
+  }
+  
+  const BaseInputFields = basicInfoDetails.map((infoObj) => {
     return (
-      <div className='input-cont' key={infoObj.keyId}>
-        <label className='input-label' htmlFor={infoObj.assignId}>{labelText}</label>
-        <input className='input-field' type={infoObj.type} name={infoObj.assignId} id={infoObj.assignId}></input>
-      </div>
+      <BaseInputField
+      key={infoObj.keyId}
+      refObj={infoObj}
+      changeValueFunc={handleValueChange}
+      activeValue={basicValue[infoObj.assignId]} />
     )
   })
 
   return (
-    <>{basicInputArr}</>
-  )
-}
-
-const BasicInfo = function () {
-
-  return (
     <div className='basic-info info-grp'>
       <h3>Basic Information</h3>
-      <BaseInputField/>
+      <>{BaseInputFields}</>
     </div>
   )
 }

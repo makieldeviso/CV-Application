@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 
 const ExperienceField = function ({assignId, removeExpFunc}) {
-  const [fieldValue, setFieldValue] = useState(
+  const [expValue, setExpValue] = useState(
     {start:'',
      end:'',
      company:'',
@@ -13,7 +13,7 @@ const ExperienceField = function ({assignId, removeExpFunc}) {
 
   const handleValueChange = function (event) {
     const keyName = event.target.dataset.key;
-    setFieldValue({...fieldValue, [keyName]: event.target.value});
+    setExpValue({...expValue, [keyName]: event.target.value});
   }
 
   return(
