@@ -22,7 +22,7 @@ const ContactField = function ({label, assignId, removeFieldFunc}) {
           value={inputValue}
           onChange={handleValueChange}>
         </input>
-        <button type='button' onClick={removeFieldFunc} value={assignId}>x</button>
+        <button className='remove-btn' type='button' onClick={removeFieldFunc} value={assignId}>x</button>
       </div>
   )
 }
@@ -75,7 +75,7 @@ const ContactInfo = function () {
     <div className="contact-info info-grp">
       <h3>Contact</h3>
       <>{ContactFields}</>
-      <label htmlFor="contact-adder">Add Contact Info</label>
+      <label htmlFor="contact-adder">Add contact info</label>
       <input 
         type="text" 
         id="contact-adder"

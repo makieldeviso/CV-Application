@@ -7,6 +7,7 @@
 :root {
   --padding: calc(8px + 1vw);
   --margin: calc(16px + 1vw);
+  --remove-btn-size: 15px;
 }
 
 
@@ -25,4 +26,26 @@
   align-items: center;
   grid-template-columns: 1fr 70%;
   gap: 2px;
+}
+
+.remove-btn {
+  width: var(--remove-btn-size);
+  height: var(--remove-btn-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr var(--remove-btn-size);
+}
+
+.skill-cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr var(--remove-btn-size);
+}
+
+.clicked {
+  background-color: red;
 }

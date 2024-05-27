@@ -1,7 +1,7 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const EducationField = function ({assignId, removeFieldFunc}) {
-  const [inputValue, setInputValue] = useState({year:'', degree:'', school:''});
 
   return (
     <div className='educ-field'>
@@ -28,10 +28,15 @@ const EducationField = function ({assignId, removeFieldFunc}) {
           placeholder="e.g. Dulag High School, Harvard University"/>
       </div>
 
-      <button type='button' value={assignId} onClick={removeFieldFunc}>x</button>
+      <button className='remove-btn' type='button' value={assignId} onClick={removeFieldFunc}>x</button>
 
     </div>
   )
+}
+
+EducationField.propTypes = {
+  assignId: PropTypes.string,
+  removeFieldFunc: PropTypes.func
 }
 
 
