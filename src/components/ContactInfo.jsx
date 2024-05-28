@@ -60,7 +60,8 @@ const ContactInfo = function () {
 
     // Change value of contact object
     contactForChange[inputRole] = event.target.value;
-    setContacts([...contactAsIs, contactForChange])
+    const sortedByTimeAdded = [...contactAsIs, contactForChange].sort((a, b) => a.timeStamp - b.timeStamp);
+    setContacts(sortedByTimeAdded)
   }
   
   const ContactFields = contacts.map((contact) => {
@@ -76,7 +77,9 @@ const ContactInfo = function () {
 
   const handleAddNewContact = function () {
     const keyId = crypto.randomUUID();
-    setContacts([...contacts, {label:'', address:'', keyId:keyId}]);
+
+    const newContact = {label:'', address:'', keyId:keyId, timeStamp: new Date().valueOf()};
+    setContacts([...contacts, newContact]);
   }
 
   return (
