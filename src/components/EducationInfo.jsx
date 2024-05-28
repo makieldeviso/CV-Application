@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const EducationField = function ({refObj, removeEducFunc, changeEducFunc}) {
+const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
 
   return (
     <div className='educ-field'>
@@ -52,12 +52,13 @@ const EducationField = function ({refObj, removeEducFunc, changeEducFunc}) {
   )
 }
 
-EducationField.propTypes = {
+EducField.propTypes = {
   refObj: PropTypes.shape({
     yearFinished: PropTypes.string,
     degree: PropTypes.string,
     school: PropTypes.string,
-    keyId: PropTypes.string
+    keyId: PropTypes.string,
+    timeStamp: PropTypes.number
   }),
   removeEducFunc: PropTypes.func,
   changeEducFunc: PropTypes.func
@@ -89,10 +90,10 @@ const EducationInfo = function () {
 
     setEducations(sortedByTimeAdded);
   }
-  console.log(educations)
+  
   const EducInputFields = educations.map((field) => {
     return (
-      <EducationField
+      <EducField
         key={field.keyId}
         refObj={field}
         removeEducFunc={handleRemoveEduc}

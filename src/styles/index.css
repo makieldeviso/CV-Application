@@ -14,7 +14,7 @@
 .info-grp {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 500px;
   padding: var(--padding);
   border: 1px solid black;
   gap: var(--margin);
@@ -48,4 +48,20 @@
 
 .clicked {
   background-color: red;
+}
+
+.rate-btns-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.rate-btn {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--padding) * 0.5);
 }

@@ -39,6 +39,7 @@ ContactField.propTypes = {
     label: PropTypes.string,
     address: PropTypes.string,
     keyId: PropTypes.string,
+    timeStamp: PropTypes.number,
   }),
   
   removeFieldFunc: PropTypes.func,

@@ -1,103 +1,107 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const Skill = function ({skillName, assignId, removeSkillFunc}) {
-  const [rating, setRating] = useState(0);
-  const btnsArr = [
-    {
-      value: 1,
-      keyId: crypto.randomUUID()
-    },
-    {
-      value: 2,
-      keyId: crypto.randomUUID()
-    },
-    {
-      value: 3,
-      keyId: crypto.randomUUID()
-    },
-    {
-      value: 4,
-      keyId: crypto.randomUUID()
-    },
-    {
-      value: 5,
-      keyId: crypto.randomUUID()
-    }
-  ]
+const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, changeRatingFunc}) {
 
-  const handleRatingChange = function (event) {
-    setRating(Number(event.target.value));
-  }
-
-  const RateBtns = btnsArr.map((btn) => {
-  
-    return (
+  // Loop through 5  to create rate buttons
+  const RateBtns = [];
+  for(let i = 1; i <= 5; i++) {
+    RateBtns.push(
       <button 
-        className={btn.value <= rating ? 'clicked': 'unclicked'} 
-        key={btn.keyId} 
-        value={btn.value} 
-        onClick={handleRatingChange}>
-      {btn.value}
+        data-key = {refObj.keyId}
+        key={i} 
+        className={i <= refObj.rating ? 'rate-btn clicked': 'rate-btn unclicked'} 
+        value={i}
+        onClick={changeRatingFunc}
+      >
+          {i}
       </button>
     )
-  })
-  
+  }
+
   return (
-    <div className="skill-cont">
-      <p>{skillName}</p>
-      <div className='rater'>
+    <div className='skill-cont' >
+      <input
+        type = "text"
+        data-key = {refObj.keyId}
+        placeholder = "Enter Skill"
+        value = {refObj.skill} 
+        onChange = {changeSkillValueFunc}
+      />
+
+      <div className='rate-btns-cont'>
         <>{RateBtns}</>
       </div>
-      <button className='remove-btn' type='button' onClick={removeSkillFunc} value={assignId}>x</button>
+    
+    <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeSkillFunc}>x</button>
     </div>
   )
 }
 
-Skill.propTypes = {
-  skillName: PropTypes.string,
-  assignId: PropTypes.string,
-  removeSkillFunc: PropTypes.func
+SkillField.propTypes = {
+  refObj: PropTypes.shape({
+    skill: PropTypes.string,
+    rating: PropTypes.number,
+    keyId: PropTypes.string,
+    timeStamp: PropTypes.number
+  }),
+  changeRatingFunc: PropTypes.func,
+  removeSkillFunc: PropTypes.func,
+  changeSkillValueFunc: PropTypes.func,
 }
 
 const ExpertiseInfo = function () {
-  const [skillsArr, setSkillsArr] = useState([]);
-  const [skillValue, setSkillValue] = useState('');
+  const [skills, setSkills] = useState([]);
 
-  const handleSkillValueChange = function (event) {
-    setSkillValue(event.target.value);
+  const handleAddExpertise = function () {
+    const keyId = crypto.randomUUID();
+    const newSkill = {
+      skill: '',
+      rating: 0,
+      keyId: keyId,
+      timeStamp: new Date().valueOf()
+    }
+
+    setSkills([...skills, newSkill]);
   }
 
-  const handleAddExpertise = function (event) {
-    if (skillValue.length < 1) {
-      return
-    }
+  const handleChangeSkillValue = function (event) {
+    const skillForChange = skills.find((skill) => skill.keyId === event.target.dataset.key);
+    const skillsAsIs = skills.filter((skill) => skill.keyId !== event.target.dataset.key);
 
-    if (event.keyCode === 13 || event.type === 'click' ) {
-      const keyId = crypto.randomUUID();
-      const newSkill = {skillName: skillValue, keyId: keyId}
-      setSkillsArr([...skillsArr, newSkill]);
-      // Clear input field after adding new contact
-      setSkillValue('');
-    }
+    skillForChange.skill = event.target.value;
+    const sortedByTimeAdded = [...skillsAsIs, skillForChange].sort((a, b) => a.timeStamp - b.timeStamp);
+
+    setSkills(sortedByTimeAdded);
+  }
+
+  
+  const handleChangeRating = function (event) {
+    const skillForChange = skills.find((skill) => skill.keyId === event.target.dataset.key);
+    const skillsAsIs = skills.filter((skill) => skill.keyId !== event.target.dataset.key);
+
+    skillForChange.rating = Number(event.target.value);
+    const sortedByTimeAdded = [...skillsAsIs, skillForChange].sort((a, b) => a.timeStamp - b.timeStamp);
+
+    setSkills(sortedByTimeAdded);
   }
 
   const handleRemoveSkill = function (event) {
-    const remainSkills = skillsArr.filter((skill) => skill.keyId !== event.target.value);
-    setSkillsArr(remainSkills);
+    const skillsRemain = skills.filter((skill) => skill.keyId !== event.target.value);
+    setSkills(skillsRemain);
   }
-
-
-  const Skills = skillsArr.map((skill) => {
+  console.log(skills);
+  const SkillInputFields = skills.map((skill) => {
     return (
-      <Skill
-        key={skill.keyId}
-        skillName={skill.skillName}
-        assignId={skill.keyId}
-        removeSkillFunc={handleRemoveSkill}
+      <SkillField
+        key = {skill.keyId}
+        refObj = {skill}
+        changeSkillValueFunc = {handleChangeSkillValue}
+        removeSkillFunc = {handleRemoveSkill}
+        changeRatingFunc={handleChangeRating}
       />
     )
-  });
+  })
 
   return (
     <div className="expertise-info info-grp">
@@ -106,22 +110,11 @@ const ExpertiseInfo = function () {
         <p>Skills</p>
         <p>Rating</p>
       </div>
-      <>{Skills}</>
-      <label htmlFor="skill-input">Add skill name</label>
-      <input
-        type="text"
-        value={skillValue}
-        name="skill-input"
-        id="skill-input"
-        placeholder="e.g.UI/UX design, SEO, Programming" 
-        onChange={handleSkillValueChange}
-        onKeyDown={handleAddExpertise}
-      />
+      <>{SkillInputFields}</>
 
-     <button type="button"  onClick={handleAddExpertise}>Add Expertise</button>
+      <button type="button"  onClick={handleAddExpertise}>Add Expertise</button>
     </div>
-  )
+  ) 
 }
-
 
 export default ExpertiseInfo
