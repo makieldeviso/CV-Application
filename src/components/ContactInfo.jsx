@@ -1,89 +1,89 @@
 import { useState } from "react";
 import PropTypes from 'prop-types'
-import { capitalizeString } from "../scripts/utilities";
 
-
-const ContactField = function ({label, assignId, removeFieldFunc}) {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleValueChange = (event) => {
-    setInputValue(event.target.value);
-  }
-
-  const contactLabel = `${capitalizeString(label)}:`;
-
+const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
+ 
   return (
     <div className='contact-cont'>
-        <label htmlFor={assignId}>{contactLabel}</label>
-        <input 
-          type='text' 
-          id={assignId} 
-          name={assignId} 
-          value={inputValue}
-          onChange={handleValueChange}>
-        </input>
-        <button className='remove-btn' type='button' onClick={removeFieldFunc} value={assignId}>x</button>
-      </div>
+      <label htmlFor={`label-${refObj.keyId}`}>Contact type:</label>
+      <input
+        type="text"
+        data-role='label'
+        data-key={refObj.keyId}
+        id={`label-${refObj.keyId}`}
+        name={`label-${refObj.keyId}`}
+        placeholder="e.g. Phone, E-mail, LinkedIn"
+        onChange={changeValueFunc}
+        value={refObj.label}
+      />
+
+      <label htmlFor={`address-${refObj.keyId}`}>Contact address:</label>
+      <input
+        type="text"
+        data-role='address'
+        data-key={refObj.keyId}
+        id={`address-${refObj.keyId}`}
+        name={`address-${refObj.keyId}`}
+        placeholder="e.g. +639159054014, placeholder@gmail.com"
+        onChange={changeValueFunc}
+        value={refObj.address}
+      />
+
+      <button className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId}>x</button>
+    </div>
   )
 }
 
 ContactField.propTypes = {
-  label: PropTypes.string,
-  assignId: PropTypes.string,
-  removeFieldFunc: PropTypes.func
+  refObj: PropTypes.shape({
+    label: PropTypes.string,
+    address: PropTypes.string,
+    keyId: PropTypes.string,
+  }),
+  
+  removeFieldFunc: PropTypes.func,
+  changeValueFunc: PropTypes.func,
 }
 
-
 const ContactInfo = function () {
-  const [contacts, setContact] = useState([{label: 'Phone', id: 'd8d4b5d8-fd36-4d74-8f08-32970b9de762'}]);
-  const [newContact, setNewContact] = useState('');
+  const [contacts, setContacts] = useState([]);
 
   const handleRemoveField = function (event) {
-    const remainState = contacts.filter((contact => contact.id !== event.target.value));
-
-    // Contact should always be at least 1
-    if (remainState.length < 1) {
-      return 
-    } else {
-      setContact(remainState);
-    }
+    const remainState = contacts.filter((contact => contact.keyId !== event.target.value));
+    setContacts(remainState);
   }
-
-  const ContactFields = contacts.map((contact) => {
-    return (<ContactField key={contact.id} assignId={contact.id} label={contact.label} removeFieldFunc={handleRemoveField}/>)
-    
-  });
 
   const handleContactValueChange = function (event) {
-    setNewContact(event.target.value)
+    const inputRole = event.target.dataset.role;
+    const contactForChange = contacts.find((contact) => contact.keyId === event.target.dataset.key);
+    const contactAsIs = contacts.filter((contact) => contact.keyId !== event.target.dataset.key);
+
+    // Change value of contact object
+    contactForChange[inputRole] = event.target.value;
+    setContacts([...contactAsIs, contactForChange])
   }
+  
+  const ContactFields = contacts.map((contact) => {
+    return (
+      <ContactField
+        key={contact.keyId}
+        refObj={contact}
+        removeFieldFunc={handleRemoveField}
+        changeValueFunc={handleContactValueChange}
+      />
+    )
+  });
 
-  const handleAddNewContact = function (event) {
-    if (event.target.value.length < 1) {
-      return
-    }
-
-    if (event.keyCode === 13 || event.type === 'click' ) {
-      const keyId = crypto.randomUUID();
-      setContact([...contacts, {label:event.target.value, id:keyId}]);
-      // Clear input field after adding new contact
-      setNewContact('');
-    }
+  const handleAddNewContact = function () {
+    const keyId = crypto.randomUUID();
+    setContacts([...contacts, {label:'', address:'', keyId:keyId}]);
   }
 
   return (
     <div className="contact-info info-grp">
       <h3>Contact</h3>
       <>{ContactFields}</>
-      <label htmlFor="contact-adder">Add contact info</label>
-      <input 
-        type="text" 
-        id="contact-adder"
-        value={newContact}
-        onChange={handleContactValueChange}
-        onKeyDown={handleAddNewContact}
-        placeholder="e.g. LinkedIn, E-mail, Github" />
-      <button type="button" value={newContact} onClick={handleAddNewContact}>Add Contact</button>
+      <button type="button" onClick={handleAddNewContact}>Add Contact</button>
     </div>
   )
 }
