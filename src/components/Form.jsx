@@ -5,6 +5,7 @@ import ContactInfo from "./ContactInfo";
 import EducationInfo from "./EducationInfo";
 import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
+import ReferenceInfo from "./ReferenceInfo";
 
 const Form = function () {
 
@@ -15,6 +16,7 @@ const Form = function () {
       <EducationInfo/>
       <ExpertiseInfo/>
       <ExperienceInfo/>
+      <ReferenceInfo/>
 
     </>
     

@@ -110,7 +110,7 @@ const ExperienceInfo = function () {
 
     setExperiences(sortedByTimeAdded);
   }
-  console.log(experiences)
+  
   const Experiences = experiences.map((exp) => {
     return (
       <ExperienceField
@@ -127,7 +127,7 @@ const ExperienceInfo = function () {
       <h3>Experience</h3>
       <>{Experiences}</>
       
-      <button type="button"  onClick={handleAddExperience}>Add Experience</button>
+      <button type="button"  onClick={handleAddExperience}> Add Experience </button>
     </div>
   )
 }
