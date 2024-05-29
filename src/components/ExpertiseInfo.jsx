@@ -75,7 +75,6 @@ const ExpertiseInfo = function () {
     setSkills(sortedByTimeAdded);
   }
 
-  
   const handleChangeRating = function (event) {
     const skillForChange = skills.find((skill) => skill.keyId === event.target.dataset.key);
     const skillsAsIs = skills.filter((skill) => skill.keyId !== event.target.dataset.key);
@@ -90,7 +89,7 @@ const ExpertiseInfo = function () {
     const skillsRemain = skills.filter((skill) => skill.keyId !== event.target.value);
     setSkills(skillsRemain);
   }
-  console.log(skills);
+  
   const SkillInputFields = skills.map((skill) => {
     return (
       <SkillField

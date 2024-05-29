@@ -1,84 +1,127 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const ExperienceField = function ({assignId, removeExpFunc}) {
-  const [expValue, setExpValue] = useState(
-    {start:'',
-     end:'',
-     company:'',
-     address:'',
-     position:'',
-     desc:'' 
-    });
-
-  const handleValueChange = function (event) {
-    const keyName = event.target.dataset.key;
-    setExpValue({...expValue, [keyName]: event.target.value});
-  }
+const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc}) {
+ 
+  const inputAttributes = (info) => {
+    return ({
+      'data-role': info,
+      'data-key':  refObj.keyId,
+      type: "text",
+      name: `${info}-${refObj.keyId}`,
+      id: `${info}-${refObj.keyId}`,
+      value: refObj[info],
+      onChange: changeExpValueFunc  
+    })
+  } 
 
   return(
     <div className='exp-field'>
-
-      <div className='exp-start'>
-        <label htmlFor={`start-${assignId}`}>Start:</label>
-        <input data-key='start' type="text" name={`start-${assignId}`} id={`start-${assignId}`} onChange={handleValueChange} />
+     
+      <div key={`start-${refObj.keyId}`} className={`exp-field exp-start`} >
+        <label htmlFor={`start-${refObj.keyId}`}> Start: </label>
+        <input {...inputAttributes('start')}/>
       </div>
 
-      <div className='exp-end'>
-        <label htmlFor={`end-${assignId}`}>End:</label>
-        <input data-key='end' type="text" name={`end-${assignId}`} id={`end-${assignId}`} onChange={handleValueChange}/>
+      <div key={`end-${refObj.keyId}`} className={`exp-field exp-end`} >
+        <label htmlFor={`end-${refObj.keyId}`}> End: </label>
+        <input {...inputAttributes('end')}/>
       </div>
 
-      <div className='exp-company'>
-        <label htmlFor={`company-${assignId}`}>Company:</label>
-        <input data-key='company' type="text" name={`company-${assignId}`} id={`company-${assignId}`} onChange={handleValueChange}/>
+      <div key={`company-${refObj.keyId}`} className={`exp-field exp-company`} >
+        <label htmlFor={`company-${refObj.keyId}`}> Company: </label>
+        <input {...inputAttributes('company')}/>
       </div>
 
-      <div className='exp-company-add'>
-        <label htmlFor={`address-${assignId}`}>Company Address:</label>
-        <input data-key='address' type="text" name={`address-${assignId}`} id={`address-${assignId}`} onChange={handleValueChange}/>
+      <div key={`companyAddress-${refObj.keyId}`} className={`exp-field exp-companyAddress`} >
+        <label htmlFor={`companyAddress-${refObj.keyId}`}> Company Address: </label>
+        <input {...inputAttributes('companyAddress')}/>
       </div>
 
-      <div className='exp-position'>
-        <label htmlFor={`position-${assignId}`}>Position:</label>
-        <input data-key='position' type="text" name={`position-${assignId}`} id={`position-${assignId}`} onChange={handleValueChange}/>
+      <div key={`position-${refObj.keyId}`} className={`exp-field exp-position`} >
+        <label htmlFor={`position-${refObj.keyId}`}> Position: </label>
+        <input {...inputAttributes('position')}/>
       </div>
 
-      <div className='exp-desc'>
-        <label htmlFor={`desc-${assignId}`}>Description/ Contributions:</label>
-        <textarea data-key='desc' name={`desc-${assignId}`} id={`desc-${assignId}`} onChange={handleValueChange}></textarea>
+      <div key={`desc-${refObj.keyId}`} className={`exp-field exp-desc`} >
+        <label htmlFor={`desc-${refObj.keyId}`}> Description/ Contribution: </label>
+        <textarea {...inputAttributes('desc')}/>
       </div>
 
-      <button className='remove-btn' type='button' value={assignId} onClick={removeExpFunc}>x</button>
-      
+      <button
+        className='remove-btn'
+        type='button'
+        value={refObj.keyId}
+        onClick={removeExpFunc}
+      >
+      {/* Inset Button Text Here*/} x
+      </button>    
     </div>
   )
 }
 
 ExperienceField.propTypes = {
-  assignId: PropTypes.string,
+  refObj: PropTypes.shape({
+    start: PropTypes.string,
+    end: PropTypes.string,
+    company: PropTypes.string,
+    companyAddress: PropTypes.string,
+    position: PropTypes.string,
+    desc:PropTypes.string,
+    keyId: PropTypes.string,
+    timeStamp: PropTypes.string
+  }),
+  changeExpValueFunc: PropTypes.func,
   removeExpFunc: PropTypes.func
 }
 
 const ExperienceInfo = function () {
-  const [experienceArr, setExperienceArr] = useState([]);
+  const [experiences, setExperiences] = useState([]);
 
   const handleAddExperience = function () {
     const keyId = crypto.randomUUID();
-    setExperienceArr([...experienceArr, {keyId: keyId}]);
+    const timeAdded = new Date().valueOf();
+    const newExp = {
+      start: '',
+      end: '',
+      company: '',
+      companyAddress: '',
+      position: '',
+      desc:'',
+      keyId: keyId,
+      timeStamp: timeAdded
+    }
+
+    setExperiences([...experiences, newExp]);
   }
 
   const handleExpRemove = function (event) {
-    const remainExp = experienceArr.filter((exp) => exp.keyId !== event.target.value);
-    setExperienceArr(remainExp);
+    const remainExp = experiences.filter((exp) => exp.keyId !== event.target.value);
+    setExperiences(remainExp);
   }
 
-  const Experiences = experienceArr.map((exp) => {
+  const handleExpChangeValue = function (event) {
+    const inputRole = event.target.dataset.role;
+    const expForChange = experiences.find((exp) => exp.keyId === event.target.dataset.key);
+    const expAsIs = experiences.filter((exp) => exp.keyId !== event.target.dataset.key);
+
+    expForChange[inputRole] = event.target.value;
+    const sortedByTimeAdded = [...expAsIs, expForChange].sort((a, b) => a.timeStamp - b.timeStamp);
+
+    setExperiences(sortedByTimeAdded);
+  }
+  console.log(experiences)
+  const Experiences = experiences.map((exp) => {
     return (
-      <ExperienceField key={exp.keyId} assignId={exp.keyId} removeExpFunc={handleExpRemove}/>
+      <ExperienceField
+        key = {exp.keyId}
+        refObj = {exp}
+        removeExpFunc = {handleExpRemove}
+        changeExpValueFunc = {handleExpChangeValue}
+      />
     )
   })
-
+  
   return (
     <div className="experience-info info-grp">
       <h3>Experience</h3>
