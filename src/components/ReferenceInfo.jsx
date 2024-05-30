@@ -80,7 +80,7 @@ const ReferenceInfo = function () {
 
     setReferences(sortedByTimeAdded);
   }
-  console.log(references)
+  
   const ReferencesFields = references.map((ref) => {
    
     return (

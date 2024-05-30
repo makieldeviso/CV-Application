@@ -1,90 +1,76 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const basicInfoDetails = [
-  {
-    label: 'Name',
-    assignId: 'name',
-    type: 'text',
-    keyId: crypto.randomUUID()
-  },
-  {
-    label: 'Expertise',
-    assignId: 'expertise',
-    type: 'text',
-    keyId: crypto.randomUUID()
-  },
-  {
-    label: 'Address',
-    assignId: 'address',
-    type: 'text',
-    keyId: crypto.randomUUID()
-  }
-];
+const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
 
-const BaseInputField = function ({refObj, changeValueFunc, activeValue}) {
-  
+  const inputAttributes = (role) => {
+    return (
+      {
+        'data-role': role,
+        className: 'basic-info-field',
+        name: `${role}-field`,
+        id: `${role}-field`,
+        onChange: changeBasicValueFunc,
+        value: refObj[role]
+      }
+    )
+  }
+
   return (
-    <div className='input-cont' key={refObj.keyId}>
-      <label className='input-label' htmlFor={refObj.assignId}>{`${refObj.label}:`}</label>
-      <input
-        data-key={refObj.assignId}
-        className='input-field'
-        type={refObj.type}
-        name={refObj.assignId}
-        id={refObj.assignId}
-        onChange={changeValueFunc}
-        value={activeValue}
-      />
-    </div>
+    <>
+      <div className='input-cont'>
+        <label className='input-label' htmlFor='name-field'>Name:</label>
+        <input {...inputAttributes('name')}/>
+      </div>
+
+      <div className='input-cont'>
+        <label className='input-label' htmlFor='designation-field'>Designation:</label>
+        <input {...inputAttributes('designation')}/>
+      </div>
+
+      <div className='input-cont'>
+        <label className='input-label' htmlFor='address-field'>Address:</label>
+        <input {...inputAttributes('address')}/>
+      </div>
+
+      <div className='input-cont'>
+        <label className='input-label' htmlFor='competency-field'>Competency:</label>
+        <textarea{...inputAttributes('competency')}/>
+      </div>
+    </>
   )
 }
 
-BaseInputField.propTypes = {
+BasicInputFields.propTypes = {
   refObj: PropTypes.shape({
-    label: PropTypes.string,
-    assignId: PropTypes.string,
-    type: PropTypes.string,
-    keyId: PropTypes.string,
+    name: PropTypes.string,
+    designation: PropTypes.string,
+    address: PropTypes.string,
+    competency: PropTypes.string 
   }),
-  changeValueFunc: PropTypes.func,
-  activeValue: PropTypes.string
+  changeBasicValueFunc: PropTypes.func
 }
 
 const BasicInfo = function () {
   const [basicValue, setBasicValue] = useState({
     name: '',
-    expertise: '',
-    address: ''
+    designation: '',
+    address: '',
+    competency: '',
   });
 
   const handleValueChange = function (event) {
-    const keyName = event.target.dataset.key;
-    setBasicValue({...basicValue, [keyName]: event.target.value});
+    const inputRole = event.target.dataset.role;
+    console.log(basicValue)
+    setBasicValue({...basicValue, [inputRole]: event.target.value});
   }
-  
-  const BaseInputFields = basicInfoDetails.map((infoObj) => {
-    return (
-      <BaseInputField
-      key={infoObj.keyId}
-      refObj={infoObj}
-      changeValueFunc={handleValueChange}
-      activeValue={basicValue[infoObj.assignId]} />
-    )
-  })
-
+ 
   return (
     <div className='basic-info info-grp'>
       <h3>Basic Information</h3>
-      <>{BaseInputFields}</>
+      <BasicInputFields changeBasicValueFunc={handleValueChange} refObj={basicValue}/>
     </div>
   )
-}
-
-BaseInputField.propTypes = {
-  label: PropTypes.string,
-  assignId: PropTypes.string,
-  type: PropTypes.string
 }
 
 export default BasicInfo

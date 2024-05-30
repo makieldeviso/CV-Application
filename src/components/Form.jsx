@@ -10,17 +10,16 @@ import ReferenceInfo from "./ReferenceInfo";
 const Form = function () {
 
   return (
-    <>
+    <div className='form-fields'>
       <BasicInfo/>
       <ContactInfo/>
       <EducationInfo/>
       <ExpertiseInfo/>
       <ExperienceInfo/>
       <ReferenceInfo/>
-
-    </>
+    </div>
     
-  )
+  ) 
 
 }
 

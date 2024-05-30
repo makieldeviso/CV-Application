@@ -10,11 +10,23 @@
   --remove-btn-size: 15px;
 }
 
+.main-content {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  padding: var(--padding);
+  border: 1px solid black;
+  gap: var(--margin);
+}
 
 .info-grp {
   display: flex;
   flex-direction: column;
-  width: 500px;
   padding: var(--padding);
   border: 1px solid black;
   gap: var(--margin);
