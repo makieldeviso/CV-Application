@@ -51,7 +51,7 @@ BasicInputFields.propTypes = {
   changeBasicValueFunc: PropTypes.func
 }
 
-const BasicInfo = function () {
+const BasicInfo = function ({saveStateFunc}) {
   const [basicValue, setBasicValue] = useState({
     name: '',
     designation: '',
@@ -61,9 +61,10 @@ const BasicInfo = function () {
 
   const handleValueChange = function (event) {
     const inputRole = event.target.dataset.role;
-    console.log(basicValue)
     setBasicValue({...basicValue, [inputRole]: event.target.value});
+    saveStateFunc('basicInfo', {...basicValue, [inputRole]: event.target.value});
   }
+ 
  
   return (
     <div className='basic-info info-grp'>
@@ -71,6 +72,10 @@ const BasicInfo = function () {
       <BasicInputFields changeBasicValueFunc={handleValueChange} refObj={basicValue}/>
     </div>
   )
+}
+
+BasicInfo.propTypes = {
+  saveStateFunc: PropTypes.func
 }
 
 export default BasicInfo

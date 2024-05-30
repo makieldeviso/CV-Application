@@ -5,20 +5,21 @@
 }
 
 :root {
-  --padding: calc(8px + 1vw);
-  --margin: calc(16px + 1vw);
+  --padding: calc(4px + 1vw);
+  --margin: calc(8px + 1vw);
   --remove-btn-size: 15px;
 }
+
 
 .main-content {
   display: grid;
   grid-template-columns: max-content 1fr;
 }
 
+/* Form styling (end) */
 .form-fields {
   display: flex;
   flex-direction: column;
-  width: 500px;
   padding: var(--padding);
   border: 1px solid black;
   gap: var(--margin);
@@ -77,3 +78,98 @@
   align-items: center;
   padding: calc(var(--padding) * 0.5);
 }
+
+/* Form styling (end) */
+
+/* Template Styling (start) */
+.cv-template {
+  border: 1px solid black;
+  height: max-content;
+  padding: var(--padding);
+  margin: var(--margin);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: 
+    "intro intro"
+    "column-1 column-2";
+}
+
+.intro {
+  grid-area: intro;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.column-1 {
+  grid-area: column-1;
+}
+
+.column-2 {
+  grid-area: column-2;
+}
+
+.picture-sec {
+  border: 1px solid black;
+  padding: var(--padding);
+  display: flex;
+  justify-content: center;
+}
+
+.picture-blank {
+  width: 100px !important;
+  height: auto !important;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.picture-blank path {
+  fill: white !important;
+}
+
+.header-sec {
+  border: 1px solid black;
+  padding: var(--padding);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: var(--margin);
+}
+
+.address-sec {
+  border: 1px solid black;
+  padding: var(--padding);
+}
+
+.contact-sec {
+  border: 1px solid black;
+  padding: var(--padding);
+}
+
+.education-sec {
+  border: 1px solid black;
+  padding: var(--padding);
+}
+
+.expertise-sec {
+  grid-area: expertise;
+  border: 1px solid black;
+  padding: var(--padding);
+}
+
+.experience-sec {
+  grid-area: experience;
+  border: 1px solid black;
+  padding: var(--padding);
+}
+
+.references-sec {
+  grid-area: references;
+  border: 1px solid black;
+  padding: var(--padding);
+}
+
+
+
+/* Template Styling (end) */
