@@ -26,7 +26,7 @@ const Form = function ({submitVerified}) {
     <div className='form-fields'>
       <BasicInfo saveStateFunc={saveFormValues}/>
       <ContactInfo saveStateFunc={saveFormValues}/>
-      <EducationInfo/>
+      <EducationInfo saveStateFunc={saveFormValues}/>
       <ExpertiseInfo/>
       <ExperienceInfo/>
       <ReferenceInfo/>

@@ -62,6 +62,8 @@ const BasicInfo = function ({saveStateFunc}) {
   const handleValueChange = function (event) {
     const inputRole = event.target.dataset.role;
     setBasicValue({...basicValue, [inputRole]: event.target.value});
+
+    // Save to Form component state
     saveStateFunc('basicInfo', {...basicValue, [inputRole]: event.target.value});
   }
  

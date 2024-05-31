@@ -51,11 +51,38 @@ const ContactsTemplate = function ({refArr}) {
   return (
     <div className='contact-sec'>
       <p>Contact</p>
-      <>{Contacts}</>
-             
+      <>{Contacts}</>     
     </div>
   )
 }
+
+const EducationTemplate = function ({refArr}) {
+  console.log(refArr)
+
+  const Education = refArr.map((educ) => {
+
+    const yearDisplay = educ.yearGraduated.length !== 0 ? educ.yearGraduated : 'Year Graduated';
+    const degreeDisplay = educ.degree.length !== 0 ? educ.degree : 'Degree';
+    const schoolDisplay = educ.school.length !== 0 ? educ.school : 'School';
+
+    return (
+      <div className='education-info' key={educ.keyId}>
+        <p>{yearDisplay}</p>
+        <p>{degreeDisplay}</p>
+        <p>{schoolDisplay}</p>
+      </div>    
+    )
+  })
+
+  return (
+    <div className='education-sec'>
+      <p>Education</p>
+      <>{Education}</>
+          
+    </div>
+  )
+}
+
 
 const CVTemplate = function ({refState}) {
   
@@ -69,15 +96,8 @@ const CVTemplate = function ({refState}) {
 
         <AddressTemplate refObj={refState.basicInfo}/>
         <ContactsTemplate refArr={refState.contactsInfo}/>
-
-        <div className='education-sec'>
-          <p>Education</p>
-          <div className='education-info'>
-            <p>year</p>
-            <p>degree</p>
-            <p>school</p>
-          </div>        
-        </div>
+        <EducationTemplate refArr={refState.educationInfo}/>
+        
 
         <div className='expertise-sec'>
           <p>Expertise</p>

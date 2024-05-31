@@ -6,14 +6,14 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
   return (
     <div className='educ-field'>
       <div className='year-field'>
-        <label htmlFor={`year-${refObj.keyId}`}>Year finished:</label>
+        <label htmlFor={`year-${refObj.keyId}`}>Year Graduated:</label>
         <input
           type="text"
-          data-role='yearFinished'
+          data-role='yearGraduated'
           data-key={refObj.keyId}
           id={`year-${refObj.keyId}`}
           name={`year-${refObj.keyId}`}
-          value={refObj.yearFinished}
+          value={refObj.yearGraduated}
           onChange={changeEducFunc}
         />
       </div>
@@ -54,7 +54,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
 
 EducField.propTypes = {
   refObj: PropTypes.shape({
-    yearFinished: PropTypes.string,
+    yearGraduated: PropTypes.string,
     degree: PropTypes.string,
     school: PropTypes.string,
     keyId: PropTypes.string,
@@ -65,12 +65,12 @@ EducField.propTypes = {
 }
 
 
-const EducationInfo = function () {
+const EducationInfo = function ({saveStateFunc}) {
   const [educations, setEducations] = useState([]);
   
   const handleAddEducation = function () {
     const newKey = crypto.randomUUID();
-    const newEduc = {yearFinished:'', degree:'', school:'', keyId: newKey, timeStamp: new Date().valueOf()}
+    const newEduc = {yearGraduated:'', degree:'', school:'', keyId: newKey, timeStamp: new Date().valueOf()}
 
     setEducations([...educations, newEduc]);
   }
@@ -89,6 +89,9 @@ const EducationInfo = function () {
     const sortedByTimeAdded = [...educAsIs, educForChange].sort((a, b) => a.timeStamp - b.timeStamp);
 
     setEducations(sortedByTimeAdded);
+
+    // Save to Form component state
+    saveStateFunc('educationInfo', sortedByTimeAdded);
   }
   
   const EducInputFields = educations.map((field) => {
