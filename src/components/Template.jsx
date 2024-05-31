@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from 'prop-types';
 import Icon from '@mdi/react';
 import { mdiAccountOutline } from '@mdi/js';
@@ -39,8 +38,8 @@ const AddressTemplate = function ({refObj}) {
 }
 
 const ContactsTemplate = function ({refArr}) {
-
-  const Contacts = [...refArr].map((contact) => {
+  
+  const Contacts = refArr.map((contact) => {
     return (
       <div className='contact-info' key={contact.keyId}>
         <p>{contact.label}</p>
@@ -69,7 +68,7 @@ const CVTemplate = function ({refState}) {
       <div className='column-1'>
 
         <AddressTemplate refObj={refState.basicInfo}/>
-        <ContactsTemplate refObj={refState.contactsInfo}/>
+        <ContactsTemplate refArr={refState.contactsInfo}/>
 
         <div className='education-sec'>
           <p>Education</p>
@@ -140,5 +139,35 @@ const CVTemplate = function ({refState}) {
    
   )
 }
+
+const basicInfoPropTypes = {
+  refObj: PropTypes.shape({
+      name: PropTypes.string,
+      designation: PropTypes.string,
+      address: PropTypes.string,
+      competency: PropTypes.string
+  })
+}
+
+IntroTemplate.propTypes = basicInfoPropTypes;
+AddressTemplate.propTypes = basicInfoPropTypes;
+ContactsTemplate.propTypes = {refArr: PropTypes.array};
+
+CVTemplate.propTypes = {
+  refState: PropTypes.shape({
+    basicInfo: PropTypes.shape({
+      name: PropTypes.string,
+      designation: PropTypes.string,
+      address: PropTypes.string,
+      competency: PropTypes.string
+    }),
+    contactsInfo: PropTypes.array,
+    educationInfo: PropTypes.array,
+    expertiseInfo: PropTypes.array,
+    experienceInfo: PropTypes.array,
+    referencesInfo: PropTypes.array
+  })
+}
+
 
 export default CVTemplate

@@ -6,7 +6,7 @@ import { defaultEmptyState } from './scripts/utilities.js'
 
 function App() {
   const [verifiedValues, setVerifiedValues] = useState(defaultEmptyState);
-
+  
   const handleSubmitVerified = function (verifiedState) {
     setVerifiedValues(verifiedState);
   }
