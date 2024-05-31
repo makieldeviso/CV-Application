@@ -8,17 +8,9 @@ import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
 
 const Form = function ({submitVerified}) {
-  const [formValues, setFormValues] = useState({
-    basicInfo: {},
-    contact: {},
-    education: {},
-    expertise: {},
-    experience: {},
-    reference: {},
-  })
+  const [formValues, setFormValues] = useState({})
 
   const saveFormValues = function (formSection, saveState) {
-
     setFormValues({...formValues, [formSection]: saveState} )
   }
 
@@ -29,7 +21,7 @@ const Form = function ({submitVerified}) {
   return (
     <div className='form-fields'>
       <BasicInfo saveStateFunc={saveFormValues}/>
-      <ContactInfo/>
+      <ContactInfo saveStateFunc={saveFormValues}/>
       <EducationInfo/>
       <ExpertiseInfo/>
       <ExperienceInfo/>

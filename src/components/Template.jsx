@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Icon from '@mdi/react';
 import { mdiAccountOutline } from '@mdi/js';
 
-const IntroTemplate = function ({basicInfo}) {
-
-  const nameDisplay = basicInfo.name.length !== 0 ? basicInfo.name : 'Full Name';
-  const designationDisplay = basicInfo.designation.length !== 0 ? basicInfo.designation : 'Designation';
-  const competencyDisplay = basicInfo.competency.length !== 0 ? basicInfo.competency : 'Competency';
+const IntroTemplate = function ({refObj}) {
+  if (!refObj) refObj = { name: '', designation: '', competency: ''}
+  
+  const nameDisplay = refObj.name.length !== 0 ? refObj.name : 'Full Name';
+  const designationDisplay = refObj.designation.length !== 0 ? refObj.designation : 'Designation';
+  const competencyDisplay = refObj.competency.length !== 0 ? refObj.competency : 'Competency';
 
   return (
     <div className='intro'>
@@ -27,7 +28,7 @@ const IntroTemplate = function ({basicInfo}) {
 }
 
 IntroTemplate.propTypes = {
-  basicInfo: PropTypes.shape({
+  refObj: PropTypes.shape({
       name: PropTypes.string,
       designation: PropTypes.string,
       address: PropTypes.string,
@@ -35,32 +36,59 @@ IntroTemplate.propTypes = {
   })
 }
 
+const AddressTemplate = function ({refObj}) {
+  if (!refObj) refObj = {address: ''};
 
-const CVTemplate = function ({refObj}) {
+  const nameDisplay = refObj.address.length !== 0 ? refObj.address : 'Address';
+
+  return (
+    <div className='address-sec'>
+      <p>Address</p>
+      <div className='address-info'>
+        <p>{nameDisplay}</p>
+      </div>        
+    </div>
+  )
+}
+
+const ContactsTemplate = function ({refObj}) {
+  if (!refObj) {
+    refObj = []
+  }
+
+  const Contacts = refObj.map((contact) => {
+    return (
+      <div className='contact-info' key={contact.keyId}>
+        <p>{contact.label}</p>
+        <p>{contact.address}</p>
+      </div> 
+    )
+  })
+
+  return (
+    <div className='contact-sec'>
+      <p>Contact</p>
+      <>{Contacts}</>
+             
+    </div>
+  )
+
+
+}
+
+
+const CVTemplate = function ({refState}) {
   
   return (
     <div className='cv-template'>
 
-      <IntroTemplate basicInfo={refObj.basicInfo}/>
+      <IntroTemplate refObj={refState.basicInfo}/>
 
 
       <div className='column-1'>
 
-        <div className='address-sec'>
-          <p>Address</p>
-          <div className='address-info'>
-            <p>Address Place</p>
-          </div>        
-        </div>
-
-        
-        <div className='contact-sec'>
-          <p>Contact</p>
-          <div className='contact-info'>
-            <p>Contact Label:</p>
-            <p>#123567890</p>
-          </div>        
-        </div>
+        <AddressTemplate refObj={refState.basicInfo}/>
+        <ContactsTemplate refObj={refState.contactsInfo}/>
 
         <div className='education-sec'>
           <p>Education</p>

@@ -147,6 +147,39 @@
   padding: var(--padding);
 }
 
+/* Contact input field (start) */
+.contact-cont {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  gap: calc(var(--margin) * 0.5);
+  grid-template-areas: 
+  ". . remove-btn"
+  "label-type input-type input-type"
+  "label-add input-add input-add";
+}
+
+.label-contact-type {
+  grid-area: label-type;
+}
+
+.input-contact-type {
+  grid-area: input-type;
+}
+
+.label-contact-add {
+  grid-area: label-add;
+} 
+
+.input-contact-add {
+  grid-area: input-add;
+} 
+
+.contact-cont .remove-btn {
+  grid-area: remove-btn;
+}
+/* Contact input field (end) */
+
 .education-sec {
   border: 1px solid black;
   padding: var(--padding);

@@ -3,17 +3,7 @@ import Form from './components/Form.jsx'
 import CVTemplate from './components/Template.jsx'
 
 function App() {
-  const [verifiedValues, setVerifiedValues] = useState({
-    basicInfo: {
-      name: '',
-      designation: '',
-      address: '',
-      competency: '',
-    },
-
-
-
-  })
+  const [verifiedValues, setVerifiedValues] = useState({})
 
   const handleSubmitVerified = function (verifiedState) {
     setVerifiedValues(verifiedState);
@@ -22,7 +12,7 @@ function App() {
   return (
     <div className='main-content'>
       <Form submitVerified={handleSubmitVerified}/>
-      <CVTemplate refObj={verifiedValues}/>
+      <CVTemplate refState={verifiedValues}/>
     </div>
   )
 }

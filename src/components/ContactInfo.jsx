@@ -5,10 +5,11 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
  
   return (
     <div className='contact-cont'>
-      <label htmlFor={`label-${refObj.keyId}`}>Contact type:</label>
+      <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">Contact type:</label>
       <input
         type="text"
         data-role='label'
+        className="input-contact-type"
         data-key={refObj.keyId}
         id={`label-${refObj.keyId}`}
         name={`label-${refObj.keyId}`}
@@ -17,10 +18,11 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
         value={refObj.label}
       />
 
-      <label htmlFor={`address-${refObj.keyId}`}>Contact address:</label>
+      <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">Contact address:</label>
       <input
         type="text"
         data-role='address'
+        className="input-contact-add"
         data-key={refObj.keyId}
         id={`address-${refObj.keyId}`}
         name={`address-${refObj.keyId}`}
@@ -46,7 +48,7 @@ ContactField.propTypes = {
   changeValueFunc: PropTypes.func,
 }
 
-const ContactInfo = function () {
+const ContactInfo = function ({saveStateFunc}) {
   const [contacts, setContacts] = useState([]);
 
   const handleRemoveField = function (event) {
@@ -62,7 +64,9 @@ const ContactInfo = function () {
     // Change value of contact object
     contactForChange[inputRole] = event.target.value;
     const sortedByTimeAdded = [...contactAsIs, contactForChange].sort((a, b) => a.timeStamp - b.timeStamp);
-    setContacts(sortedByTimeAdded)
+    setContacts(sortedByTimeAdded);
+    console.log(sortedByTimeAdded)
+    saveStateFunc('contactsInfo', sortedByTimeAdded);
   }
   
   const ContactFields = contacts.map((contact) => {
@@ -90,6 +94,10 @@ const ContactInfo = function () {
       <button type="button" onClick={handleAddNewContact}>Add Contact</button>
     </div>
   )
+}
+
+ContactInfo.propTypes = {
+  saveStateFunc: PropTypes.func
 }
 
 export default ContactInfo
