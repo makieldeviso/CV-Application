@@ -65,7 +65,6 @@ const ContactInfo = function ({saveStateFunc}) {
     contactForChange[inputRole] = event.target.value;
     const sortedByTimeAdded = [...contactAsIs, contactForChange].sort((a, b) => a.timeStamp - b.timeStamp);
     setContacts(sortedByTimeAdded);
-    console.log(sortedByTimeAdded)
     saveStateFunc('contactsInfo', sortedByTimeAdded);
   }
   

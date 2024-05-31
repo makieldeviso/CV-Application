@@ -9,4 +9,20 @@ const capitalizeString = function (string) {
   return newStringArray.join(' ');
 }
 
-export {capitalizeString}
+const defaultEmptyState = {
+  basicInfo: {
+    name: '',
+    designation: '',
+    address: '',
+    competency: '',
+  },
+
+  contactsInfo: [],
+  educationInfo: [],
+  expertiseInfo: [],
+  experienceInfo: [],
+  referencesInfo: []
+}
+
+
+export {capitalizeString, defaultEmptyState}

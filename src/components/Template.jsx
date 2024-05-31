@@ -4,8 +4,6 @@ import Icon from '@mdi/react';
 import { mdiAccountOutline } from '@mdi/js';
 
 const IntroTemplate = function ({refObj}) {
-  if (!refObj) refObj = { name: '', designation: '', competency: ''}
-  
   const nameDisplay = refObj.name.length !== 0 ? refObj.name : 'Full Name';
   const designationDisplay = refObj.designation.length !== 0 ? refObj.designation : 'Designation';
   const competencyDisplay = refObj.competency.length !== 0 ? refObj.competency : 'Competency';
@@ -27,18 +25,7 @@ const IntroTemplate = function ({refObj}) {
   )
 }
 
-IntroTemplate.propTypes = {
-  refObj: PropTypes.shape({
-      name: PropTypes.string,
-      designation: PropTypes.string,
-      address: PropTypes.string,
-      competency: PropTypes.string
-  })
-}
-
 const AddressTemplate = function ({refObj}) {
-  if (!refObj) refObj = {address: ''};
-
   const nameDisplay = refObj.address.length !== 0 ? refObj.address : 'Address';
 
   return (
@@ -51,12 +38,9 @@ const AddressTemplate = function ({refObj}) {
   )
 }
 
-const ContactsTemplate = function ({refObj}) {
-  if (!refObj) {
-    refObj = []
-  }
+const ContactsTemplate = function ({refArr}) {
 
-  const Contacts = refObj.map((contact) => {
+  const Contacts = [...refArr].map((contact) => {
     return (
       <div className='contact-info' key={contact.keyId}>
         <p>{contact.label}</p>
@@ -72,10 +56,7 @@ const ContactsTemplate = function ({refObj}) {
              
     </div>
   )
-
-
 }
-
 
 const CVTemplate = function ({refState}) {
   

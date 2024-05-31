@@ -7,9 +7,13 @@ import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
 
-const Form = function ({submitVerified}) {
-  const [formValues, setFormValues] = useState({})
+import { defaultEmptyState } from "../scripts/utilities";
 
+const Form = function ({submitVerified}) {
+  const [formValues, setFormValues] = useState(defaultEmptyState)
+
+  // Note: everytime the user edits the input field saveFormValues is executed
+  // from the onChange event of the input field
   const saveFormValues = function (formSection, saveState) {
     setFormValues({...formValues, [formSection]: saveState} )
   }
@@ -30,7 +34,6 @@ const Form = function ({submitVerified}) {
     </div>
     
   ) 
-
 }
 
 export default Form
