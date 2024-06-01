@@ -27,7 +27,7 @@ const Form = function ({submitVerified}) {
       <BasicInfo saveStateFunc={saveFormValues}/>
       <ContactInfo saveStateFunc={saveFormValues}/>
       <EducationInfo saveStateFunc={saveFormValues}/>
-      <ExpertiseInfo/>
+      <ExpertiseInfo saveStateFunc={saveFormValues}/>
       <ExperienceInfo/>
       <ReferenceInfo/>
       <button onClick={handleSubmit}>Submit</button>

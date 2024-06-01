@@ -57,8 +57,7 @@ const ContactsTemplate = function ({refArr}) {
 }
 
 const EducationTemplate = function ({refArr}) {
-  console.log(refArr)
-
+  
   const Education = refArr.map((educ) => {
 
     const yearDisplay = educ.yearGraduated.length !== 0 ? educ.yearGraduated : 'Year Graduated';
@@ -84,6 +83,49 @@ const EducationTemplate = function ({refArr}) {
 }
 
 
+const ExpertiseTemplate = function ({refArr}) {
+  console.log(refArr)
+
+  const Expertise = refArr.map((expertise) => {
+
+    const Rating = [];
+    for(let i = 1; i <= 5; i++) {
+      Rating.push(
+        <div
+          key={i} 
+          className={i <= expertise.rating ? 'rating rated': 'rating unrated'} 
+        >
+        </div>
+      )
+    }
+
+    return (
+      <div className='expertise-content' key={expertise.keyId}>
+        <p>{expertise.skill}</p>
+        <div className='rating-cont'>
+          <>{Rating}</>
+        </div>
+      </div>
+    )
+  })
+
+
+  return (
+    <div className='expertise-sec'>
+          <p>Expertise</p>
+
+          <div className='expertise-info'>
+            <div className='expertise-header'>
+              <p>Skill</p>
+              <p>Rating</p>
+            </div>
+
+            <>{Expertise}</>
+          </div>        
+        </div>
+  )
+}
+
 const CVTemplate = function ({refState}) {
   
   return (
@@ -97,23 +139,9 @@ const CVTemplate = function ({refState}) {
         <AddressTemplate refObj={refState.basicInfo}/>
         <ContactsTemplate refArr={refState.contactsInfo}/>
         <EducationTemplate refArr={refState.educationInfo}/>
+        <ExpertiseTemplate refArr={refState.expertiseInfo}/>
+
         
-
-        <div className='expertise-sec'>
-          <p>Expertise</p>
-
-          <div className='expertise-info'>
-            <div className='expertise-header'>
-              <p>Skill</p>
-              <p>Rating</p>
-            </div>
-
-            <div className='expertise-content'>
-              <p>Skill-1</p>
-              <p>Rating here</p>
-            </div>
-          </div>        
-        </div>
 
       </div>
 
@@ -172,6 +200,8 @@ const basicInfoPropTypes = {
 IntroTemplate.propTypes = basicInfoPropTypes;
 AddressTemplate.propTypes = basicInfoPropTypes;
 ContactsTemplate.propTypes = {refArr: PropTypes.array};
+EducationTemplate.propTypes = {refArr: PropTypes.array};
+ExpertiseTemplate.propTypes = {refArr: PropTypes.array};
 
 CVTemplate.propTypes = {
   refState: PropTypes.shape({
@@ -188,6 +218,5 @@ CVTemplate.propTypes = {
     referencesInfo: PropTypes.array
   })
 }
-
 
 export default CVTemplate

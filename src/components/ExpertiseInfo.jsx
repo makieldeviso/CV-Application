@@ -50,7 +50,7 @@ SkillField.propTypes = {
   changeSkillValueFunc: PropTypes.func,
 }
 
-const ExpertiseInfo = function () {
+const ExpertiseInfo = function ({saveStateFunc}) {
   const [skills, setSkills] = useState([]);
 
   const handleAddExpertise = function () {
@@ -82,7 +82,11 @@ const ExpertiseInfo = function () {
     skillForChange.rating = Number(event.target.value);
     const sortedByTimeAdded = [...skillsAsIs, skillForChange].sort((a, b) => a.timeStamp - b.timeStamp);
 
+    // Save to this component state
     setSkills(sortedByTimeAdded);
+
+    // Save to Form component state
+    saveStateFunc('expertiseInfo', sortedByTimeAdded);
   }
 
   const handleRemoveSkill = function (event) {

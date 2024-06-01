@@ -49,6 +49,39 @@
   align-items: center;
 }
 
+/* Contact input field (start) */
+.contact-cont {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  gap: calc(var(--margin) * 0.5);
+  grid-template-areas: 
+  ". . remove-btn"
+  "label-type input-type input-type"
+  "label-add input-add input-add";
+}
+
+.label-contact-type {
+  grid-area: label-type;
+}
+
+.input-contact-type {
+  grid-area: input-type;
+}
+
+.label-contact-add {
+  grid-area: label-add;
+} 
+
+.input-contact-add {
+  grid-area: input-add;
+} 
+
+.contact-cont .remove-btn {
+  grid-area: remove-btn;
+}
+/* Contact input field (end) */
+
 .skill-header {
   display: grid;
   grid-template-columns: 1fr 1fr var(--remove-btn-size);
@@ -88,7 +121,7 @@
   padding: var(--padding);
   margin: var(--margin);
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 300px 1fr;
   grid-template-areas: 
     "intro intro"
     "column-1 column-2";
@@ -97,7 +130,7 @@
 .intro {
   grid-area: intro;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 300px 1fr;
 }
 
 .column-1 {
@@ -147,49 +180,63 @@
   padding: var(--padding);
 }
 
-/* Contact input field (start) */
-.contact-cont {
-  border: 1px solid black;
-  display: grid;
-  grid-template-columns: max-content 1fr max-content;
-  gap: calc(var(--margin) * 0.5);
-  grid-template-areas: 
-  ". . remove-btn"
-  "label-type input-type input-type"
-  "label-add input-add input-add";
-}
-
-.label-contact-type {
-  grid-area: label-type;
-}
-
-.input-contact-type {
-  grid-area: input-type;
-}
-
-.label-contact-add {
-  grid-area: label-add;
-} 
-
-.input-contact-add {
-  grid-area: input-add;
-} 
-
-.contact-cont .remove-btn {
-  grid-area: remove-btn;
-}
-/* Contact input field (end) */
 
 .education-sec {
   border: 1px solid black;
   padding: var(--padding);
 }
 
+
+/* Expertise template (start) */
 .expertise-sec {
   grid-area: expertise;
   border: 1px solid black;
   padding: var(--padding);
 }
+
+.expertise-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+
+.expertise-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: start;
+}
+
+.expertise-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rating-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+}
+
+.rating {
+  border: 1px solid black;
+  width: 15px;
+  height: 15px;
+}
+
+.rating.rated {
+  background-color: blue;
+
+}
+
+.rating.unrated {
+  background-color: white;
+}
+
+
+/* Expertise template (start) */
+
 
 .experience-sec {
   grid-area: experience;
