@@ -37,8 +37,8 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
       </div>
 
       <div className='ref-input-cont'>
-        <label htmlFor={`companyAdd-${refObj.keyId}`}>Company Address: </label>
-        <input {...fieldAttributes('companyAdd')}/>
+        <label htmlFor={`companyAddress-${refObj.keyId}`}>Company Address: </label>
+        <input {...fieldAttributes('companyAddress')}/>
       </div>
 
       <div className='ref-input-cont'>
@@ -50,14 +50,14 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
   )
 }
 
-const ReferenceInfo = function () {
+const ReferenceInfo = function ({saveStateFunc}) {
   const refTemplate = (assignId) => {
     return (
       {
         name: '',
         position: '', 
         company: '',
-        companyAdd: '',
+        companyAddress: '',
         phone: '',
         keyId: assignId,
         timeStamp: assignId === 'reference-1' ? 1 : 2
@@ -78,7 +78,11 @@ const ReferenceInfo = function () {
     refForChange[inputRole] = event.target.value;
     const sortedByTimeAdded = [...refAsIs, refForChange].sort((a, b) => a.timeStamp - b.timeStamp);
 
+    // Save to this component state
     setReferences(sortedByTimeAdded);
+
+    // Save to Form component state
+    saveStateFunc('referencesInfo', sortedByTimeAdded)
   }
   
   const ReferencesFields = references.map((ref) => {
@@ -99,6 +103,23 @@ const ReferenceInfo = function () {
   
     </div>
   )
+}
+
+ReferenceField.propTypes = {
+  refObj: PropTypes.shape({
+    name: PropTypes.string,
+    position: PropTypes.string, 
+    company: PropTypes.string,
+    companyAddress: PropTypes.string,
+    phone: PropTypes.string,
+    keyId: PropTypes.string,
+    timeStamp: PropTypes.number
+  }),
+  changeRefValueFunc: PropTypes.func
+}
+
+ReferenceInfo.propTypes = {
+  saveStateFunc: PropTypes.func
 }
 
 export default ReferenceInfo

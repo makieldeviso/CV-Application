@@ -259,11 +259,17 @@
   grid-area: references;
   border: 1px solid black;
   padding: var(--padding);
+}
 
+.references-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
+.references-info div {
+  border: 1px solid black;
+  padding: calc(var(--padding) * 0.5);
+}
 
 
 /* Template Styling (end) */

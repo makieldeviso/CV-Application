@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import Icon from '@mdi/react';
 import { mdiAccountOutline } from '@mdi/js';
 
@@ -129,7 +130,7 @@ const ExpertiseTemplate = function ({refArr}) {
 
 
 const ExperienceTemplate = function ({refArr}) {
-  console.log(refArr)
+
   const Experiences = refArr.map((exp) => {
 
     const start = exp.start.length !== 0 ? exp.start : 'Start';
@@ -166,6 +167,41 @@ const ExperienceTemplate = function ({refArr}) {
   )
 }
 
+const ReferencesTemplate = function ({refArr}) {
+  
+  const References = refArr.map((reference) => {
+
+    const name = reference.name.length !== 0 ? reference.name : "Reference Name";
+    const position = reference.position.length !== 0 ? reference.position : "Position";
+    const company = reference.company.length !== 0 ? reference.company : "Company";
+    const companyAddress = reference.companyAddress.length !== 0 ? reference.companyAddress : "Company Address";
+    const phone = reference.phone.length !== 0 ? reference.phone : "Phone Number";
+
+    return (
+      <div className='reference-info-1' key={reference.keyId}>
+        <p>{name}</p>
+        <p>{position}</p>
+        <p>{company}</p>
+        <p>{companyAddress}</p>
+        <p><span>Phone:</span>{phone}</p>
+      </div>
+    )
+  })
+
+  return (
+    <div className='references-sec'>
+      <p>References</p>
+      <div className='references-info'>
+      <>{References}</>
+      </div>
+      
+    </div>
+  )
+
+}
+
+
+
 
 const CVTemplate = function ({refState}) {
   
@@ -187,22 +223,8 @@ const CVTemplate = function ({refState}) {
       <div className='column-2'>
 
         <ExperienceTemplate refArr={refState.experienceInfo}/>
-
-        <div className='references-sec'>
-          <div className='reference-info-1'>
-            <p>Name</p>
-            <p>position</p>
-            <p>company</p>
-            <p>Phone</p>
-          </div>
-
-          <div className='reference-info-2'>
-            <p>Name</p>
-            <p>position</p>
-            <p>company</p>
-            <p>Phone</p>
-          </div>
-        </div>
+        <ReferencesTemplate refArr={refState.referencesInfo}/>
+       
 
       </div>
 
@@ -226,6 +248,7 @@ ContactsTemplate.propTypes = {refArr: PropTypes.array};
 EducationTemplate.propTypes = {refArr: PropTypes.array};
 ExpertiseTemplate.propTypes = {refArr: PropTypes.array};
 ExperienceTemplate.propTypes = {refArr: PropTypes.array};
+ReferencesTemplate.propTypes = {refArr: PropTypes.array};
 
 CVTemplate.propTypes = {
   refState: PropTypes.shape({

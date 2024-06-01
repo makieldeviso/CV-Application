@@ -11,6 +11,8 @@ function App() {
     setVerifiedValues(verifiedState);
   }
 
+  console.log(JSON.parse(localStorage.getItem('CVApplicationByMakieldeviso')));
+
   return (
     <div className='main-content'>
       <Form submitVerified={handleSubmitVerified}/>

@@ -60,21 +60,6 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc}) {
   )
 }
 
-ExperienceField.propTypes = {
-  refObj: PropTypes.shape({
-    start: PropTypes.string,
-    end: PropTypes.string,
-    company: PropTypes.string,
-    companyAddress: PropTypes.string,
-    position: PropTypes.string,
-    desc:PropTypes.string,
-    keyId: PropTypes.string,
-    timeStamp: PropTypes.number
-  }),
-  changeExpValueFunc: PropTypes.func,
-  removeExpFunc: PropTypes.func
-}
-
 const ExperienceInfo = function ({saveStateFunc}) {
   const [experiences, setExperiences] = useState([]);
 
@@ -134,6 +119,25 @@ const ExperienceInfo = function ({saveStateFunc}) {
       <button type="button"  onClick={handleAddExperience}> Add Experience </button>
     </div>
   )
+}
+
+ExperienceField.propTypes = {
+  refObj: PropTypes.shape({
+    start: PropTypes.string,
+    end: PropTypes.string,
+    company: PropTypes.string,
+    companyAddress: PropTypes.string,
+    position: PropTypes.string,
+    desc:PropTypes.string,
+    keyId: PropTypes.string,
+    timeStamp: PropTypes.number
+  }),
+  changeExpValueFunc: PropTypes.func,
+  removeExpFunc: PropTypes.func
+}
+
+ExperienceInfo.propTypes = {
+  saveStateFunc: PropTypes.func
 }
 
 export default ExperienceInfo
