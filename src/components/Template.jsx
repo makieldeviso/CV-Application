@@ -84,8 +84,7 @@ const EducationTemplate = function ({refArr}) {
 
 
 const ExpertiseTemplate = function ({refArr}) {
-  console.log(refArr)
-
+ 
   const Expertise = refArr.map((expertise) => {
 
     const Rating = [];
@@ -99,9 +98,11 @@ const ExpertiseTemplate = function ({refArr}) {
       )
     }
 
+    const skillName = expertise.skill.length !== 0 ? expertise.skill : 'Unnamed skill';
+
     return (
       <div className='expertise-content' key={expertise.keyId}>
-        <p>{expertise.skill}</p>
+        <p>{skillName}</p>
         <div className='rating-cont'>
           <>{Rating}</>
         </div>
@@ -126,6 +127,46 @@ const ExpertiseTemplate = function ({refArr}) {
   )
 }
 
+
+const ExperienceTemplate = function ({refArr}) {
+  console.log(refArr)
+  const Experiences = refArr.map((exp) => {
+
+    const start = exp.start.length !== 0 ? exp.start : 'Start';
+    const end = exp.end.length !== 0 ? exp.end : 'End';
+    const company = exp.company.length !== 0 ? exp.company : 'Company name';
+    const companyAddress = exp.companyAddress.length !== 0 ? exp.companyAddress : 'Company Address';
+    const position = exp.position.length !== 0 ? exp.position : 'Position';
+    const desc= exp.desc.length !== 0 ? exp.desc : 'Describe your contributions to previous job';
+
+    return (
+      <div className='experience-info' key={exp.keyId}>
+        <div className='exp-start-end'>
+          <p>{start}</p>
+          <p>{end}</p>
+        </div>
+
+        <div className='exp-company'>
+          <p>{company}</p>
+          <p>{companyAddress}</p>
+        </div>
+        
+        <p>{position}</p>
+        <p>{desc}</p>
+        
+      </div>  
+    )
+  })
+
+  return (
+    <div className='experience-sec'>
+      <p>Experience</p>
+      <>{Experiences}</>      
+    </div>
+  )
+}
+
+
 const CVTemplate = function ({refState}) {
   
   return (
@@ -141,39 +182,21 @@ const CVTemplate = function ({refState}) {
         <EducationTemplate refArr={refState.educationInfo}/>
         <ExpertiseTemplate refArr={refState.expertiseInfo}/>
 
-        
-
       </div>
 
       <div className='column-2'>
 
-        <div className='experience-sec'>
-          <div className='experience-info'>
-            <div className='exp-start-end'>
-              <p>Start value</p>
-              <p>End value</p>
-            </div>
-
-            <div className='exp-company'>
-              <p>Company Name</p>
-              <p>Company Address</p>
-            </div>
-            
-            <p>position</p>
-            <p>Contribution</p>
-            
-          </div>        
-        </div>
+        <ExperienceTemplate refArr={refState.experienceInfo}/>
 
         <div className='references-sec'>
-          <div className='reference-1-sec'>
+          <div className='reference-info-1'>
             <p>Name</p>
             <p>position</p>
             <p>company</p>
             <p>Phone</p>
           </div>
 
-          <div className='reference-2-sec'>
+          <div className='reference-info-2'>
             <p>Name</p>
             <p>position</p>
             <p>company</p>
@@ -202,6 +225,7 @@ AddressTemplate.propTypes = basicInfoPropTypes;
 ContactsTemplate.propTypes = {refArr: PropTypes.array};
 EducationTemplate.propTypes = {refArr: PropTypes.array};
 ExpertiseTemplate.propTypes = {refArr: PropTypes.array};
+ExperienceTemplate.propTypes = {refArr: PropTypes.array};
 
 CVTemplate.propTypes = {
   refState: PropTypes.shape({

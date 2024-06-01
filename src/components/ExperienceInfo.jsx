@@ -69,13 +69,13 @@ ExperienceField.propTypes = {
     position: PropTypes.string,
     desc:PropTypes.string,
     keyId: PropTypes.string,
-    timeStamp: PropTypes.string
+    timeStamp: PropTypes.number
   }),
   changeExpValueFunc: PropTypes.func,
   removeExpFunc: PropTypes.func
 }
 
-const ExperienceInfo = function () {
+const ExperienceInfo = function ({saveStateFunc}) {
   const [experiences, setExperiences] = useState([]);
 
   const handleAddExperience = function () {
@@ -108,7 +108,11 @@ const ExperienceInfo = function () {
     expForChange[inputRole] = event.target.value;
     const sortedByTimeAdded = [...expAsIs, expForChange].sort((a, b) => a.timeStamp - b.timeStamp);
 
+    // Save to this component state
     setExperiences(sortedByTimeAdded);
+
+    // Save to form component state
+    saveStateFunc('experienceInfo', sortedByTimeAdded);
   }
   
   const Experiences = experiences.map((exp) => {

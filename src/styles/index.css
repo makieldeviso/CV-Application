@@ -235,19 +235,33 @@
 }
 
 
-/* Expertise template (start) */
+/* Expertise template (end) */
 
-
+/* Experience template (start) */
 .experience-sec {
   grid-area: experience;
   border: 1px solid black;
   padding: var(--padding);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--margin);
 }
+
+.experience-info {
+  border: 1px solid black;
+  padding: calc(var(--padding) * 0.5);
+}
+
+/* Experience template (end) */
 
 .references-sec {
   grid-area: references;
   border: 1px solid black;
   padding: var(--padding);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 
