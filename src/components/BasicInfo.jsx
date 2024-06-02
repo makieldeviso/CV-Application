@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
+import { getLocalStorageFormValues } from "../scripts/memoryHandler";
+
 const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
 
   const inputAttributes = (role) => {
@@ -51,13 +53,10 @@ BasicInputFields.propTypes = {
   changeBasicValueFunc: PropTypes.func
 }
 
+const formValues = getLocalStorageFormValues();
+
 const BasicInfo = function ({saveStateFunc}) {
-  const [basicValue, setBasicValue] = useState({
-    name: '',
-    designation: '',
-    address: '',
-    competency: '',
-  });
+  const [basicValue, setBasicValue] = useState(formValues.basicInfo);
 
   const handleValueChange = function (event) {
     const inputRole = event.target.dataset.role;

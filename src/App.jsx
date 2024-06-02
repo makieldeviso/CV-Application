@@ -2,16 +2,19 @@ import { useState } from 'react'
 import Form from './components/Form.jsx'
 import CVTemplate from './components/Template.jsx'
 
-import { defaultEmptyState } from './scripts/utilities.js'
+import {setLocalStorageSubmittedValues, getLocalStorageSubmittedValues, getLocalStorageFormValues } from './scripts/memoryHandler.js';
 
 function App() {
-  const [verifiedValues, setVerifiedValues] = useState(defaultEmptyState);
+  // Check local storage if submitted values are stored
+  const savedState = getLocalStorageSubmittedValues();
   
-  const handleSubmitVerified = function (verifiedState) {
+  const [verifiedValues, setVerifiedValues] = useState(savedState);
+  
+  const handleSubmitVerified = async function (verifiedState) {
     setVerifiedValues(verifiedState);
-  }
 
-  console.log(JSON.parse(localStorage.getItem('CVApplicationByMakieldeviso')));
+    setLocalStorageSubmittedValues(verifiedState);
+  }
 
   return (
     <div className='main-content'>

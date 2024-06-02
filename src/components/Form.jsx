@@ -8,24 +8,26 @@ import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
 
-import { defaultEmptyState } from "../scripts/utilities";
+import {setLocalStorageFormValues, getLocalStorageFormValues } from "../scripts/memoryHandler";
 
 const Form = function ({submitVerified}) {
-  const [formValues, setFormValues] = useState(defaultEmptyState)
+  const [formValues, setFormValues] = useState({})
 
   // Note: every time the user edits the input field saveFormValues is executed
   // from the onChange event of the input field
-  const saveFormValues = function (formSection, saveState) {
+  const saveFormValues = async function (formSection, saveState) {
     const updatedFormValues = {...formValues, [formSection]: saveState}; 
 
     setFormValues(updatedFormValues);
-    localStorage.setItem('CVApplicationByMakieldeviso', JSON.stringify({formValues: updatedFormValues}));
+
+    // Save form values to the local storage
+    setLocalStorageFormValues(updatedFormValues);
   }
 
   const handleSubmit = function () {
     submitVerified(formValues);
   }
-
+  
   return (
     <div className='form-fields'>
       <BasicInfo saveStateFunc={saveFormValues}/>
