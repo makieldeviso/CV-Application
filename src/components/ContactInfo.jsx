@@ -42,6 +42,9 @@ const ContactInfo = function ({saveStateFunc, savedFormValues}) {
   const handleRemoveField = function (event) {
     const remainState = contacts.filter((contact => contact.keyId !== event.target.value));
     setContacts(remainState);
+
+    // Save deletion to Form component state
+    saveStateFunc('contactsInfo', remainState);
   }
 
   const handleContactValueChange = function (event) {

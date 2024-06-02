@@ -64,7 +64,10 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
 
   const handleRemoveEduc = function (event) {
     const remainEduc = educations.filter((field => field.keyId !== event.target.value));
-    setEducations(remainEduc);  
+    setEducations(remainEduc); 
+    
+    // Save deletion to Form component state
+    saveStateFunc('educationInfo', remainEduc);
   }
 
   const handleChangeEducValue = function (event) {

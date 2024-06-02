@@ -83,6 +83,9 @@ const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
   const handleExpRemove = function (event) {
     const remainExp = experiences.filter((exp) => exp.keyId !== event.target.value);
     setExperiences(remainExp);
+
+    // Save deletion to form component state
+    saveStateFunc('experienceInfo', remainExp);
   }
 
   const handleExpChangeValue = function (event) {

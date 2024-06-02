@@ -12,7 +12,6 @@ function App() {
   const [verifiedValues, setVerifiedValues] = useState(savedSubmittedValues);
   
   const handleSubmitVerified = function (verifiedState) {
-    console.log(verifiedState)
     setVerifiedValues(verifiedState);
 
     setLocalStorageSubmittedValues(verifiedState);

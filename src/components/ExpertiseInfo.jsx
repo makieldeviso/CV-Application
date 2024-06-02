@@ -61,6 +61,9 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
     const sortedByTimeAdded = [...skillsAsIs, skillForChange].sort((a, b) => a.timeStamp - b.timeStamp);
 
     setSkills(sortedByTimeAdded);
+
+    // Save to Form component state
+    saveStateFunc('expertiseInfo', sortedByTimeAdded);
   }
 
   const handleChangeRating = function (event) {
@@ -80,6 +83,9 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
   const handleRemoveSkill = function (event) {
     const skillsRemain = skills.filter((skill) => skill.keyId !== event.target.value);
     setSkills(skillsRemain);
+
+    // Save to Form component state
+    saveStateFunc('expertiseInfo', skillsRemain);
   }
   
   const SkillInputFields = skills.map((skill) => {
