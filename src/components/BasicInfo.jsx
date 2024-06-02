@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-import { getLocalStorageFormValues } from "../scripts/memoryHandler";
-
 const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
 
   const inputAttributes = (role) => {
@@ -43,20 +41,8 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
   )
 }
 
-BasicInputFields.propTypes = {
-  refObj: PropTypes.shape({
-    name: PropTypes.string,
-    designation: PropTypes.string,
-    address: PropTypes.string,
-    competency: PropTypes.string 
-  }),
-  changeBasicValueFunc: PropTypes.func
-}
-
-const formValues = getLocalStorageFormValues();
-
-const BasicInfo = function ({saveStateFunc}) {
-  const [basicValue, setBasicValue] = useState(formValues.basicInfo);
+const BasicInfo = function ({saveStateFunc, savedFormValues}) {
+  const [basicValue, setBasicValue] = useState(savedFormValues);
 
   const handleValueChange = function (event) {
     const inputRole = event.target.dataset.role;
@@ -66,7 +52,6 @@ const BasicInfo = function ({saveStateFunc}) {
     saveStateFunc('basicInfo', {...basicValue, [inputRole]: event.target.value});
   }
  
- 
   return (
     <div className='basic-info info-grp'>
       <h3>Basic Information</h3>
@@ -75,8 +60,21 @@ const BasicInfo = function ({saveStateFunc}) {
   )
 }
 
+const refObjPropTypes = {
+  name: PropTypes.string,
+  designation: PropTypes.string,
+  address: PropTypes.string,
+  competency: PropTypes.string 
+}
+
+BasicInputFields.propTypes = {
+  refObj: PropTypes.shape(refObjPropTypes),
+  changeBasicValueFunc: PropTypes.func
+}
+
 BasicInfo.propTypes = {
-  saveStateFunc: PropTypes.func
+  saveStateFunc: PropTypes.func,
+  savedFormValues: PropTypes.shape(refObjPropTypes)
 }
 
 export default BasicInfo

@@ -60,8 +60,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc}) {
   )
 }
 
-const ExperienceInfo = function ({saveStateFunc}) {
-  const [experiences, setExperiences] = useState([]);
+const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
+  const [experiences, setExperiences] = useState(savedFormValues);
 
   const handleAddExperience = function () {
     const keyId = crypto.randomUUID();
@@ -121,8 +121,8 @@ const ExperienceInfo = function ({saveStateFunc}) {
   )
 }
 
-ExperienceField.propTypes = {
-  refObj: PropTypes.shape({
+
+const refObjPropTypes = {
     start: PropTypes.string,
     end: PropTypes.string,
     company: PropTypes.string,
@@ -131,13 +131,17 @@ ExperienceField.propTypes = {
     desc:PropTypes.string,
     keyId: PropTypes.string,
     timeStamp: PropTypes.number
-  }),
+}
+
+ExperienceField.propTypes = {
+  refObj: PropTypes.shape(refObjPropTypes),
   changeExpValueFunc: PropTypes.func,
   removeExpFunc: PropTypes.func
 }
 
 ExperienceInfo.propTypes = {
-  saveStateFunc: PropTypes.func
+  saveStateFunc: PropTypes.func,
+  savedFormValues: PropTypes.array
 }
 
 export default ExperienceInfo

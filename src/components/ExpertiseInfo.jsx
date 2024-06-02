@@ -38,20 +38,8 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
   )
 }
 
-SkillField.propTypes = {
-  refObj: PropTypes.shape({
-    skill: PropTypes.string,
-    rating: PropTypes.number,
-    keyId: PropTypes.string,
-    timeStamp: PropTypes.number
-  }),
-  changeRatingFunc: PropTypes.func,
-  removeSkillFunc: PropTypes.func,
-  changeSkillValueFunc: PropTypes.func,
-}
-
-const ExpertiseInfo = function ({saveStateFunc}) {
-  const [skills, setSkills] = useState([]);
+const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
+  const [skills, setSkills] = useState(savedFormValues);
 
   const handleAddExpertise = function () {
     const keyId = crypto.randomUUID();
@@ -118,6 +106,25 @@ const ExpertiseInfo = function ({saveStateFunc}) {
       <button type="button"  onClick={handleAddExpertise}>Add Expertise</button>
     </div>
   ) 
+}
+
+const refObjPropTypes = {
+  skill: PropTypes.string,
+  rating: PropTypes.number,
+  keyId: PropTypes.string,
+  timeStamp: PropTypes.number
+}
+
+SkillField.propTypes = {
+  refObj: PropTypes.shape(refObjPropTypes),
+  changeRatingFunc: PropTypes.func,
+  removeSkillFunc: PropTypes.func,
+  changeSkillValueFunc: PropTypes.func,
+}
+
+ExpertiseInfo.propTypes = {
+  saveStateFunc: PropTypes.func,
+  savedFormValues: PropTypes.array
 }
 
 export default ExpertiseInfo

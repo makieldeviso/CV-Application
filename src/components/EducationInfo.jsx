@@ -52,21 +52,8 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
   )
 }
 
-EducField.propTypes = {
-  refObj: PropTypes.shape({
-    yearGraduated: PropTypes.string,
-    degree: PropTypes.string,
-    school: PropTypes.string,
-    keyId: PropTypes.string,
-    timeStamp: PropTypes.number
-  }),
-  removeEducFunc: PropTypes.func,
-  changeEducFunc: PropTypes.func
-}
-
-
-const EducationInfo = function ({saveStateFunc}) {
-  const [educations, setEducations] = useState([]);
+const EducationInfo = function ({saveStateFunc, savedFormValues}) {
+  const [educations, setEducations] = useState(savedFormValues);
   
   const handleAddEducation = function () {
     const newKey = crypto.randomUUID();
@@ -113,6 +100,26 @@ const EducationInfo = function ({saveStateFunc}) {
       <button type="button"  onClick={handleAddEducation}>Add Education</button>
     </div>
   )
+}
+
+const refObjPropTypes = {
+  yearGraduated: PropTypes.string,
+  degree: PropTypes.string,
+  school: PropTypes.string,
+  keyId: PropTypes.string,
+  timeStamp: PropTypes.number
+}
+
+
+EducField.propTypes = {
+  refObj: PropTypes.shape(refObjPropTypes),
+  removeEducFunc: PropTypes.func,
+  changeEducFunc: PropTypes.func
+}
+
+EducationInfo.propTypes = {
+  saveStateFunc: PropTypes.func,
+  savedFormValues: PropTypes.array
 }
 
 export default EducationInfo

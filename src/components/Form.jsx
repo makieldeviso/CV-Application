@@ -8,10 +8,13 @@ import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
 
-import {setLocalStorageFormValues, getLocalStorageFormValues } from "../scripts/memoryHandler";
+import {setLocalStorageFormValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
+
+// Check local storage for saved values
+const savedFormValues = getLocalStorageFormValues();
 
 const Form = function ({submitVerified}) {
-  const [formValues, setFormValues] = useState({})
+  const [formValues, setFormValues] = useState(savedFormValues);
 
   // Note: every time the user edits the input field saveFormValues is executed
   // from the onChange event of the input field
@@ -26,16 +29,17 @@ const Form = function ({submitVerified}) {
 
   const handleSubmit = function () {
     submitVerified(formValues);
+
   }
   
   return (
     <div className='form-fields'>
-      <BasicInfo saveStateFunc={saveFormValues}/>
-      <ContactInfo saveStateFunc={saveFormValues}/>
-      <EducationInfo saveStateFunc={saveFormValues}/>
-      <ExpertiseInfo saveStateFunc={saveFormValues}/>
-      <ExperienceInfo saveStateFunc={saveFormValues}/>
-      <ReferenceInfo saveStateFunc={saveFormValues}/>
+      <BasicInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.basicInfo}/>
+      <ContactInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.contactsInfo}/>
+      <EducationInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.educationInfo}/>
+      <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.expertiseInfo}/>
+      <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.experienceInfo}/>
+      <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.referencesInfo}/>
       <button onClick={handleSubmit}>Submit</button>
     </div>
     

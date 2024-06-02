@@ -12,20 +12,40 @@ const defaultEmptyState = {
   educationInfo: [],
   expertiseInfo: [],
   experienceInfo: [],
-  referencesInfo: []
+  referencesInfo: [
+    {
+      name: '',
+      position: '', 
+      company: '',
+      companyAddress: '',
+      phone: '',
+      keyId: 'reference-1',
+      timeStamp: 1
+    },
+    {
+      name: '',
+      position: '', 
+      company: '',
+      companyAddress: '',
+      phone: '',
+      keyId: 'reference-2',
+      timeStamp: 2
+    }
+  ]
 }
 
 const setLocalStorageFormValues = async function (formValues) {
   const localStorageCurrent = await JSON.parse(localStorage.getItem(storageName));
-  localStorage.setItem(storageName, JSON.stringify({...localStorageCurrent, formValues: formValues}));
+  localStorage.setItem(storageName, JSON.stringify({...localStorageCurrent, formValues: formValues})); 
 }
 
 const setLocalStorageSubmittedValues = async function (submittedValues) {
   const localStorageCurrent = await JSON.parse(localStorage.getItem(storageName));
-    localStorage.setItem(storageName, JSON.stringify({...localStorageCurrent, submittedValues: submittedValues}));
+  localStorage.setItem(storageName, JSON.stringify({...localStorageCurrent, submittedValues: submittedValues}));
 }
 
 const getLocalStorageFormValues = function () {
+  // Note: req parameter is string value of property name. e.g. 'basicInfo'
   const savedValues = JSON.parse(localStorage.getItem(storageName));
   
   if (savedValues) {

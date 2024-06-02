@@ -50,22 +50,9 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
   )
 }
 
-const ReferenceInfo = function ({saveStateFunc}) {
-  const refTemplate = (assignId) => {
-    return (
-      {
-        name: '',
-        position: '', 
-        company: '',
-        companyAddress: '',
-        phone: '',
-        keyId: assignId,
-        timeStamp: assignId === 'reference-1' ? 1 : 2
-      }
-    )
-  }
-
-  const [references, setReferences] = useState([refTemplate('reference-1'), refTemplate('reference-2')]);
+const ReferenceInfo = function ({saveStateFunc, savedFormValues}) {
+ 
+  const [references, setReferences] = useState(savedFormValues);
 
   // Create two reference field automatically
   // Note: Two reference at most, don't add another
@@ -105,21 +92,24 @@ const ReferenceInfo = function ({saveStateFunc}) {
   )
 }
 
+const refObjPropTypes = {
+  name: PropTypes.string,
+  position: PropTypes.string, 
+  company: PropTypes.string,
+  companyAddress: PropTypes.string,
+  phone: PropTypes.string,
+  keyId: PropTypes.string,
+  timeStamp: PropTypes.number
+}
+
 ReferenceField.propTypes = {
-  refObj: PropTypes.shape({
-    name: PropTypes.string,
-    position: PropTypes.string, 
-    company: PropTypes.string,
-    companyAddress: PropTypes.string,
-    phone: PropTypes.string,
-    keyId: PropTypes.string,
-    timeStamp: PropTypes.number
-  }),
+  refObj: PropTypes.shape(refObjPropTypes),
   changeRefValueFunc: PropTypes.func
 }
 
 ReferenceInfo.propTypes = {
-  saveStateFunc: PropTypes.func
+  saveStateFunc: PropTypes.func,
+  savedFormValues: PropTypes.array
 }
 
 export default ReferenceInfo

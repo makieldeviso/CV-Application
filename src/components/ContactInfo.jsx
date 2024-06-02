@@ -36,20 +36,8 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
   )
 }
 
-ContactField.propTypes = {
-  refObj: PropTypes.shape({
-    label: PropTypes.string,
-    address: PropTypes.string,
-    keyId: PropTypes.string,
-    timeStamp: PropTypes.number,
-  }),
-  
-  removeFieldFunc: PropTypes.func,
-  changeValueFunc: PropTypes.func,
-}
-
-const ContactInfo = function ({saveStateFunc}) {
-  const [contacts, setContacts] = useState([]);
+const ContactInfo = function ({saveStateFunc, savedFormValues}) {
+  const [contacts, setContacts] = useState(savedFormValues);
 
   const handleRemoveField = function (event) {
     const remainState = contacts.filter((contact => contact.keyId !== event.target.value));
@@ -97,8 +85,22 @@ const ContactInfo = function ({saveStateFunc}) {
   )
 }
 
+const refObjPropTypes = {
+  label: PropTypes.string,
+  address: PropTypes.string,
+  keyId: PropTypes.string,
+  timeStamp: PropTypes.number
+}
+
+ContactField.propTypes = {
+  refObj: PropTypes.shape(refObjPropTypes),
+  removeFieldFunc: PropTypes.func,
+  changeValueFunc: PropTypes.func,
+}
+
 ContactInfo.propTypes = {
-  saveStateFunc: PropTypes.func
+  saveStateFunc: PropTypes.func,
+  savedFormValues: PropTypes.array
 }
 
 export default ContactInfo

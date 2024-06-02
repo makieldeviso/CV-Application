@@ -111,7 +111,6 @@ const ExpertiseTemplate = function ({refArr}) {
     )
   })
 
-
   return (
     <div className='expertise-sec'>
           <p>Expertise</p>
@@ -127,7 +126,6 @@ const ExpertiseTemplate = function ({refArr}) {
         </div>
   )
 }
-
 
 const ExperienceTemplate = function ({refArr}) {
 
@@ -200,16 +198,13 @@ const ReferencesTemplate = function ({refArr}) {
 
 }
 
-
-
-
+// CV Template assembly (start)
 const CVTemplate = function ({refState}) {
   
   return (
     <div className='cv-template'>
 
       <IntroTemplate refObj={refState.basicInfo}/>
-
 
       <div className='column-1'>
 
