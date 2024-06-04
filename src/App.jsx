@@ -18,10 +18,11 @@ function App() {
   }
 
   return (
-    <div className='main-content'>
+    <main className='main-content'>
       <Form submitVerified={handleSubmitVerified}/>
       <CVTemplate refState={verifiedValues}/>
-    </div>
+    </main>
+    
   )
 }
 

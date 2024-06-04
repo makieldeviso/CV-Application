@@ -1,23 +1,30 @@
 import { useState } from "react";
 import PropTypes from 'prop-types'
 
+import CloseIcon from '@mdi/react';
+import AddIcon from '@mdi/react';
+import { mdiClose, mdiPlus } from '@mdi/js';
+
 const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
  
   return (
     <div className='contact-cont'>
-      <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">Contact type:</label>
-      <input
-        type="text"
-        data-role='label'
-        className="input-contact-type"
-        data-key={refObj.keyId}
-        id={`label-${refObj.keyId}`}
-        name={`label-${refObj.keyId}`}
-        placeholder="e.g. Phone, E-mail, LinkedIn"
-        onChange={changeValueFunc}
-        value={refObj.label}
-      />
-
+      <div className="contact-field">
+        <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">Contact type:</label>
+        <input
+          type="text"
+          data-role='label'
+          className="input-contact-type"
+          data-key={refObj.keyId}
+          id={`label-${refObj.keyId}`}
+          name={`label-${refObj.keyId}`}
+          placeholder="e.g. Phone, E-mail, LinkedIn"
+          onChange={changeValueFunc}
+          value={refObj.label}
+        />
+      </div>
+      
+      <div className="contact-field">
       <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">Contact address:</label>
       <input
         type="text"
@@ -30,8 +37,12 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
         onChange={changeValueFunc}
         value={refObj.address}
       />
+      </div>
+      
 
-      <button className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId}>x</button>
+      <button className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId}>
+        <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
+      </button>
     </div>
   )
 }
@@ -83,7 +94,10 @@ const ContactInfo = function ({saveStateFunc, savedFormValues}) {
     <div className="contact-info info-grp">
       <h3>Contact</h3>
       <>{ContactFields}</>
-      <button type="button" onClick={handleAddNewContact}>Add Contact</button>
+      <button className='add-info-btn' type="button" onClick={handleAddNewContact}>
+        <span><AddIcon className='add-icon' path={mdiPlus}/></span>
+        <span>Add Contact</span>
+      </button>
     </div>
   )
 }

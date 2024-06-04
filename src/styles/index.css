@@ -1,27 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--common-font);
 }
 
 :root {
   --padding: calc(4px + 1vw);
   --margin: calc(8px + 1vw);
-  --remove-btn-size: 15px;
-}
+  --remove-btn-size: 30px;
 
+  --darkest-color: #053B50;
+  --main-color: #176B87;
+  --lighter-color: #64CCC5;
+  --lightest-color: #EEEEEE;
+
+  --header-font:  "Montserrat", sans-serif;
+  --common-font: "Roboto", sans-serif;
+}
 
 .main-content {
   display: grid;
   grid-template-columns: max-content 1fr;
+  justify-content: start;
+  height: 95vh;
 }
 
 /* Form styling (end) */
+.info-form {
+  height: 100%;
+  overflow-y: scroll;
+  padding: var(--padding);
+}
+
 .form-fields {
   display: flex;
   flex-direction: column;
-  padding: var(--padding);
-  border: 1px solid black;
+  /* border: 1px solid black; */
   gap: var(--margin);
 }
 
@@ -30,15 +47,48 @@
   flex-direction: column;
   padding: var(--padding);
   border: 1px solid black;
-  gap: var(--margin);
+  border-radius: 5px;
+  gap: calc(var(--margin) * 1.5);
+  width: 100%;
+  overflow: hidden;
+}
+
+.info-grp h3 {
+  font-size: 1.5rem;
+  font-family: var(--header-font);
+  font-weight: bold;
+}
+
+.info-grp label {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.info-grp input, .info-grp textarea {
+  padding: calc(var(--padding) * 0.5);
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background-color: var(--lightest-color);
+  transition: 
+    border 0.2s ease-in-out,
+    border-radius 0.2s ease-in-out;
+}
+
+.info-grp input:focus-visible, .info-grp textarea:focus-visible {
+  outline: none;
+  border-bottom: 3px solid var(--lighter-color);
+  border-radius: 5px 5px 0 0;
 }
 
 .input-cont {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 70%;
-  gap: 2px;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+  gap: calc(var(--padding) * 0.5);
 }
 
 .remove-btn {
@@ -47,40 +97,100 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.203);
+}
+
+.remove-btn:hover {
+  cursor: pointer;
+}
+
+.remove-btn svg path {
+  fill: white !important;
+  
+}
+
+.add-info-btn {
+  font-size: 1rem;
+  padding: calc(var(--padding) * 0.3);
+  width: 150px;
+  min-width: max-content;
+  align-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-info-btn span {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.add-info-btn .add-icon {
+  width: 1.5rem;
+  height: 1.5rem
 }
 
 /* Contact input field (start) */
 .contact-cont {
   border: 1px solid black;
+  border-radius: 5px;
+  padding: calc(var(--padding) * 0.5);
   display: grid;
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: 1fr max-content;
+}
+
+.contact-field {
+  grid-column: 1 / 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: calc(var(--margin) * 0.5);
-  grid-template-areas: 
-  ". . remove-btn"
-  "label-type input-type input-type"
-  "label-add input-add input-add";
+  margin-bottom: var(--margin);
 }
-
-.label-contact-type {
-  grid-area: label-type;
-}
-
-.input-contact-type {
-  grid-area: input-type;
-}
-
-.label-contact-add {
-  grid-area: label-add;
-} 
-
-.input-contact-add {
-  grid-area: input-add;
-} 
 
 .contact-cont .remove-btn {
-  grid-area: remove-btn;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
 }
+
+
 /* Contact input field (end) */
+
+/* Education input field (start) */
+.educ-field {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: calc(var(--padding) * 0.5);
+  display: grid;
+  grid-template-columns: 1fr max-content;
+}
+
+.educ-field div {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: calc(var(--margin)* 0.5);
+  margin-bottom: var(--margin);
+}
+
+.educ-field div * {
+  width: 100%;
+}
+
+.educ-field .remove-btn {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+
+
+/* Education input field (end) */
 
 .skill-header {
   display: grid;
@@ -115,13 +225,21 @@
 /* Form styling (end) */
 
 /* Template Styling (start) */
+
+:root {
+  --template-col-1: 300px;
+  --template-col-2: 650px;
+}
 .cv-template {
+  justify-self: center;
   border: 1px solid black;
-  height: max-content;
+  height: 100%;
+  overflow-y: hidden  ;
   padding: var(--padding);
   margin: var(--margin);
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: var(--template-col-1) 1fr;
+  /* width: 900px; */
   grid-template-areas: 
     "intro intro"
     "column-1 column-2";
@@ -130,7 +248,7 @@
 .intro {
   grid-area: intro;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: var(--template-col-1) 1fr;
 }
 
 .column-1 {

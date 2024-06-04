@@ -1,6 +1,10 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
+import CloseIcon from '@mdi/react';
+import AddIcon from '@mdi/react';
+import { mdiClose, mdiPlus } from '@mdi/js';
+
 const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
 
   return (
@@ -8,6 +12,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
       <div className='year-field'>
         <label htmlFor={`year-${refObj.keyId}`}>Year Graduated:</label>
         <input
+          className="input-cont"
           type="text"
           data-role='yearGraduated'
           data-key={refObj.keyId}
@@ -21,6 +26,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
       <div className='degree-field'>
         <label htmlFor={`degree-${refObj.keyId}`}>Degree:</label>
         <input 
+          className="input-cont"
           type="text"
           data-role='degree'
           data-key={refObj.keyId}
@@ -35,6 +41,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
       <div className='school-field'>
         <label htmlFor={`school-${refObj.keyId}`}>School:</label>
         <input 
+          className="input-cont"
           type="text"
           data-role='school'
           data-key={refObj.keyId}
@@ -46,7 +53,9 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
         />
       </div>
 
-      <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc}>x</button>
+      <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc}>
+        <CloseIcon path={mdiClose} size={1} />
+      </button>
 
     </div>
   )
@@ -100,7 +109,10 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
       <h3>Education</h3>
       <>{EducInputFields}</>
 
-      <button type="button"  onClick={handleAddEducation}>Add Education</button>
+      <button type="button" className='add-info-btn' onClick={handleAddEducation}>
+        <span><AddIcon className='add-icon' path={mdiPlus}/></span>
+        <span> Add Education</span>
+      </button>
     </div>
   )
 }

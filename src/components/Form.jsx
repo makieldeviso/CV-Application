@@ -33,16 +33,19 @@ const Form = function ({submitVerified}) {
   }
   
   return (
-    <div className='form-fields'>
-      <BasicInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.basicInfo}/>
-      <ContactInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.contactsInfo}/>
-      <EducationInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.educationInfo}/>
-      <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.expertiseInfo}/>
-      <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.experienceInfo}/>
-      <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.referencesInfo}/>
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
     
+      <form className='info-form' action="">
+        <div className='form-fields'> 
+          <BasicInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.basicInfo}/>
+          <ContactInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.contactsInfo}/>
+          <EducationInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.educationInfo}/>
+          <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.expertiseInfo}/>
+          <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.experienceInfo}/>
+          <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.referencesInfo}/>
+        </div>
+        <button onClick={handleSubmit}>Submit</button>
+      </form>
+
   ) 
 }
 
