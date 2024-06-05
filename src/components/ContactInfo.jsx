@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
+const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contactLength}) {
  
   return (
     <div className='input-fields'>
@@ -39,8 +39,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
       />
       </div>
       
-
-      <button className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId}>
+      <button className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId} disabled={contactLength <= 1}>
         <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
       </button>
     </div>
@@ -83,6 +82,7 @@ const ContactInfo = function ({saveStateFunc, savedFormValues}) {
         refObj={contact}
         removeFieldFunc={handleRemoveField}
         changeValueFunc={handleContactValueChange}
+        contactLength={contacts.length}
       />
     )
   });
