@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from 'prop-types';
 
 import BasicInfo from "./BasicInfo";
@@ -7,6 +7,8 @@ import EducationInfo from "./EducationInfo";
 import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
+
+import { ConfirmClearDialog } from "./ConfirmDialog";
 
 import SubmitIcon from '@mdi/react';
 import ClearIcon from '@mdi/react';
@@ -19,6 +21,8 @@ const savedFormValues = getLocalStorageFormValues();
 
 const Form = function ({submitVerified}) {
   const [formValues, setFormValues] = useState(savedFormValues);
+
+  const dialogRef = useRef(null);
 
   // Note: every time the user edits the input field saveFormValues is executed
   // from the onChange event of the input field
@@ -36,8 +40,17 @@ const Form = function ({submitVerified}) {
 
   }
 
-  const handleClear = function () {
-    console.log('clear');
+  const handleOpenClearDialog = function (event) {
+    // Note: verbose for readability
+    // If event value === 'open-modal' set state to true, else false to close
+    const buttonAction = event.target.value;
+    const modalStatus = buttonAction === 'open-modal' ? true : false;
+    
+    modalStatus ? dialogRef.current.showModal() : dialogRef.current.close();
+  }
+
+  const handleClearForm = function (action) {
+    console.log(action);
   }
   
   return (
@@ -53,17 +66,23 @@ const Form = function ({submitVerified}) {
         </div>
 
       <div className='form-btns-cont'>
-        <button className='clear-btn' type='button' onClick={handleClear}>
-          <span><ClearIcon path={mdiEraserVariant} size={1} pointerEvents='none' /></span>
-          <span>Clear</span>
+        <button className='clear-btn' type='button' onClick={handleOpenClearDialog} value='open-modal'>
+          <ClearIcon path={mdiEraserVariant} size={1} pointerEvents='none'/>
+          Clear
         </button>
 
         <button className='submit-btn' type='button' onClick={handleSubmit}>
-          <span><SubmitIcon path={mdiSendVariant} size={1} pointerEvents='none'/></span>
-          <span>Submit</span>
+          <SubmitIcon path={mdiSendVariant} size={1} pointerEvents='none'/>
+          Submit
         </button>
       </div>
-        
+
+      <ConfirmClearDialog
+        dialogRef={dialogRef}
+        modalActionFunc={handleOpenClearDialog}
+        clearFormFunc={handleClearForm}
+      />
+
       </form>
 
   ) 
