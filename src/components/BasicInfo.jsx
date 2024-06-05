@@ -17,27 +17,27 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
   }
 
   return (
-    <>
-      <div className='input-cont'>
+    <div className='input-fields'>
+      <div className='input-field'>
         <label className='input-label' htmlFor='name-field'>Name:</label>
         <input {...inputAttributes('name')}/>
       </div>
 
-      <div className='input-cont'>
+      <div className='input-field'>
         <label className='input-label' htmlFor='designation-field'>Designation:</label>
         <input {...inputAttributes('designation')}/>
       </div>
 
-      <div className='input-cont'>
+      <div className='input-field'>
         <label className='input-label' htmlFor='address-field'>Address:</label>
         <input {...inputAttributes('address')}/>
       </div>
 
-      <div className='input-cont'>
+      <div className='input-field'>
         <label className='input-label' htmlFor='competency-field'>Competency:</label>
         <textarea{...inputAttributes('competency')}/>
       </div>
-    </>
+    </div>
   )
 }
 

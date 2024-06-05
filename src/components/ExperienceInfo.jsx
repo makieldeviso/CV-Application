@@ -20,34 +20,34 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc}) {
   } 
 
   return(
-    <div className='exp-field'>
+    <div className='input-fields'>
      
-      <div key={`start-${refObj.keyId}`} className={`exp-field exp-start`} >
+      <div key={`start-${refObj.keyId}`} className={`input-field exp-start`} >
         <label htmlFor={`start-${refObj.keyId}`}> Start: </label>
         <input {...inputAttributes('start')}/>
       </div>
 
-      <div key={`end-${refObj.keyId}`} className={`exp-field exp-end`} >
+      <div key={`end-${refObj.keyId}`} className={`input-field exp-end`} >
         <label htmlFor={`end-${refObj.keyId}`}> End: </label>
         <input {...inputAttributes('end')}/>
       </div>
 
-      <div key={`company-${refObj.keyId}`} className={`exp-field exp-company`} >
+      <div key={`company-${refObj.keyId}`} className={`input-field exp-company`} >
         <label htmlFor={`company-${refObj.keyId}`}> Company: </label>
         <input {...inputAttributes('company')}/>
       </div>
 
-      <div key={`companyAddress-${refObj.keyId}`} className={`exp-field exp-companyAddress`} >
+      <div key={`companyAddress-${refObj.keyId}`} className={`input-field exp-companyAddress`} >
         <label htmlFor={`companyAddress-${refObj.keyId}`}> Company Address: </label>
         <input {...inputAttributes('companyAddress')}/>
       </div>
 
-      <div key={`position-${refObj.keyId}`} className={`exp-field exp-position`} >
+      <div key={`position-${refObj.keyId}`} className={`input-field exp-position`} >
         <label htmlFor={`position-${refObj.keyId}`}> Position: </label>
         <input {...inputAttributes('position')}/>
       </div>
 
-      <div key={`desc-${refObj.keyId}`} className={`exp-field exp-desc`} >
+      <div key={`desc-${refObj.keyId}`} className={`input-field exp-desc`} >
         <label htmlFor={`desc-${refObj.keyId}`}> Description/ Contribution: </label>
         <textarea {...inputAttributes('desc')}/>
       </div>

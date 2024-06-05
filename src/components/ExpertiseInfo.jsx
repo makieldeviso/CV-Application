@@ -12,6 +12,7 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
   for(let i = 1; i <= 5; i++) {
     RateBtns.push(
       <button 
+        type='button'
         data-key = {refObj.keyId}
         key={i} 
         className={i <= refObj.rating ? 'rate-btn clicked': 'rate-btn unclicked'} 
@@ -81,7 +82,7 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
 
     // Save to this component state
     setSkills(sortedByTimeAdded);
-
+    
     // Save to Form component state
     saveStateFunc('expertiseInfo', sortedByTimeAdded);
   }
@@ -113,8 +114,11 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
         <p>Skills</p>
         <p>Rating</p>
       </div>
-      <>{SkillInputFields}</>
 
+      <div className='skills-cont'>
+        <>{SkillInputFields}</>
+      </div>
+      
       <button type="button"  className='add-info-btn' onClick={handleAddExpertise}>
         <span><AddIcon className='add-icon' path={mdiPlus}/></span>
         <span>Add Expertise</span>

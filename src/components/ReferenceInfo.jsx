@@ -18,30 +18,30 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
   }
 
   return (
-    <div className='ref-field'>
+    <div className='input-fields'>
       <h4>Reference {refObj.keyId === 'reference-1' ? 1 : 2}:</h4>
 
-      <div className='ref-input-cont'>
+      <div className='input-field'>
         <label htmlFor={`name-${refObj.keyId}`}>Name: </label>
         <input {...fieldAttributes('name')}/>
       </div>
 
-      <div className='ref-input-cont'>
+      <div className='input-field'>
         <label htmlFor={`position-${refObj.keyId}`}>Position: </label>
         <input {...fieldAttributes('position')}/>
       </div>
 
-      <div className='ref-input-cont'>
+      <div className='input-field'>
         <label htmlFor={`company-${refObj.keyId}`}>Company Name: </label>
         <input {...fieldAttributes('company')}/>
       </div>
 
-      <div className='ref-input-cont'>
+      <div className='input-field'>
         <label htmlFor={`companyAddress-${refObj.keyId}`}>Company Address: </label>
         <input {...fieldAttributes('companyAddress')}/>
       </div>
 
-      <div className='ref-input-cont'>
+      <div className='input-field'>
         <label htmlFor={`phone-${refObj.keyId}`}>Phone: </label>
         <input {...fieldAttributes('phone')}/>
       </div>

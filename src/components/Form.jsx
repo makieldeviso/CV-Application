@@ -8,6 +8,9 @@ import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
 
+import SubmitIcon from '@mdi/react';
+import { mdiSendVariant } from '@mdi/js';
+
 import {setLocalStorageFormValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
 
 // Check local storage for saved values
@@ -43,7 +46,10 @@ const Form = function ({submitVerified}) {
           <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.experienceInfo}/>
           <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.referencesInfo}/>
         </div>
-        <button onClick={handleSubmit}>Submit</button>
+        <button className='submit-btn' type='button' onClick={handleSubmit}>
+          <span><SubmitIcon path={mdiSendVariant} size={1} pointerEvents='none'/></span>
+          <span>Submit</span>
+        </button>
       </form>
 
   ) 

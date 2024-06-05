@@ -8,8 +8,8 @@ import { mdiClose, mdiPlus } from '@mdi/js';
 const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
  
   return (
-    <div className='contact-cont'>
-      <div className="contact-field">
+    <div className='input-fields'>
+      <div className="contact-field input-field">
         <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">Contact type:</label>
         <input
           type="text"
@@ -24,7 +24,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc}) {
         />
       </div>
       
-      <div className="contact-field">
+      <div className="contact-field input-field">
       <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">Contact address:</label>
       <input
         type="text"

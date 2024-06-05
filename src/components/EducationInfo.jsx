@@ -8,8 +8,8 @@ import { mdiClose, mdiPlus } from '@mdi/js';
 const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
 
   return (
-    <div className='educ-field'>
-      <div className='year-field'>
+    <div className='input-fields'>
+      <div className='year-field input-field'>
         <label htmlFor={`year-${refObj.keyId}`}>Year Graduated:</label>
         <input
           className="input-cont"
@@ -23,7 +23,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
         />
       </div>
 
-      <div className='degree-field'>
+      <div className='degree-field input-field'>
         <label htmlFor={`degree-${refObj.keyId}`}>Degree:</label>
         <input 
           className="input-cont"
@@ -38,7 +38,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
         />
       </div>
 
-      <div className='school-field'>
+      <div className='school-field input-field'>
         <label htmlFor={`school-${refObj.keyId}`}>School:</label>
         <input 
           className="input-cont"
@@ -54,7 +54,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
       </div>
 
       <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc}>
-        <CloseIcon path={mdiClose} size={1} />
+        <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
       </button>
 
     </div>
