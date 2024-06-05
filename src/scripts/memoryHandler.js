@@ -8,10 +8,35 @@ const defaultEmptyState = {
     competency: '',
   },
 
-  contactsInfo: [],
-  educationInfo: [],
-  expertiseInfo: [],
-  experienceInfo: [],
+  contactsInfo: [{
+    label:'',
+    address:'',
+    keyId:crypto.randomUUID(),
+    timeStamp:new Date().valueOf()
+  }],
+  educationInfo: [{
+    yearGraduated:'',
+    degree:'',
+    school:'',
+    keyId: crypto.randomUUID(),
+    timeStamp: new Date().valueOf()
+  }],
+  expertiseInfo: [{
+    skill: '',
+    rating: 0,
+    keyId: crypto.randomUUID(),
+    timeStamp: new Date().valueOf()
+  }],
+  experienceInfo: [{
+      start: '',
+      end: '',
+      company: '',
+      companyAddress: '',
+      position: '',
+      desc:'',
+      keyId: crypto.randomUUID(),
+      timeStamp: new Date().valueOf()
+  }],
   referencesInfo: [
     {
       name: '',

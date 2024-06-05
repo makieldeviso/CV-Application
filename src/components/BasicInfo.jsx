@@ -20,22 +20,26 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
     <div className='input-fields'>
       <div className='input-field'>
         <label className='input-label' htmlFor='name-field'>Name:</label>
-        <input {...inputAttributes('name')}/>
+        <input {...inputAttributes('name')} placeholder="Enter full name"/>
       </div>
 
       <div className='input-field'>
         <label className='input-label' htmlFor='designation-field'>Designation:</label>
-        <input {...inputAttributes('designation')}/>
+        <input {...inputAttributes('designation')} placeholder="Enter desired position"/>
       </div>
 
       <div className='input-field'>
         <label className='input-label' htmlFor='address-field'>Address:</label>
-        <input {...inputAttributes('address')}/>
+        <input {...inputAttributes('address')} placeholder="Enter address/ mailing address"/>
       </div>
 
       <div className='input-field'>
         <label className='input-label' htmlFor='competency-field'>Competency:</label>
-        <textarea{...inputAttributes('competency')}/>
+        <textarea 
+          {...inputAttributes('competency')} 
+          rows={5}
+          placeholder="Enter a concise description of yourself, your strengths, soft skills and what you can contribute to your desired position."
+        />
       </div>
     </div>
   )
