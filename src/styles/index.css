@@ -269,30 +269,56 @@
 /* Form styling (end) */
 
 /* Submit button (start) */
-.submit-btn {
+.form-btns-cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  margin: var(--margin);
+}
+
+.form-btns-cont button {
   font-size: 1.3rem;
   font-weight: bold;
   width: 150px;
   font-family: var(--header-font);
   padding: calc(var(--padding) * 0.5);
-  justify-self: end;
   border: 3px solid var(--light-green);
   background-color: var(--light-blue);
   border-radius: 10px;
   color: var(--off-white);
+  text-shadow: 0 0 5px rgb(5, 59, 80);
+  box-shadow: 0 5px 5px 1px rgba(5, 59, 80, 0.5);
+
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  text-shadow: 0 0 5px rgb(5, 59, 80);
-  box-shadow: 0 5px 5px 1px rgba(5, 59, 80, 0.5);
+
+  transition: 
+    transform 0.2s ease-in-out,
+    filter 0.2s ease-in-out;
+}
+
+.form-btns-cont button:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.form-btns-cont button:active {
+  transform: scale(0.9);
+}
+
+.form-btns-cont .clear-btn {
+  background-color: var(--off-white);
+  text-shadow: none;
+  color: var(--darkest-blue);
 }
 
 .submit-btn svg {
   filter: drop-shadow(0 0 5px rgb(5, 59, 80));
 }
 
-.submit-btn span {
+.submit-btn span, .clear-btn span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,7 +342,6 @@
   margin: var(--margin);
   display: grid;
   grid-template-columns: var(--template-col-1) 1fr;
-  /* width: 900px; */
   grid-template-areas: 
     "intro intro"
     "column-1 column-2";

@@ -9,7 +9,8 @@ import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
 
 import SubmitIcon from '@mdi/react';
-import { mdiSendVariant } from '@mdi/js';
+import ClearIcon from '@mdi/react';
+import { mdiSendVariant, mdiEraserVariant } from '@mdi/js';
 
 import {setLocalStorageFormValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
 
@@ -34,6 +35,10 @@ const Form = function ({submitVerified}) {
     submitVerified(formValues);
 
   }
+
+  const handleClear = function () {
+    console.log('clear');
+  }
   
   return (
     
@@ -46,10 +51,19 @@ const Form = function ({submitVerified}) {
           <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.experienceInfo}/>
           <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.referencesInfo}/>
         </div>
+
+      <div className='form-btns-cont'>
+        <button className='clear-btn' type='button' onClick={handleClear}>
+          <span><ClearIcon path={mdiEraserVariant} size={1} pointerEvents='none' /></span>
+          <span>Clear</span>
+        </button>
+
         <button className='submit-btn' type='button' onClick={handleSubmit}>
           <span><SubmitIcon path={mdiSendVariant} size={1} pointerEvents='none'/></span>
           <span>Submit</span>
         </button>
+      </div>
+        
       </form>
 
   ) 
