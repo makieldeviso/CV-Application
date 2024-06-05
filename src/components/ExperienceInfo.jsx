@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc}) {
+const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, expLength}) {
  
   const inputAttributes = (info) => {
     return ({
@@ -57,6 +57,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc}) {
         type='button'
         value={refObj.keyId}
         onClick={removeExpFunc}
+        disabled={expLength <= 1}
       >
         <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
       </button>    
@@ -114,6 +115,7 @@ const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
         refObj = {exp}
         removeExpFunc = {handleExpRemove}
         changeExpValueFunc = {handleExpChangeValue}
+        expLength={experiences.length}
       />
     )
   })
@@ -146,7 +148,8 @@ const refObjPropTypes = {
 ExperienceField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
   changeExpValueFunc: PropTypes.func,
-  removeExpFunc: PropTypes.func
+  removeExpFunc: PropTypes.func,
+  expLength: PropTypes.number
 }
 
 ExperienceInfo.propTypes = {

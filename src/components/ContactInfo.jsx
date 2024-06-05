@@ -52,9 +52,6 @@ const ContactInfo = function ({saveStateFunc, savedFormValues}) {
   const handleRemoveField = function (event) {
     const remainState = contacts.filter((contact => contact.keyId !== event.target.value));
 
-    // At least one field should remain
-    if (remainState.length === 0) return
-
     setContacts(remainState);
 
     // Save deletion to Form component state
@@ -117,6 +114,7 @@ ContactField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
   removeFieldFunc: PropTypes.func,
   changeValueFunc: PropTypes.func,
+  contactLength: PropTypes.number
 }
 
 ContactInfo.propTypes = {

@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, changeRatingFunc}) {
+const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, changeRatingFunc, skillLength}) {
 
   // Loop through 5  to create rate buttons
   const RateBtns = [];
@@ -38,7 +38,7 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
         <>{RateBtns}</>
       </div>
     
-    <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeSkillFunc}>
+    <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeSkillFunc} disabled={skillLength <= 1}>
       <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
     </button>
     </div>
@@ -103,6 +103,7 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
         changeSkillValueFunc = {handleChangeSkillValue}
         removeSkillFunc = {handleRemoveSkill}
         changeRatingFunc={handleChangeRating}
+        skillLength={skills.length}
       />
     )
   })
@@ -139,6 +140,7 @@ SkillField.propTypes = {
   changeRatingFunc: PropTypes.func,
   removeSkillFunc: PropTypes.func,
   changeSkillValueFunc: PropTypes.func,
+  skillLength: PropTypes.number
 }
 
 ExpertiseInfo.propTypes = {

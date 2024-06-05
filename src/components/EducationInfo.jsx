@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
+const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}) {
 
   return (
     <div className='input-fields'>
@@ -53,7 +53,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc}) {
         />
       </div>
 
-      <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc}>
+      <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc} disabled={educLength <= 1}>
         <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
       </button>
 
@@ -100,6 +100,7 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
         refObj={field}
         removeEducFunc={handleRemoveEduc}
         changeEducFunc={handleChangeEducValue} 
+        educLength={educations.length}
       />
     )
   })
@@ -129,7 +130,8 @@ const refObjPropTypes = {
 EducField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
   removeEducFunc: PropTypes.func,
-  changeEducFunc: PropTypes.func
+  changeEducFunc: PropTypes.func,
+  educLength: PropTypes.number
 }
 
 EducationInfo.propTypes = {
