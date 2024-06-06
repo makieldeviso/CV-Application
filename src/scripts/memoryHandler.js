@@ -62,7 +62,7 @@ const defaultEmptyState = {
 const setLocalStorageFormValues = async function (formValues) {
   const localStorageCurrent = await JSON.parse(localStorage.getItem(storageName));
   localStorage.setItem(storageName, JSON.stringify({...localStorageCurrent, formValues: formValues})); 
-}
+} 
 
 const setLocalStorageSubmittedValues = async function (submittedValues) {
   const localStorageCurrent = await JSON.parse(localStorage.getItem(storageName));

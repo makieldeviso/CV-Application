@@ -30,8 +30,8 @@ const AddressTemplate = function ({refObj}) {
 
   return (
     <div className='address-sec'>
-      <p>Address</p>
-      <div className='address-info'>
+      <p className='sec-header'>Address</p>
+      <div className='address-info template-info-cont'>
         <p>{nameDisplay}</p>
       </div>        
     </div>
@@ -41,18 +41,21 @@ const AddressTemplate = function ({refObj}) {
 const ContactsTemplate = function ({refArr}) {
   
   const Contacts = refArr.map((contact) => {
+    const contactType = contact.label ? contact.label : 'Contact type';
+    const contactAddress = contact.address ? contact.address : 'Contact address';
+
     return (
-      <div className='contact-info' key={contact.keyId}>
-        <p>{contact.label}</p>
-        <p>{contact.address}</p>
+      <div className='template-contact-info' key={contact.keyId}>
+        <p className='template-contact-type'>{contactType}</p>
+        <p>{contactAddress}</p>
       </div> 
     )
   })
 
   return (
     <div className='contact-sec'>
-      <p>Contact</p>
-      <>{Contacts}</>     
+      <p className='sec-header'>Contact</p>
+      <div className='template-info-cont'>{Contacts}</div>     
     </div>
   )
 }
@@ -76,9 +79,8 @@ const EducationTemplate = function ({refArr}) {
 
   return (
     <div className='education-sec'>
-      <p>Education</p>
-      <>{Education}</>
-          
+      <p className='sec-header'>Education</p>
+      <div className='template-info-cont'>{Education}</div>
     </div>
   )
 }
@@ -113,9 +115,9 @@ const ExpertiseTemplate = function ({refArr}) {
 
   return (
     <div className='expertise-sec'>
-          <p>Expertise</p>
+          <p className='sec-header'>Expertise</p>
 
-          <div className='expertise-info'>
+          <div className='expertise-info template-info-cont'>
             <div className='expertise-header'>
               <p>Skill</p>
               <p>Rating</p>
@@ -159,7 +161,7 @@ const ExperienceTemplate = function ({refArr}) {
 
   return (
     <div className='experience-sec'>
-      <p>Experience</p>
+      <p className='sec-header' >Experience</p>
       <>{Experiences}</>      
     </div>
   )
@@ -188,14 +190,12 @@ const ReferencesTemplate = function ({refArr}) {
 
   return (
     <div className='references-sec'>
-      <p>References</p>
+      <p className='sec-header' >References</p>
       <div className='references-info'>
       <>{References}</>
       </div>
-      
     </div>
   )
-
 }
 
 // CV Template assembly (start)

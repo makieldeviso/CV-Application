@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import CloseIcon from '@mdi/react';
@@ -47,6 +47,10 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
 
 const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
   const [skills, setSkills] = useState(savedFormValues);
+
+  useEffect(() => {
+    setSkills(savedFormValues)
+  }, [savedFormValues])
 
   const handleAddExpertise = function () {
     const keyId = crypto.randomUUID();

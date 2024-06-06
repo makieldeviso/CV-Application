@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import CloseIcon from '@mdi/react';
@@ -64,6 +64,10 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}
 
 const EducationInfo = function ({saveStateFunc, savedFormValues}) {
   const [educations, setEducations] = useState(savedFormValues);
+
+  useEffect(() => {
+    setEducations(savedFormValues)
+  }, [savedFormValues])
   
   const handleAddEducation = function () {
     const newKey = crypto.randomUUID();

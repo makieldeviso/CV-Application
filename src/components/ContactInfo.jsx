@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types'
 
 import CloseIcon from '@mdi/react';
@@ -48,6 +48,10 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
 
 const ContactInfo = function ({saveStateFunc, savedFormValues}) {
   const [contacts, setContacts] = useState(savedFormValues);
+
+  useEffect(() => {
+    setContacts(savedFormValues)
+  }, [savedFormValues])
 
   const handleRemoveField = function (event) {
     const remainState = contacts.filter((contact => contact.keyId !== event.target.value));

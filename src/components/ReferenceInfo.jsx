@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 const ReferenceField = function ({refObj, changeRefValueFunc}) {
@@ -53,6 +53,10 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
 const ReferenceInfo = function ({saveStateFunc, savedFormValues}) {
  
   const [references, setReferences] = useState(savedFormValues);
+
+  useEffect(() => {
+    setReferences(savedFormValues)
+  }, [savedFormValues])
 
   // Create two reference field automatically
   // Note: Two reference at most, don't add another

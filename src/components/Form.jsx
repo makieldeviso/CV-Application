@@ -14,13 +14,11 @@ import SubmitIcon from '@mdi/react';
 import ClearIcon from '@mdi/react';
 import { mdiSendVariant, mdiEraserVariant } from '@mdi/js';
 
-import {setLocalStorageFormValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
-
-// Check local storage for saved values
-const savedFormValues = getLocalStorageFormValues();
+import {defaultEmptyState, setLocalStorageFormValues, setLocalStorageSubmittedValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
 
 const Form = function ({submitVerified}) {
-  const [formValues, setFormValues] = useState(savedFormValues);
+  
+  const [formValues, setFormValues] = useState(getLocalStorageFormValues());
 
   const dialogRef = useRef(null);
 
@@ -37,7 +35,6 @@ const Form = function ({submitVerified}) {
 
   const handleSubmit = function () {
     submitVerified(formValues);
-
   }
 
   const handleOpenClearDialog = function (event) {
@@ -49,43 +46,47 @@ const Form = function ({submitVerified}) {
     modalStatus ? dialogRef.current.showModal() : dialogRef.current.close();
   }
 
-  const handleClearForm = function (action) {
-    console.log(action);
+  const handleClearForm = async function (action) {
+    
+    if (action === true) { 
+      await setLocalStorageFormValues(defaultEmptyState);
+      await setLocalStorageSubmittedValues(defaultEmptyState);
+      setFormValues(await getLocalStorageFormValues());
+      location.reload();
+    }
   }
-  
+
   return (
     
       <form className='info-form' action="">
         <div className='form-fields'> 
-          <BasicInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.basicInfo}/>
-          <ContactInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.contactsInfo}/>
-          <EducationInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.educationInfo}/>
-          <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.expertiseInfo}/>
-          <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.experienceInfo}/>
-          <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={savedFormValues.referencesInfo}/>
+          <BasicInfo saveStateFunc={saveFormValues} savedFormValues={formValues.basicInfo}/>
+          <ContactInfo saveStateFunc={saveFormValues} savedFormValues={formValues.contactsInfo}/>
+          <EducationInfo saveStateFunc={saveFormValues} savedFormValues={formValues.educationInfo}/>
+          <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={formValues.expertiseInfo}/>
+          <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={formValues.experienceInfo}/>
+          <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={formValues.referencesInfo}/>
         </div>
 
-      <div className='form-btns-cont'>
-        <button className='clear-btn' type='button' onClick={handleOpenClearDialog} value='open-modal'>
-          <ClearIcon path={mdiEraserVariant} size={1}/>
-          Clear
-        </button>
+        <div className='form-btns-cont'>
+          <button className='clear-btn' type='button' onClick={handleOpenClearDialog} value='open-modal'>
+            <ClearIcon path={mdiEraserVariant} size={1}/>
+            Clear
+          </button>
 
-        <button className='submit-btn' type='button' onClick={handleSubmit}>
-          <SubmitIcon path={mdiSendVariant} size={1}/>
-          Submit
-        </button>
-      </div>
+          <button className='submit-btn' type='button' onClick={handleSubmit}>
+            <SubmitIcon path={mdiSendVariant} size={1}/>
+            Submit
+          </button>
+        </div>
 
-      <ConfirmClearDialog
-        dialogRef={dialogRef}
-        modalActionFunc={handleOpenClearDialog}
-        clearFormFunc={handleClearForm}
-      />
-
+        <ConfirmClearDialog
+          dialogRef={dialogRef}
+          modalActionFunc={handleOpenClearDialog}
+          clearFormFunc={handleClearForm}
+        />
       </form>
-
-  ) 
+  )
 }
 
 Form.propTypes = {

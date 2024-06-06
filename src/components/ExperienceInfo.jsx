@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import CloseIcon from '@mdi/react';
@@ -67,6 +67,10 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
 
 const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
   const [experiences, setExperiences] = useState(savedFormValues);
+
+  useEffect(() => {
+    setExperiences(savedFormValues)
+  }, [savedFormValues])
 
   const handleAddExperience = function () {
     const keyId = crypto.randomUUID();

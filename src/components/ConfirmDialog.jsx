@@ -9,7 +9,7 @@ const ConfirmClearDialog = function ({dialogRef, modalActionFunc, clearFormFunc}
 
   const handleConfirmClear = function (event) {
     const userAction = event.target.value;
-    clearFormFunc(userAction)
+    clearFormFunc(userAction === 'true' ? true : false);
 
     // Note: event.target.value will not return 'open-modal' either way so it will close the modal
     modalActionFunc(event)

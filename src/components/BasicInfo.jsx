@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
 
@@ -47,6 +47,10 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
 
 const BasicInfo = function ({saveStateFunc, savedFormValues}) {
   const [basicValue, setBasicValue] = useState(savedFormValues);
+
+  useEffect(() => {
+    setBasicValue(savedFormValues)
+  }, [savedFormValues])
 
   const handleValueChange = function (event) {
     const inputRole = event.target.dataset.role;
