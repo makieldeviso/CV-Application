@@ -40,7 +40,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
       </div>
       
       <button className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId} disabled={contactLength <= 1}>
-        <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
+        <CloseIcon path={mdiClose} size={1}/>
       </button>
     </div>
   )
@@ -96,8 +96,8 @@ const ContactInfo = function ({saveStateFunc, savedFormValues}) {
       <h3>Contact</h3>
       <>{ContactFields}</>
       <button className='add-info-btn' type="button" onClick={handleAddNewContact}>
-        <span><AddIcon className='add-icon' path={mdiPlus}/></span>
-        <span>Add Contact</span>
+        <AddIcon className='add-icon' path={mdiPlus}/>
+        Add Contact
       </button>
     </div>
   )

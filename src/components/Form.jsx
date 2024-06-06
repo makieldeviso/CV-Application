@@ -67,12 +67,12 @@ const Form = function ({submitVerified}) {
 
       <div className='form-btns-cont'>
         <button className='clear-btn' type='button' onClick={handleOpenClearDialog} value='open-modal'>
-          <ClearIcon path={mdiEraserVariant} size={1} pointerEvents='none'/>
+          <ClearIcon path={mdiEraserVariant} size={1}/>
           Clear
         </button>
 
         <button className='submit-btn' type='button' onClick={handleSubmit}>
-          <SubmitIcon path={mdiSendVariant} size={1} pointerEvents='none'/>
+          <SubmitIcon path={mdiSendVariant} size={1}/>
           Submit
         </button>
       </div>

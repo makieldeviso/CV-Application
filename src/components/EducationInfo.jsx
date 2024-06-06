@@ -20,6 +20,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}
           name={`year-${refObj.keyId}`}
           value={refObj.yearGraduated}
           onChange={changeEducFunc}
+          placeholder="Enter year graduated"
         />
       </div>
 
@@ -54,7 +55,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}
       </div>
 
       <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc} disabled={educLength <= 1}>
-        <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
+        <CloseIcon path={mdiClose} size={1}/>
       </button>
 
     </div>
@@ -111,8 +112,8 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
       <>{EducInputFields}</>
 
       <button type="button" className='add-info-btn' onClick={handleAddEducation}>
-        <span><AddIcon className='add-icon' path={mdiPlus}/></span>
-        <span> Add Education</span>
+        <AddIcon className='add-icon' path={mdiPlus}/>
+        Add Education
       </button>
     </div>
   )

@@ -24,32 +24,32 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
      
       <div key={`start-${refObj.keyId}`} className={`input-field exp-start`} >
         <label htmlFor={`start-${refObj.keyId}`}> Start: </label>
-        <input {...inputAttributes('start')}/>
+        <input {...inputAttributes('start')} placeholder="Enter date/ year you started this job"/>
       </div>
 
       <div key={`end-${refObj.keyId}`} className={`input-field exp-end`} >
         <label htmlFor={`end-${refObj.keyId}`}> End: </label>
-        <input {...inputAttributes('end')}/>
+        <input {...inputAttributes('end')} placeholder="Enter date/ year you left this job "/>
       </div>
 
       <div key={`company-${refObj.keyId}`} className={`input-field exp-company`} >
         <label htmlFor={`company-${refObj.keyId}`}> Company: </label>
-        <input {...inputAttributes('company')}/>
+        <input {...inputAttributes('company')} placeholder="Enter company name"/>
       </div>
 
       <div key={`companyAddress-${refObj.keyId}`} className={`input-field exp-companyAddress`} >
         <label htmlFor={`companyAddress-${refObj.keyId}`}> Company Address: </label>
-        <input {...inputAttributes('companyAddress')}/>
+        <input {...inputAttributes('companyAddress')} placeholder="Enter company address"/>
       </div>
 
       <div key={`position-${refObj.keyId}`} className={`input-field exp-position`} >
         <label htmlFor={`position-${refObj.keyId}`}> Position: </label>
-        <input {...inputAttributes('position')}/>
+        <input {...inputAttributes('position')} placeholder="Enter position for this previous job"/>
       </div>
 
       <div key={`desc-${refObj.keyId}`} className={`input-field exp-desc`} >
         <label htmlFor={`desc-${refObj.keyId}`}> Description/ Contribution: </label>
-        <textarea {...inputAttributes('desc')}/>
+        <textarea rows={5} {...inputAttributes('desc')} placeholder="Enter your job description and contributions for this previous job"/>
       </div>
 
       <button
@@ -59,7 +59,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
         onClick={removeExpFunc}
         disabled={expLength <= 1}
       >
-        <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
+        <CloseIcon path={mdiClose} size={1}/>
       </button>    
     </div>
   )
@@ -126,8 +126,8 @@ const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
       <>{Experiences}</>
       
       <button type="button" className='add-info-btn' onClick={handleAddExperience}>
-        <span><AddIcon className='add-icon' path={mdiPlus}/></span>
-        <span>Add Experience </span>
+        <AddIcon className='add-icon' path={mdiPlus}/>
+        Add Experience
       </button>
     </div>
   )

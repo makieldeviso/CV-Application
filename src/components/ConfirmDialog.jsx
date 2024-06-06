@@ -1,6 +1,10 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
+import CheckIcon from '@mdi/react';
+import CloseIcon from '@mdi/react';
+import { mdiCheck, mdiClose } from '@mdi/js';
+
 const ConfirmClearDialog = function ({dialogRef, modalActionFunc, clearFormFunc}) {
 
   const handleConfirmClear = function (event) {
@@ -26,6 +30,7 @@ const ConfirmClearDialog = function ({dialogRef, modalActionFunc, clearFormFunc}
             className='no-btn'
             onClick={handleConfirmClear}
           >
+            <CloseIcon path={mdiClose} size={1}/>
             No
           </button>
 
@@ -35,6 +40,7 @@ const ConfirmClearDialog = function ({dialogRef, modalActionFunc, clearFormFunc}
             className='yes-btn'
             onClick={handleConfirmClear}
           >
+            <CheckIcon path={mdiCheck} size={1}/>
             Yes
           </button>
         </div>

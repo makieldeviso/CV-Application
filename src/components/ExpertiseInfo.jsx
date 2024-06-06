@@ -39,7 +39,7 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
       </div>
     
     <button className='remove-btn' type='button' value={refObj.keyId} onClick={removeSkillFunc} disabled={skillLength <= 1}>
-      <CloseIcon path={mdiClose} size={1} pointerEvents='none'/>
+      <CloseIcon path={mdiClose} size={1}/>
     </button>
     </div>
   )
@@ -121,8 +121,8 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
       </div>
       
       <button type="button"  className='add-info-btn' onClick={handleAddExpertise}>
-        <span><AddIcon className='add-icon' path={mdiPlus}/></span>
-        <span>Add Expertise</span>
+        <AddIcon className='add-icon' path={mdiPlus}/>
+        Add Expertise
       </button>
     </div>
   ) 

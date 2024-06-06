@@ -23,27 +23,27 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
 
       <div className='input-field'>
         <label htmlFor={`name-${refObj.keyId}`}>Name: </label>
-        <input {...fieldAttributes('name')}/>
+        <input {...fieldAttributes('name')} placeholder="Enter name of reference"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`position-${refObj.keyId}`}>Position: </label>
-        <input {...fieldAttributes('position')}/>
+        <input {...fieldAttributes('position')} placeholder="Enter the position of your reference in their current job"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`company-${refObj.keyId}`}>Company Name: </label>
-        <input {...fieldAttributes('company')}/>
+        <input {...fieldAttributes('company')} placeholder="Enter the current company name of your reference"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`companyAddress-${refObj.keyId}`}>Company Address: </label>
-        <input {...fieldAttributes('companyAddress')}/>
+        <input {...fieldAttributes('companyAddress')} placeholder="Enter the current company address of your reference"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`phone-${refObj.keyId}`}>Phone: </label>
-        <input {...fieldAttributes('phone')}/>
+        <input {...fieldAttributes('phone')} placeholder="Enter phone number of your reference"/>
       </div>
 
     </div>
