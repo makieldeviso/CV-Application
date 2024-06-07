@@ -37,11 +37,6 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
       </div>
 
       <div className='input-field'>
-        <label htmlFor={`companyAddress-${refObj.keyId}`}>Company Address: </label>
-        <input {...fieldAttributes('companyAddress')} placeholder="Enter the current company address of your reference"/>
-      </div>
-
-      <div className='input-field'>
         <label htmlFor={`phone-${refObj.keyId}`}>Phone: </label>
         <input {...fieldAttributes('phone')} placeholder="Enter phone number of your reference"/>
       </div>
@@ -100,7 +95,6 @@ const refObjPropTypes = {
   name: PropTypes.string,
   position: PropTypes.string, 
   company: PropTypes.string,
-  companyAddress: PropTypes.string,
   phone: PropTypes.string,
   keyId: PropTypes.string,
   timeStamp: PropTypes.number

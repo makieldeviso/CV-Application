@@ -139,11 +139,11 @@ const ExperienceTemplate = function ({refArr}) {
     const end = exp.end.length !== 0 ? exp.end : 'End';
     const company = exp.company.length !== 0 ? exp.company : 'Company name';
     const companyAddress = exp.companyAddress.length !== 0 ? exp.companyAddress : 'Company Address';
-    const position = exp.position.length !== 0 ? exp.position : 'Position';
-    const desc= exp.desc.length !== 0 ? exp.desc : 'Describe your contributions to previous job';
+    const position = exp.position.length !== 0 ? exp.position : 'Position held at previous job';
+    const desc= exp.desc.length !== 0 ? exp.desc : 'Description your contribution in your previous job';
 
     return (
-      <div className='experience-info' key={exp.keyId}>
+      <div className='template-experience-info' key={exp.keyId}>
         <CircleIcon className='exp-bullet' path={mdiCircleOutline}/>
         <div className='exp-start-end'>
           <p>{start}</p>
@@ -153,11 +153,10 @@ const ExperienceTemplate = function ({refArr}) {
 
         <div className='exp-company'>
           <p>{company}</p>
-          <span>|</span>
           <p>{companyAddress}</p>
         </div>
         
-        <p>{position}</p>
+        <p className='exp-position'>{position}</p>
         <p>{desc}</p>
         
       </div>  
@@ -177,18 +176,16 @@ const ReferencesTemplate = function ({refArr}) {
   const References = refArr.map((reference) => {
 
     const name = reference.name.length !== 0 ? reference.name : "Reference Name";
-    const position = reference.position.length !== 0 ? reference.position : "Position";
-    const company = reference.company.length !== 0 ? reference.company : "Company";
-    const companyAddress = reference.companyAddress.length !== 0 ? reference.companyAddress : "Company Address";
-    const phone = reference.phone.length !== 0 ? reference.phone : "Phone Number";
+    const position = reference.position.length !== 0 ? reference.position : "Ref Position";
+    const company = reference.company.length !== 0 ? reference.company : "Ref company employed";
+    const phone = reference.phone.length !== 0 ? reference.phone : "0123456789";
 
     return (
-      <div className='reference-info-1' key={reference.keyId}>
-        <p>{name}</p>
-        <p>{position}</p>
-        <p>{company}</p>
-        <p>{companyAddress}</p>
-        <p><span>Phone:</span>{phone}</p>
+      <div className='reference-info' key={reference.keyId}>
+        <p className='reference-name'>{name}</p>
+        <p className='reference-position'>{position}</p>
+        <p className='reference-company'>{company}</p>
+        <p className='reference-phone'><span className='phone-label'>Phone:</span>{phone}</p>
       </div>
     )
   })
@@ -196,9 +193,7 @@ const ReferencesTemplate = function ({refArr}) {
   return (
     <div className='references-sec'>
       <p className='sec-header' >References</p>
-      <div className='references-info'>
-      <>{References}</>
-      </div>
+      <div className='references-info template-info-cont'>{References}</div>
     </div>
   )
 }

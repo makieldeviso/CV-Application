@@ -42,7 +42,6 @@ const defaultEmptyState = {
       name: '',
       position: '', 
       company: '',
-      companyAddress: '',
       phone: '',
       keyId: 'reference-1',
       timeStamp: 1
@@ -51,7 +50,6 @@ const defaultEmptyState = {
       name: '',
       position: '', 
       company: '',
-      companyAddress: '',
       phone: '',
       keyId: 'reference-2',
       timeStamp: 2
