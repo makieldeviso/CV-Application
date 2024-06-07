@@ -490,6 +490,11 @@ p.sec-header {
 
 .column-2 {
   grid-area: column-2;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr max-content;
+  background-color: white;
 }
 
 .picture-sec {
@@ -512,17 +517,28 @@ p.sec-header {
 }
 
 .header-sec {
-  border: 1px solid black;
   padding: var(--padding);
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  gap: var(--margin);
+  width: 100%;
+  background-color: white;
+}
+
+p.template-name {
+  font-size: 1.5rem;
+  font-family: var(--header-font);
+  font-weight: bold;
+}
+
+p.template-designation {
+  font-size: 1.3rem;
+  font-family: var(--header-font);
 }
 
 .template-info-cont {
-  border-top: 3px solid var(--off-white);
+  border-top: 1px solid var(--off-white);
   padding: var(--padding) 4px;
   display: flex;
   flex-direction: column;
@@ -560,6 +576,13 @@ p.template-contact-type {
   font-family: var(--header-font);
 }
 
+.skill-name {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
 .expertise-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -575,39 +598,72 @@ p.template-contact-type {
 }
 
 .rating {
-  border: 1px solid black;
+  border: 2px solid var(--template-cream);
+  border-radius: 3px;
   width: 15px;
   height: 15px;
 }
 
 .rating.rated {
-  background-color: blue;
-
+  background-color: var(--template-brown);
 }
 
 .rating.unrated {
   background-color: white;
 }
 
-
 /* Expertise template (end) */
 
 /* Experience template (start) */
 
 .experience-sec {
-  grid-area: experience;
-  border: 1px solid black;
-  padding: var(--padding);
-
+  padding: calc(var(--padding) * 0.5) var(--padding);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--margin);
+  grid-template-rows: max-content 1fr;
 }
+.experience-sec .template-info-cont {
+  border-top: 2px solid var(--template-blue);
+  justify-content: start;
+  gap: 0;
+}
+
+.experience-info {
+  padding: 0 var(--padding);
+  padding-bottom: calc(var(--margin) * 2);
+  width: 100%;
+  border-left: 2px solid var(--template-blue);
+  position: relative;
+}
+
+.exp-bullet {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(-8px);
+  background-color: white;
+}
+  
+.exp-start-end, .exp-company {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+/* .exp-company {
+
+} */
+
+
+
+
 
 /* Experience template (end) */
 
 .references-sec {
-  grid-area: references;
   border: 1px solid black;
   padding: var(--padding);
 }

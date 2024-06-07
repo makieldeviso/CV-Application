@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
-import Icon from '@mdi/react';
-import { mdiAccountOutline } from '@mdi/js';
+import ProfileIcon from '@mdi/react';
+import CircleIcon from '@mdi/react';
+import { mdiAccountOutline, mdiCircleOutline  } from '@mdi/js';
 
 const IntroTemplate = function ({refObj}) {
-  const nameDisplay = refObj.name.length !== 0 ? refObj.name : 'Full Name';
+  const nameDisplay = refObj.name.length !== 0 ? refObj.name : 'First Name Surname';
   const designationDisplay = refObj.designation.length !== 0 ? refObj.designation : 'Designation';
   const competencyDisplay = refObj.competency.length !== 0 ? refObj.competency : 'Competency';
 
@@ -12,13 +13,13 @@ const IntroTemplate = function ({refObj}) {
     <div className='intro'>
 
         <div className='picture-sec'>
-          <Icon className='picture-blank' path={mdiAccountOutline} size={1} />
+          <ProfileIcon className='picture-blank' path={mdiAccountOutline} size={1} />
         </div>
 
         <div className='header-sec'>
-          <p>{nameDisplay}</p>
-          <p>{designationDisplay}</p>
-          <p>{competencyDisplay}</p>
+          <p className='template-name'>{nameDisplay}</p>
+          <p className='template-designation'>{designationDisplay}</p>
+          <p className='template-competency'>{competencyDisplay}</p>
         </div>
 
       </div>
@@ -63,7 +64,6 @@ const ContactsTemplate = function ({refArr}) {
 const EducationTemplate = function ({refArr}) {
   
   const Education = refArr.map((educ) => {
-
     const yearDisplay = educ.yearGraduated.length !== 0 ? educ.yearGraduated : 'Year Graduated';
     const degreeDisplay = educ.degree.length !== 0 ? educ.degree : 'Degree';
     const schoolDisplay = educ.school.length !== 0 ? educ.school : 'School';
@@ -89,7 +89,6 @@ const EducationTemplate = function ({refArr}) {
 const ExpertiseTemplate = function ({refArr}) {
  
   const Expertise = refArr.map((expertise) => {
-
     const Rating = [];
     for(let i = 1; i <= 5; i++) {
       Rating.push(
@@ -105,7 +104,10 @@ const ExpertiseTemplate = function ({refArr}) {
 
     return (
       <div className='expertise-content' key={expertise.keyId}>
-        <p>{skillName}</p>
+        <p className='skill-name'>
+          <span>&#8226;</span>
+          <span>{skillName}</span>
+        </p>
         <div className='rating-cont'>
           <>{Rating}</>
         </div>
@@ -142,13 +144,16 @@ const ExperienceTemplate = function ({refArr}) {
 
     return (
       <div className='experience-info' key={exp.keyId}>
+        <CircleIcon className='exp-bullet' path={mdiCircleOutline}/>
         <div className='exp-start-end'>
           <p>{start}</p>
+          <span>-</span>
           <p>{end}</p>
         </div>
 
         <div className='exp-company'>
           <p>{company}</p>
+          <span>|</span>
           <p>{companyAddress}</p>
         </div>
         
@@ -162,7 +167,7 @@ const ExperienceTemplate = function ({refArr}) {
   return (
     <div className='experience-sec'>
       <p className='sec-header' >Experience</p>
-      <>{Experiences}</>      
+      <div className='template-info-cont'>{Experiences}</div>      
     </div>
   )
 }
@@ -216,7 +221,6 @@ const CVTemplate = function ({refState}) {
       </div>
 
       <div className='column-2'>
-
         <ExperienceTemplate refArr={refState.experienceInfo}/>
         <ReferencesTemplate refArr={refState.referencesInfo}/>
        
