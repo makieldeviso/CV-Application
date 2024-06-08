@@ -473,6 +473,7 @@ button svg {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
+  padding: calc(var(--padding) * 0.5);
 }
 
 .cv-template {
@@ -750,7 +751,45 @@ p.template-contact-type {
   font-weight: bold;
 }
 
-
 /* Reference template (start) */
 
 /* Template Styling (end) */
+
+/* pseudo footer (start) */
+.footer-cont {
+  display: flex;
+  align-items: center;
+  margin: var(--margin);
+  gap: 8px;
+  width: calc(var(--template-col-1) + var(--template-col-2));
+  justify-content: end;
+}
+
+.footer-cont p {
+  font-family: var(--header-font);
+  color: var(--template-brown);
+}
+
+a.github-link {
+  display: flex;
+  gap: 4px;
+  text-decoration: none;
+  align-items: center;
+  color: var(--template-brown);
+}
+
+a.github-link:visited {
+  color: var(--template-brown);
+}
+
+a.github-link:hover {
+  color: var(--light-blue);
+}
+
+a.github-link span {
+  font-family: var(--header-font);
+}
+
+
+
+/* footer (end) */

@@ -5,7 +5,9 @@ import CVTemplate from './components/Template.jsx'
 import { setLocalStorageSubmittedValues, getLocalStorageSubmittedValues } from './scripts/memoryHandler.js';
 
 import ProfileIcon from '@mdi/react';
-import { mdiFaceManProfile } from '@mdi/js';
+import GithubIcon from '@mdi/react';
+import { mdiFaceManProfile, mdiGithub } from '@mdi/js';
+
 
 // Check local storage if submitted values are stored
 const savedSubmittedValues = getLocalStorageSubmittedValues();
@@ -33,8 +35,19 @@ function App() {
       <Form submitVerified={handleSubmitVerified}/>
       <div className='template-viewer'>
         <CVTemplate refState={verifiedValues}/>
+
+        {/* pseudo footer */}
+        <div className="footer-cont">
+          <p>Copyright&copy; 2024 - Fred Mark Baldeviso</p>
+          <a className="github-link" href="https://github.com/makieldeviso" target="_blank" >
+            <GithubIcon path={mdiGithub} size={1} />
+            <span className="link-text">makieldeviso</span>
+          </a>
+        </div>
+
       </div>
     </main>
+
     </>
    
   )
