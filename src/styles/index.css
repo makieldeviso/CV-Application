@@ -23,6 +23,7 @@
   --light-green: #93FFD8;
   --lightest-green: #CFFFDC;
   --red: #EB455F;
+  --dark-orange: #D04848;
 
   --template-blue: #153448;
   --template-gray: #3C5B6F;
@@ -36,11 +37,43 @@
   --template-col-2: 450px;
 }
 
+.header-content {
+  padding: calc(var(--padding) * 0.5) var(--padding);
+  background-color: var(--dark-blue);
+  height: 8vh;
+}
+
+.banner {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-logo {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.page-logo path {
+  fill: var(--off-white) !important;
+}
+
+.page-title {
+  font-size: 1.3rem;
+  font-family: var(--header-font);
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--darkest-blue);
+  color: var(--off-white);
+}
+
+
 .main-content {
   display: grid;
   grid-template-columns: max-content 1fr;
   justify-content: start;
-  height: 100vh;
+  height: 92vh;
 }
 
 /* Form styling (end) */
@@ -158,7 +191,7 @@
 
 .remove-btn:disabled {
   cursor: default;
-  filter: opacity(0.3);
+  filter: opacity(0);
 }
 
 .remove-btn svg path {
@@ -608,14 +641,14 @@ p.template-contact-type {
 }
 
 .rating {
-  border: 2px solid var(--template-cream);
+  border: 1px solid var(--template-gray);
   border-radius: 3px;
   width: 15px;
   height: 15px;
 }
 
 .rating.rated {
-  background-color: var(--template-brown);
+  background-color: var(--light-blue);
 }
 
 .rating.unrated {

@@ -53,6 +53,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       </div>
 
       <button
+        aria-label='Remove experience information'
         className='remove-btn'
         type='button'
         value={refObj.keyId}

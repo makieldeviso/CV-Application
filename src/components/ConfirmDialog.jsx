@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from 'prop-types';
 
 import CheckIcon from '@mdi/react';
@@ -6,7 +5,6 @@ import CloseIcon from '@mdi/react';
 import { mdiCheck, mdiClose } from '@mdi/js';
 
 const ConfirmClearDialog = function ({dialogRef, modalActionFunc, clearFormFunc}) {
-
   const handleConfirmClear = function (event) {
     const userAction = event.target.value;
     clearFormFunc(userAction === 'true' ? true : false);
@@ -50,5 +48,14 @@ const ConfirmClearDialog = function ({dialogRef, modalActionFunc, clearFormFunc}
     </dialog>
   )
 }
+
+ConfirmClearDialog.propTypes = {
+  dialogRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Element)
+  }),
+  modalActionFunc: PropTypes.func,
+  clearFormFunc: PropTypes.func
+}
+
 
 export {ConfirmClearDialog}
