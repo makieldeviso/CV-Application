@@ -1,13 +1,14 @@
 import { useState, useRef } from 'react'
 import Form from './components/Form.jsx'
 import CVTemplate from './components/Template.jsx'
+import SlideButton from './components/Slider.jsx';
 
 import { setLocalStorageSubmittedValues, getLocalStorageSubmittedValues } from './scripts/memoryHandler.js';
 
 import ProfileIcon from '@mdi/react';
 import GithubIcon from '@mdi/react';
-import { mdiFaceManProfile, mdiGithub } from '@mdi/js';
 
+import { mdiFaceManProfile, mdiGithub} from '@mdi/js';
 
 // Check local storage if submitted values are stored
 const savedSubmittedValues = getLocalStorageSubmittedValues();
@@ -15,7 +16,7 @@ const savedSubmittedValues = getLocalStorageSubmittedValues();
 function App() {
   
   const [verifiedValues, setVerifiedValues] = useState(savedSubmittedValues);
-  
+ 
   const handleSubmitVerified = function (verifiedState) {
     setVerifiedValues(verifiedState);
 
@@ -29,11 +30,14 @@ function App() {
         <ProfileIcon className='page-logo' path={mdiFaceManProfile} size={1} />
         <h1 className='page-title'>CV Application</h1>
       </div>
+
+      <SlideButton/>
     </header>
 
     <main className='main-content'>
       <Form submitVerified={handleSubmitVerified}/>
       <div className='template-viewer'>
+  
         <CVTemplate refState={verifiedValues}/>
 
         {/* pseudo footer */}

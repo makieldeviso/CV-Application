@@ -9,8 +9,8 @@
 }
 
 :root {
-  --padding: calc(4px + 1vw);
-  --margin: calc(8px + 1vw);
+  --padding: 16px;
+  --margin: 24px;
   --remove-btn-size: 30px;
 
   --darkest-blue: #053B50;
@@ -37,10 +37,18 @@
   --template-col-2: 450px;
 }
 
+div#root {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8vh 92vh;
+}
+
 .header-content {
   padding: calc(var(--padding) * 0.5) var(--padding);
   background-color: var(--dark-blue);
-  height: 8vh;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
 }
 
 .banner {
@@ -68,12 +76,10 @@
   color: var(--off-white);
 }
 
-
-.main-content {
+.main-content { 
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 545px 1fr;
   justify-content: start;
-  height: 92vh;
 }
 
 /* Form styling (end) */
@@ -85,6 +91,7 @@
   grid-template-columns: 1fr;
   gap: var(--margin);
   background-color: var(--dark-blue);
+  transition: padding 0.3s ease-in-out;
 }
 
 .form-fields {
@@ -606,7 +613,6 @@ p.template-contact-type {
 }
 /* Contact template (end) */
 
-
 /* Expertise template (start) */
 .expertise-header {
   display: grid;
@@ -789,7 +795,5 @@ a.github-link:hover {
 a.github-link span {
   font-family: var(--header-font);
 }
-
-
 
 /* footer (end) */

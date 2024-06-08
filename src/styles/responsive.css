@@ -1,0 +1,50 @@
+
+/* 
+@media only screen and (max-width: 1439px) {
+ 
+} */
+
+.slide-btn {
+  justify-self: end;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--lighter-blue);
+  background-color: var(--dark-blue);
+  box-shadow: 0 3px 3px 1px rgba(5, 59, 80, 0.5);
+  margin-right: var(--margin);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.slide-btn:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.slide-btn:active {
+  transform: scale(0.9);
+}
+
+.slide-btn svg path {
+  fill: var(--off-white) !important;
+}
+
+.main-content {
+  transition: 300ms;
+}
+
+.main-content.cv-view {
+  grid-template-columns: 0px 1fr;
+}
+
+.main-content.cv-view form.info-form {
+  padding-left: 0;
+  padding-right: 0;
+}
+
