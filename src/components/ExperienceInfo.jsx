@@ -5,17 +5,18 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, expLength}) {
+const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, expLength, submitOnce}) {
  
-  const inputAttributes = (info) => {
+  const assignProps = (role, inputType) => {
     return ({
-      'data-role': info,
+      'data-role': role,
       'data-key':  refObj.keyId,
-      type: "text",
-      name: `${info}-${refObj.keyId}`,
-      id: `${info}-${refObj.keyId}`,
-      value: refObj[info],
-      onChange: changeExpValueFunc  
+      type: `${!inputType ? 'text' : inputType}`,
+      name: `${role}-${refObj.keyId}`,
+      id: `${role}-${refObj.keyId}`,
+      value: refObj[role],
+      onChange: changeExpValueFunc,
+      'aria-invalid': `${submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`   
     })
   } 
 
@@ -24,32 +25,50 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
      
       <div key={`start-${refObj.keyId}`} className={`input-field exp-start`} >
         <label htmlFor={`start-${refObj.keyId}`}> Start: </label>
-        <input {...inputAttributes('start')} placeholder="Enter date/ year you started this job"/>
+        <input 
+          {...assignProps('start')}
+          placeholder="Enter date/ year you started this job"/>
       </div>
 
       <div key={`end-${refObj.keyId}`} className={`input-field exp-end`} >
         <label htmlFor={`end-${refObj.keyId}`}> End: </label>
-        <input {...inputAttributes('end')} placeholder="Enter date/ year you left this job "/>
+        <input 
+          {...assignProps('end')}
+          placeholder="Enter date/ year you left this job "
+        />
       </div>
 
       <div key={`company-${refObj.keyId}`} className={`input-field exp-company`} >
         <label htmlFor={`company-${refObj.keyId}`}> Company: </label>
-        <input {...inputAttributes('company')} placeholder="Enter company name"/>
+        <input 
+          {...assignProps('company')}
+          placeholder="Enter company name"
+        />
       </div>
 
       <div key={`companyAddress-${refObj.keyId}`} className={`input-field exp-companyAddress`} >
         <label htmlFor={`companyAddress-${refObj.keyId}`}> Company Address: </label>
-        <input {...inputAttributes('companyAddress')} placeholder="Enter company address"/>
+        <input 
+          {...assignProps('companyAddress')}
+          placeholder="Enter company address"
+        />
       </div>
 
       <div key={`position-${refObj.keyId}`} className={`input-field exp-position`} >
         <label htmlFor={`position-${refObj.keyId}`}> Position: </label>
-        <input {...inputAttributes('position')} placeholder="Enter position for this previous job"/>
+        <input 
+          {...assignProps('position')}
+          placeholder="Enter position for this previous job"
+        />
       </div>
 
       <div key={`desc-${refObj.keyId}`} className={`input-field exp-desc`} >
         <label htmlFor={`desc-${refObj.keyId}`}> Description/ Contribution: </label>
-        <textarea rows={5} {...inputAttributes('desc')} placeholder="Enter your job description and contributions for this previous job"/>
+        <textarea
+          {...assignProps('desc')} 
+          rows={5}
+          placeholder="Enter your job description and contributions for this previous job"
+        />
       </div>
 
       <button
@@ -66,7 +85,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
   )
 }
 
-const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
+const ExperienceInfo = function ({handleSaveFormValues, savedFormValues, submitOnce}) {
   const [experiences, setExperiences] = useState(savedFormValues);
 
   useEffect(() => {
@@ -95,7 +114,7 @@ const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
     setExperiences(remainExp);
 
     // Save deletion to form component state
-    saveStateFunc('experienceInfo', remainExp);
+    handleSaveFormValues('experienceInfo', remainExp);
   }
 
   const handleExpChangeValue = function (event) {
@@ -110,7 +129,7 @@ const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
     setExperiences(sortedByTimeAdded);
 
     // Save to form component state
-    saveStateFunc('experienceInfo', sortedByTimeAdded);
+    handleSaveFormValues('experienceInfo', sortedByTimeAdded);
   }
   
   const Experiences = experiences.map((exp) => {
@@ -121,6 +140,7 @@ const ExperienceInfo = function ({saveStateFunc, savedFormValues}) {
         removeExpFunc = {handleExpRemove}
         changeExpValueFunc = {handleExpChangeValue}
         expLength={experiences.length}
+        submitOnce={submitOnce}
       />
     )
   })
@@ -154,12 +174,14 @@ ExperienceField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
   changeExpValueFunc: PropTypes.func,
   removeExpFunc: PropTypes.func,
-  expLength: PropTypes.number
+  expLength: PropTypes.number,
+  submitOnce: PropTypes.bool
 }
 
 ExperienceInfo.propTypes = {
-  saveStateFunc: PropTypes.func,
-  savedFormValues: PropTypes.array
+  handleSaveFormValues: PropTypes.func,
+  savedFormValues: PropTypes.array,
+  submitOnce: PropTypes.bool
 }
 
 export default ExperienceInfo

@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contactLength, submitOnce}) {
+const ContactField = function ({refObj, handleRemoveField, handleContactValueChange, contactLength, submitOnce}) {
  
   return (
     <div className='input-fields'>
@@ -19,7 +19,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
           id={`label-${refObj.keyId}`}
           name={`label-${refObj.keyId}`}
           placeholder="e.g. Phone, E-mail, LinkedIn"
-          onChange={changeValueFunc}
+          onChange={handleContactValueChange}
           value={refObj.label}
           aria-invalid = {`${submitOnce && refObj.label.length === 0 ? 'true' : 'false'}`}
         />
@@ -35,20 +35,20 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
         id={`address-${refObj.keyId}`}
         name={`address-${refObj.keyId}`}
         placeholder="e.g. +639159054014, placeholder@gmail.com"
-        onChange={changeValueFunc}
+        onChange={handleContactValueChange}
         value={refObj.address}
         aria-invalid = {`${submitOnce && refObj.address.length === 0 ? 'true' : 'false'}`}
       />
       </div>
       
-      <button aria-label='Remove contact information' className='remove-btn' type='button' onClick={removeFieldFunc} value={refObj.keyId} disabled={contactLength <= 1}>
+      <button aria-label='Remove contact information' className='remove-btn' type='button' onClick={handleRemoveField} value={refObj.keyId} disabled={contactLength <= 1}>
         <CloseIcon path={mdiClose} size={1}/>
       </button>
     </div>
   )
 }
 
-const ContactInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
+const ContactInfo = function ({handleSaveFormValues, savedFormValues, submitOnce}) {
   const [contacts, setContacts] = useState(savedFormValues);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const ContactInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
     setContacts(remainState);
 
     // Save deletion to Form component state
-    saveStateFunc('contactsInfo', remainState);
+    handleSaveFormValues('contactsInfo', remainState);
   }
 
   const handleContactValueChange = function (event) {
@@ -75,7 +75,7 @@ const ContactInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
     setContacts(sortedByTimeAdded);
 
     // Save to Form component state
-    saveStateFunc('contactsInfo', sortedByTimeAdded);
+    handleSaveFormValues('contactsInfo', sortedByTimeAdded);
   }
   
   const ContactFields = contacts.map((contact) => {
@@ -83,8 +83,8 @@ const ContactInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
       <ContactField
         key={contact.keyId}
         refObj={contact}
-        removeFieldFunc={handleRemoveField}
-        changeValueFunc={handleContactValueChange}
+        handleRemoveField={handleRemoveField}
+        handleContactValueChange={handleContactValueChange}
         contactLength={contacts.length}
         submitOnce={submitOnce}
       />
@@ -119,14 +119,16 @@ const refObjPropTypes = {
 
 ContactField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
-  removeFieldFunc: PropTypes.func,
-  changeValueFunc: PropTypes.func,
-  contactLength: PropTypes.number
+  handleRemoveField: PropTypes.func,
+  handleContactValueChange: PropTypes.func,
+  contactLength: PropTypes.number,
+  submitOnce: PropTypes.bool
 }
 
 ContactInfo.propTypes = {
-  saveStateFunc: PropTypes.func,
-  savedFormValues: PropTypes.array
+  handleSaveFormValues: PropTypes.func,
+  savedFormValues: PropTypes.array,
+  submitOnce: PropTypes.bool
 }
 
 export default ContactInfo

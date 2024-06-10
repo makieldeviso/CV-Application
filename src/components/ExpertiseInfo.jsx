@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, changeRatingFunc, skillLength}) {
+const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill, handleChangeRating, skillLength, submitOnce}) {
 
   // Loop through 5  to create rate buttons
   const RateBtns = [];
@@ -17,7 +17,7 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
         key={i} 
         className={i <= refObj.rating ? 'rate-btn clicked': 'rate-btn unclicked'} 
         value={i}
-        onClick={changeRatingFunc}
+        onClick={handleChangeRating}
       >
           {i}
       </button>
@@ -29,23 +29,25 @@ const SkillField = function ({refObj, changeSkillValueFunc, removeSkillFunc, cha
       <input
         type = "text"
         data-key = {refObj.keyId}
+        id = {`skill-${refObj.keyId}`}
         placeholder = "Enter Skill"
         value = {refObj.skill} 
-        onChange = {changeSkillValueFunc}
+        onChange = {handleChangeSkillValue}
+        aria-invalid = {`${submitOnce && refObj.skill.length === 0 ? 'true' : 'false'}`}
       />
 
       <div className='rate-btns-cont'>
         <>{RateBtns}</>
       </div>
     
-    <button aria-label='Remove expertise information' className='remove-btn' type='button' value={refObj.keyId} onClick={removeSkillFunc} disabled={skillLength <= 1}>
+    <button aria-label='Remove expertise information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveSkill} disabled={skillLength <= 1}>
       <CloseIcon path={mdiClose} size={1}/>
     </button>
     </div>
   )
 }
 
-const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
+const ExpertiseInfo = function ({handleSaveFormValues, savedFormValues, submitOnce}) {
   const [skills, setSkills] = useState(savedFormValues);
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
     setSkills(sortedByTimeAdded);
 
     // Save to Form component state
-    saveStateFunc('expertiseInfo', sortedByTimeAdded);
+    handleSaveFormValues('expertiseInfo', sortedByTimeAdded);
   }
 
   const handleChangeRating = function (event) {
@@ -88,7 +90,7 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
     setSkills(sortedByTimeAdded);
     
     // Save to Form component state
-    saveStateFunc('expertiseInfo', sortedByTimeAdded);
+    handleSaveFormValues('expertiseInfo', sortedByTimeAdded);
   }
 
   const handleRemoveSkill = function (event) {
@@ -96,7 +98,7 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
     setSkills(skillsRemain);
 
     // Save to Form component state
-    saveStateFunc('expertiseInfo', skillsRemain);
+    handleSaveFormValues('expertiseInfo', skillsRemain);
   }
   
   const SkillInputFields = skills.map((skill) => {
@@ -104,10 +106,11 @@ const ExpertiseInfo = function ({saveStateFunc, savedFormValues}) {
       <SkillField
         key = {skill.keyId}
         refObj = {skill}
-        changeSkillValueFunc = {handleChangeSkillValue}
-        removeSkillFunc = {handleRemoveSkill}
-        changeRatingFunc={handleChangeRating}
-        skillLength={skills.length}
+        handleChangeSkillValue = {handleChangeSkillValue}
+        handleRemoveSkill = {handleRemoveSkill}
+        handleChangeRating = {handleChangeRating}
+        skillLength = {skills.length}
+        submitOnce = {submitOnce}
       />
     )
   })
@@ -141,15 +144,17 @@ const refObjPropTypes = {
 
 SkillField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
-  changeRatingFunc: PropTypes.func,
-  removeSkillFunc: PropTypes.func,
-  changeSkillValueFunc: PropTypes.func,
-  skillLength: PropTypes.number
+  handleChangeRating: PropTypes.func,
+  handleRemoveSkill: PropTypes.func,
+  handleChangeSkillValue: PropTypes.func,
+  skillLength: PropTypes.number,
+  submitOnce: PropTypes.bool
 }
 
 ExpertiseInfo.propTypes = {
-  saveStateFunc: PropTypes.func,
-  savedFormValues: PropTypes.array
+  handleSaveFormValues: PropTypes.func,
+  savedFormValues: PropTypes.array,
+  submitOnce: PropTypes.bool
 }
 
 export default ExpertiseInfo

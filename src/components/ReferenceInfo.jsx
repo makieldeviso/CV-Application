@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-const ReferenceField = function ({refObj, changeRefValueFunc}) {
+const ReferenceField = function ({refObj, handleChangeRefValue, submitOnce}) {
 
   const fieldAttributes = (role) => {
     return (
@@ -12,7 +12,8 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
         id: `${role}-${refObj.keyId}`,
         name: `${role}-${refObj.keyId}`,
         value: refObj[role],
-        onChange: changeRefValueFunc
+        onChange: handleChangeRefValue,
+        'aria-invalid': `${submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
       }
     )
   }
@@ -45,7 +46,7 @@ const ReferenceField = function ({refObj, changeRefValueFunc}) {
   )
 }
 
-const ReferenceInfo = function ({saveStateFunc, savedFormValues}) {
+const ReferenceInfo = function ({handleSaveFormValues, savedFormValues, submitOnce}) {
  
   const [references, setReferences] = useState(savedFormValues);
 
@@ -68,7 +69,7 @@ const ReferenceInfo = function ({saveStateFunc, savedFormValues}) {
     setReferences(sortedByTimeAdded);
 
     // Save to Form component state
-    saveStateFunc('referencesInfo', sortedByTimeAdded)
+    handleSaveFormValues('referencesInfo', sortedByTimeAdded)
   }
   
   const ReferencesFields = references.map((ref) => {
@@ -77,7 +78,8 @@ const ReferenceInfo = function ({saveStateFunc, savedFormValues}) {
       <ReferenceField
         key = {ref.keyId}
         refObj = {ref}
-        changeRefValueFunc = {handleChangeRefValue}
+        handleChangeRefValue = {handleChangeRefValue}
+        submitOnce = {submitOnce}
       />
     )
   })
@@ -102,12 +104,14 @@ const refObjPropTypes = {
 
 ReferenceField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
-  changeRefValueFunc: PropTypes.func
+  handleChangeRefValue: PropTypes.func,
+  submitOnce: PropTypes.bool
 }
 
 ReferenceInfo.propTypes = {
-  saveStateFunc: PropTypes.func,
-  savedFormValues: PropTypes.array
+  handleSaveFormValues: PropTypes.func,
+  savedFormValues: PropTypes.array,
+  submitOnce: PropTypes.bool
 }
 
 export default ReferenceInfo

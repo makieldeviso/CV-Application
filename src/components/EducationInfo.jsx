@@ -5,21 +5,29 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}) {
+const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, educLength, submitOnce}) {
+  
+  const assignProps = function (role, inputType) {
 
+    return ({
+      className: "input-cont",
+      type: `${!inputType ? 'text' : inputType}`,
+      'data-role': role,
+      'data-key': refObj.keyId,
+      id: `${role}-${refObj.keyId}`,
+      'name': `${role}-${refObj.keyId}`,
+      value: refObj[role],
+      onChange: handleChangeEducValue,
+      'aria-invalid': `${submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
+    })
+  }
+  
   return (
     <div className='input-fields'>
       <div className='year-field input-field'>
-        <label htmlFor={`year-${refObj.keyId}`}>Year Graduated:</label>
+        <label htmlFor={`yearGraduated-${refObj.keyId}`}>Year Graduated:</label>
         <input
-          className="input-cont"
-          type="text"
-          data-role='yearGraduated'
-          data-key={refObj.keyId}
-          id={`year-${refObj.keyId}`}
-          name={`year-${refObj.keyId}`}
-          value={refObj.yearGraduated}
-          onChange={changeEducFunc}
+          {...assignProps('yearGraduated')}
           placeholder="Enter year graduated"
         />
       </div>
@@ -27,34 +35,20 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}
       <div className='degree-field input-field'>
         <label htmlFor={`degree-${refObj.keyId}`}>Degree:</label>
         <input 
-          className="input-cont"
-          type="text"
-          data-role='degree'
-          data-key={refObj.keyId}
-          id={`degree-${refObj.keyId}`}
-          name={`degree-${refObj.keyId}`}
+          {...assignProps('degree')}
           placeholder="e.g. High School, Computer Science"
-          value={refObj.degree}
-          onChange={changeEducFunc}
         />
       </div>
 
       <div className='school-field input-field'>
         <label htmlFor={`school-${refObj.keyId}`}>School:</label>
         <input 
-          className="input-cont"
-          type="text"
-          data-role='school'
-          data-key={refObj.keyId}
-          id={`school-${refObj.keyId}`}
-          name={`school-${refObj.keyId}`}
+          {...assignProps('school')}
           placeholder="e.g. Manila High School, Harvard University"
-          value={refObj.school}
-          onChange={changeEducFunc}
         />
       </div>
 
-      <button aria-label='Remove education information' className='remove-btn' type='button' value={refObj.keyId} onClick={removeEducFunc} disabled={educLength <= 1}>
+      <button aria-label='Remove education information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveEduc} disabled={educLength <= 1}>
         <CloseIcon path={mdiClose} size={1}/>
       </button>
 
@@ -62,7 +56,7 @@ const EducField = function ({refObj, removeEducFunc, changeEducFunc, educLength}
   )
 }
 
-const EducationInfo = function ({saveStateFunc, savedFormValues}) {
+const EducationInfo = function ({handleSaveFormValues, savedFormValues, submitOnce}) {
   const [educations, setEducations] = useState(savedFormValues);
 
   useEffect(() => {
@@ -81,7 +75,7 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
     setEducations(remainEduc); 
     
     // Save deletion to Form component state
-    saveStateFunc('educationInfo', remainEduc);
+    handleSaveFormValues('educationInfo', remainEduc);
   }
 
   const handleChangeEducValue = function (event) {
@@ -95,7 +89,7 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
     setEducations(sortedByTimeAdded);
 
     // Save to Form component state
-    saveStateFunc('educationInfo', sortedByTimeAdded);
+    handleSaveFormValues('educationInfo', sortedByTimeAdded);
   }
   
   const EducInputFields = educations.map((field) => {
@@ -103,9 +97,10 @@ const EducationInfo = function ({saveStateFunc, savedFormValues}) {
       <EducField
         key={field.keyId}
         refObj={field}
-        removeEducFunc={handleRemoveEduc}
-        changeEducFunc={handleChangeEducValue} 
+        handleRemoveEduc={handleRemoveEduc}
+        handleChangeEducValue={handleChangeEducValue} 
         educLength={educations.length}
+        submitOnce={submitOnce}
       />
     )
   })
@@ -134,14 +129,16 @@ const refObjPropTypes = {
 
 EducField.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
-  removeEducFunc: PropTypes.func,
-  changeEducFunc: PropTypes.func,
-  educLength: PropTypes.number
+  handleRemoveEduc: PropTypes.func,
+  handleChangeEducValue: PropTypes.func,
+  educLength: PropTypes.number,
+  submitOnce: PropTypes.bool
 }
 
 EducationInfo.propTypes = {
-  saveStateFunc: PropTypes.func,
-  savedFormValues: PropTypes.array
+  handleSaveFormValues: PropTypes.func,
+  savedFormValues: PropTypes.array,
+  submitOnce: PropTypes.bool
 }
 
 export default EducationInfo

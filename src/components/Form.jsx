@@ -26,7 +26,7 @@ const Form = function ({submitVerified}) {
 
   // Note: every time the user edits the input field saveFormValues is executed
   // from the onChange event of the input field
-  const saveFormValues = async function (formSection, saveState) {
+  const handleSaveFormValues = async function (formSection, saveState) {
     const updatedFormValues = {...formValues, [formSection]: saveState}; 
 
     setFormValues(updatedFormValues);
@@ -61,16 +61,28 @@ const Form = function ({submitVerified}) {
     }
   }
 
+  const assignProps = function (infoType) {
+    // Note: infoType parameter receives string of info type identifier as argument
+
+    return (
+      {
+        handleSaveFormValues: handleSaveFormValues,
+        savedFormValues: formValues[infoType],
+        submitOnce: submitOnce
+      }
+    )
+  }
+  console.log(formValues)
   return (
     
       <form className='info-form' action="">
         <div className='form-fields'> 
-          <BasicInfo saveStateFunc={saveFormValues} savedFormValues={formValues.basicInfo} submitOnce={submitOnce}/>
-          <ContactInfo saveStateFunc={saveFormValues} savedFormValues={formValues.contactsInfo} submitOnce={submitOnce}/>
-          <EducationInfo saveStateFunc={saveFormValues} savedFormValues={formValues.educationInfo}/>
-          <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={formValues.expertiseInfo}/>
-          <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={formValues.experienceInfo}/>
-          <ReferenceInfo saveStateFunc={saveFormValues} savedFormValues={formValues.referencesInfo}/>
+          <BasicInfo {...assignProps('basicInfo')}/>
+          <ContactInfo {...assignProps('contactsInfo')}/>
+          <EducationInfo {...assignProps('educationInfo')}/>
+          <ExpertiseInfo {...assignProps('expertiseInfo')}/>
+          <ExperienceInfo {...assignProps('experienceInfo')}/>
+          <ReferenceInfo {...assignProps('referencesInfo')}/>
         </div>
 
         <div className='form-btns-cont'>

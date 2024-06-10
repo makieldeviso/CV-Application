@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
-const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
+const BasicInputFields = function ({refObj, handleValueChange}) {
 
   const inputAttributes = (role) => {
     return (
@@ -10,7 +10,7 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
         className: 'basic-info-field',
         name: `${role}-field`,
         id: `${role}-field`,
-        onChange: changeBasicValueFunc,
+        onChange: handleValueChange,
         value: refObj[role],
         'aria-invalid': `${refObj.submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
       }
@@ -46,7 +46,7 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
   )
 }
 
-const BasicInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
+const BasicInfo = function ({handleSaveFormValues, savedFormValues, submitOnce}) {
   const [basicValue, setBasicValue] = useState(savedFormValues);
 
   useEffect(() => {
@@ -58,13 +58,13 @@ const BasicInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
     setBasicValue({...basicValue, [inputRole]: event.target.value});
 
     // Save to Form component state
-    saveStateFunc('basicInfo', {...basicValue, [inputRole]: event.target.value});
+    handleSaveFormValues('basicInfo', {...basicValue, [inputRole]: event.target.value});
   }
  
   return (
     <div className='basic-info info-grp'>
       <h3>Basic Information</h3>
-      <BasicInputFields changeBasicValueFunc={handleValueChange} refObj={basicValue}/>
+      <BasicInputFields handleValueChange={handleValueChange} refObj={basicValue}/>
     </div>
   )
 }
@@ -78,11 +78,11 @@ const refObjPropTypes = {
 
 BasicInputFields.propTypes = {
   refObj: PropTypes.shape(refObjPropTypes),
-  changeBasicValueFunc: PropTypes.func
+  handleValueChange: PropTypes.func
 }
 
 BasicInfo.propTypes = {
-  saveStateFunc: PropTypes.func,
+  handleSaveFormValues: PropTypes.func,
   savedFormValues: PropTypes.shape(refObjPropTypes),
   submitOnce: PropTypes.bool
 }
