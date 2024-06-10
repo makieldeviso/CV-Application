@@ -5,7 +5,7 @@ import CloseIcon from '@mdi/react';
 import AddIcon from '@mdi/react';
 import { mdiClose, mdiPlus } from '@mdi/js';
 
-const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contactLength}) {
+const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contactLength, submitOnce}) {
  
   return (
     <div className='input-fields'>
@@ -21,6 +21,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
           placeholder="e.g. Phone, E-mail, LinkedIn"
           onChange={changeValueFunc}
           value={refObj.label}
+          aria-invalid = {`${submitOnce && refObj.label.length === 0 ? 'true' : 'false'}`}
         />
       </div>
       
@@ -36,6 +37,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
         placeholder="e.g. +639159054014, placeholder@gmail.com"
         onChange={changeValueFunc}
         value={refObj.address}
+        aria-invalid = {`${submitOnce && refObj.address.length === 0 ? 'true' : 'false'}`}
       />
       </div>
       
@@ -46,7 +48,7 @@ const ContactField = function ({refObj, removeFieldFunc, changeValueFunc, contac
   )
 }
 
-const ContactInfo = function ({saveStateFunc, savedFormValues}) {
+const ContactInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
   const [contacts, setContacts] = useState(savedFormValues);
 
   useEffect(() => {
@@ -84,6 +86,7 @@ const ContactInfo = function ({saveStateFunc, savedFormValues}) {
         removeFieldFunc={handleRemoveField}
         changeValueFunc={handleContactValueChange}
         contactLength={contacts.length}
+        submitOnce={submitOnce}
       />
     )
   });

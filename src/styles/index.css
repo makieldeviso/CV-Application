@@ -137,6 +137,11 @@ div#root {
     border-radius 0.2s ease-in-out;
 }
 
+.info-grp input.invalid:hover, .info-grp textarea.invalid:hover {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
 .info-grp input:hover, .info-grp textarea:hover {
   outline: 2px solid var(--purple);
   outline-offset: 2px;
@@ -146,6 +151,12 @@ div#root {
   outline: none;
   border-bottom: 3px solid var(--light-blue);
   border-radius: 5px 5px 0 0;
+}
+
+.info-grp input[aria-invalid = 'true'], .info-grp textarea[aria-invalid = 'true'] {
+  background-color: rgba(208, 72, 72, 0.3);
+  border: 1px solid var(--red);
+  border-bottom: 3px solid var(--red);
 }
 
 .input-fields {

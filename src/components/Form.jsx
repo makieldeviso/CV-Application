@@ -15,10 +15,12 @@ import ClearIcon from '@mdi/react';
 import { mdiSendVariant, mdiEraserVariant } from '@mdi/js';
 
 import {defaultEmptyState, setLocalStorageFormValues, setLocalStorageSubmittedValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
+// import verifySubmitted from "../scripts/verifyForm";
 
 const Form = function ({submitVerified}) {
   
   const [formValues, setFormValues] = useState(getLocalStorageFormValues());
+  const [submitOnce, setSubmitOnce] = useState(false);
 
   const dialogRef = useRef(null);
 
@@ -34,9 +36,12 @@ const Form = function ({submitVerified}) {
   }
 
   const handleSubmit = function () {
+    // const results = await verifySubmitted(formValues);
+    setSubmitOnce(true);
+
     submitVerified(formValues);
   }
-
+  
   const handleOpenClearDialog = function (event) {
     // Note: verbose for readability
     // If event value === 'open-modal' set state to true, else false to close
@@ -60,8 +65,8 @@ const Form = function ({submitVerified}) {
     
       <form className='info-form' action="">
         <div className='form-fields'> 
-          <BasicInfo saveStateFunc={saveFormValues} savedFormValues={formValues.basicInfo}/>
-          <ContactInfo saveStateFunc={saveFormValues} savedFormValues={formValues.contactsInfo}/>
+          <BasicInfo saveStateFunc={saveFormValues} savedFormValues={formValues.basicInfo} submitOnce={submitOnce}/>
+          <ContactInfo saveStateFunc={saveFormValues} savedFormValues={formValues.contactsInfo} submitOnce={submitOnce}/>
           <EducationInfo saveStateFunc={saveFormValues} savedFormValues={formValues.educationInfo}/>
           <ExpertiseInfo saveStateFunc={saveFormValues} savedFormValues={formValues.expertiseInfo}/>
           <ExperienceInfo saveStateFunc={saveFormValues} savedFormValues={formValues.experienceInfo}/>

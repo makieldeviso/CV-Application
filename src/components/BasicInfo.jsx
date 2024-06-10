@@ -11,7 +11,8 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
         name: `${role}-field`,
         id: `${role}-field`,
         onChange: changeBasicValueFunc,
-        value: refObj[role]
+        value: refObj[role],
+        'aria-invalid': `${refObj.submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
       }
     )
   }
@@ -45,12 +46,12 @@ const BasicInputFields = function ({refObj, changeBasicValueFunc}) {
   )
 }
 
-const BasicInfo = function ({saveStateFunc, savedFormValues}) {
+const BasicInfo = function ({saveStateFunc, savedFormValues, submitOnce}) {
   const [basicValue, setBasicValue] = useState(savedFormValues);
 
   useEffect(() => {
-    setBasicValue(savedFormValues)
-  }, [savedFormValues])
+    setBasicValue({...savedFormValues, submitOnce: submitOnce})
+  }, [savedFormValues, submitOnce])
 
   const handleValueChange = function (event) {
     const inputRole = event.target.dataset.role;
@@ -82,7 +83,8 @@ BasicInputFields.propTypes = {
 
 BasicInfo.propTypes = {
   saveStateFunc: PropTypes.func,
-  savedFormValues: PropTypes.shape(refObjPropTypes)
+  savedFormValues: PropTypes.shape(refObjPropTypes),
+  submitOnce: PropTypes.bool
 }
 
 export default BasicInfo

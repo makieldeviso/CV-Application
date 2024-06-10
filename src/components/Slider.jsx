@@ -24,8 +24,8 @@ const SlideButton = function () {
       main.classList.remove('cv-view');
       main.classList.add('form-view');
     }    
+    
   }
-
 
   return (
     <button className='slide-btn' onClick={handleSlide}>

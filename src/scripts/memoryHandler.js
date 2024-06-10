@@ -54,7 +54,8 @@ const defaultEmptyState = {
       keyId: 'reference-2',
       timeStamp: 2
     }
-  ]
+  ],
+  submitOnce: false
 }
 
 const setLocalStorageFormValues = async function (formValues) {
