@@ -1,7 +1,7 @@
+const verifySubmission = async function (formValues) {
 
-
-const verifySubmitted = async function (formValues) {
-  console.log(formValues)
+  const invalidFields = document.querySelectorAll('[aria-invalid="true"]');
+  console.log(invalidFields);
 }
 
-export default verifySubmitted
+export default verifySubmission

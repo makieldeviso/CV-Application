@@ -36,8 +36,8 @@ const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill,
         aria-invalid = {`${submitOnce && refObj.skill.length === 0 ? 'true' : 'false'}`}
       />
 
-      <div className='rate-btns-cont'>
-        <>{RateBtns}</>
+      <div className='rate-btns-cont' aria-label={`${submitOnce && refObj.rating === 0 ? 'Skill unrated' : `Skill rated with ${refObj.rating}`}`}>
+        {RateBtns}
       </div>
     
     <button aria-label='Remove expertise information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveSkill} disabled={skillLength <= 1}>

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-import CloseIcon from '@mdi/react';
-import AddIcon from '@mdi/react';
-import { mdiClose, mdiPlus } from '@mdi/js';
+import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
 
 const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, educLength, submitOnce}) {
   
@@ -25,7 +23,10 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
   return (
     <div className='input-fields'>
       <div className='year-field input-field'>
-        <label htmlFor={`yearGraduated-${refObj.keyId}`}>Year Graduated:</label>
+        <label htmlFor={`yearGraduated-${refObj.keyId}`}>
+          Year Graduated:
+          {submitOnce && refObj.yearGraduated.length === 0 && <WarnIcon/>}
+        </label>
         <input
           {...assignProps('yearGraduated')}
           placeholder="Enter year graduated"
@@ -33,7 +34,10 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       </div>
 
       <div className='degree-field input-field'>
-        <label htmlFor={`degree-${refObj.keyId}`}>Degree:</label>
+        <label htmlFor={`degree-${refObj.keyId}`}>
+          Degree:
+          {submitOnce && refObj.degree.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('degree')}
           placeholder="e.g. High School, Computer Science"
@@ -41,7 +45,10 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       </div>
 
       <div className='school-field input-field'>
-        <label htmlFor={`school-${refObj.keyId}`}>School:</label>
+        <label htmlFor={`school-${refObj.keyId}`}>
+          School:
+          {submitOnce && refObj.school.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('school')}
           placeholder="e.g. Manila High School, Harvard University"
@@ -49,7 +56,7 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       </div>
 
       <button aria-label='Remove education information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveEduc} disabled={educLength <= 1}>
-        <CloseIcon path={mdiClose}/>
+        <CloseIcon/>
       </button>
 
     </div>
@@ -111,7 +118,7 @@ const EducationInfo = function ({handleSaveFormValues, savedFormValues, submitOn
       <>{EducInputFields}</>
 
       <button type="button" className='add-info-btn' onClick={handleAddEducation}>
-        <AddIcon className='add-icon' path={mdiPlus}/>
+        <AddIcon/>
         Add Education
       </button>
     </div>

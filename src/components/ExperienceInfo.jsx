@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-import CloseIcon from '@mdi/react';
-import AddIcon from '@mdi/react';
-import { mdiClose, mdiPlus } from '@mdi/js';
+import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
 
 const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, expLength, submitOnce}) {
  
@@ -24,14 +22,20 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
     <div className='input-fields'>
      
       <div key={`start-${refObj.keyId}`} className={`input-field exp-start`} >
-        <label htmlFor={`start-${refObj.keyId}`}> Start: </label>
+        <label htmlFor={`start-${refObj.keyId}`}>
+           Start: 
+           {submitOnce && refObj.start.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('start')}
           placeholder="Enter date/ year you started this job"/>
       </div>
 
       <div key={`end-${refObj.keyId}`} className={`input-field exp-end`} >
-        <label htmlFor={`end-${refObj.keyId}`}> End: </label>
+        <label htmlFor={`end-${refObj.keyId}`}>
+          End:
+          {submitOnce && refObj.end.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('end')}
           placeholder="Enter date/ year you left this job "
@@ -39,7 +43,10 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       </div>
 
       <div key={`company-${refObj.keyId}`} className={`input-field exp-company`} >
-        <label htmlFor={`company-${refObj.keyId}`}> Company: </label>
+        <label htmlFor={`company-${refObj.keyId}`}>
+          Company:
+          {submitOnce && refObj.company.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('company')}
           placeholder="Enter company name"
@@ -47,7 +54,10 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       </div>
 
       <div key={`companyAddress-${refObj.keyId}`} className={`input-field exp-companyAddress`} >
-        <label htmlFor={`companyAddress-${refObj.keyId}`}> Company Address: </label>
+        <label htmlFor={`companyAddress-${refObj.keyId}`}>
+          Company Address:
+          {submitOnce && refObj.companyAddress.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('companyAddress')}
           placeholder="Enter company address"
@@ -55,7 +65,10 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       </div>
 
       <div key={`position-${refObj.keyId}`} className={`input-field exp-position`} >
-        <label htmlFor={`position-${refObj.keyId}`}> Position: </label>
+        <label htmlFor={`position-${refObj.keyId}`}>
+          Position:
+          {submitOnce && refObj.position.length === 0 && <WarnIcon/>}
+        </label>
         <input 
           {...assignProps('position')}
           placeholder="Enter position for this previous job"
@@ -63,7 +76,10 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       </div>
 
       <div key={`desc-${refObj.keyId}`} className={`input-field exp-desc`} >
-        <label htmlFor={`desc-${refObj.keyId}`}> Description/ Contribution: </label>
+        <label htmlFor={`desc-${refObj.keyId}`}>
+          Description/ Contribution:
+          {submitOnce && refObj.desc.length === 0 && <WarnIcon/>}
+        </label>
         <textarea
           {...assignProps('desc')} 
           rows={5}
@@ -79,7 +95,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
         onClick={removeExpFunc}
         disabled={expLength <= 1}
       >
-        <CloseIcon path={mdiClose}/>
+        <CloseIcon/>
       </button>    
     </div>
   )
@@ -151,7 +167,7 @@ const ExperienceInfo = function ({handleSaveFormValues, savedFormValues, submitO
       <>{Experiences}</>
       
       <button type="button" className='add-info-btn' onClick={handleAddExperience}>
-        <AddIcon className='add-icon' path={mdiPlus}/>
+        <AddIcon/>
         Add Experience
       </button>
     </div>

@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
+import { WarnIcon } from "./Icons";
+
 const BasicInputFields = function ({refObj, handleValueChange}) {
 
   const inputAttributes = (role) => {
@@ -20,22 +22,34 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
   return (
     <div className='input-fields'>
       <div className='input-field'>
-        <label className='input-label' htmlFor='name-field'>Name:</label>
+        <label className='input-label' htmlFor='name-field'>
+          Name:
+          {refObj.submitOnce && refObj.name.length === 0 && <WarnIcon/>}
+        </label>
         <input {...inputAttributes('name')} placeholder="Enter full name"/>
       </div>
 
       <div className='input-field'>
-        <label className='input-label' htmlFor='designation-field'>Designation:</label>
+        <label className='input-label' htmlFor='designation-field'>
+          Designation:
+          {refObj.submitOnce && refObj.designation.length === 0 && <WarnIcon/>}
+        </label>
         <input {...inputAttributes('designation')} placeholder="Enter desired position"/>
       </div>
 
       <div className='input-field'>
-        <label className='input-label' htmlFor='address-field'>Address:</label>
+        <label className='input-label' htmlFor='address-field'>
+          Address:
+          {refObj.submitOnce && refObj.address.length === 0 && <WarnIcon/>}
+        </label>
         <input {...inputAttributes('address')} placeholder="Enter address/ mailing address"/>
       </div>
 
       <div className='input-field'>
-        <label className='input-label' htmlFor='competency-field'>Competency:</label>
+        <label className='input-label' htmlFor='competency-field'>
+          Competency:
+          {refObj.submitOnce && refObj.competency.length === 0 && <WarnIcon/>}
+        </label>
         <textarea 
           {...inputAttributes('competency')} 
           rows={5}

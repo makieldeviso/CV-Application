@@ -15,6 +15,7 @@ import ClearIcon from '@mdi/react';
 import { mdiSendVariant, mdiEraserVariant } from '@mdi/js';
 
 import {defaultEmptyState, setLocalStorageFormValues, setLocalStorageSubmittedValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
+import verifySubmission from "../scripts/verifyForm";
 // import verifySubmitted from "../scripts/verifyForm";
 
 const Form = function ({submitVerified}) {
@@ -35,9 +36,10 @@ const Form = function ({submitVerified}) {
     setLocalStorageFormValues(updatedFormValues);
   }
 
-  const handleSubmit = function () {
-    // const results = await verifySubmitted(formValues);
+  const handleSubmit = async function () {
     setSubmitOnce(true);
+
+    const validationResult = await verifySubmission(formValues);
 
     submitVerified(formValues);
   }
@@ -72,7 +74,7 @@ const Form = function ({submitVerified}) {
       }
     )
   }
-  console.log(formValues)
+  
   return (
     
       <form className='info-form' action="">

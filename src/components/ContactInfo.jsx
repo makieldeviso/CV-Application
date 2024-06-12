@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types'
 
-import CloseIcon from '@mdi/react';
-import AddIcon from '@mdi/react';
-import { mdiClose, mdiPlus } from '@mdi/js';
+import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
 
 const ContactField = function ({refObj, handleRemoveField, handleContactValueChange, contactLength, submitOnce}) {
  
   return (
     <div className='input-fields'>
       <div className="contact-field input-field">
-        <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">Contact type:</label>
+        <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">
+          Contact type:
+          {submitOnce && refObj.label.length === 0 && <WarnIcon/>}
+        </label>
         <input
           type="text"
           data-role='label'
@@ -26,7 +27,10 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
       </div>
       
       <div className="contact-field input-field">
-      <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">Contact address:</label>
+      <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">
+        Contact address:
+        {submitOnce && refObj.address.length === 0 && <WarnIcon/>}
+      </label>
       <input
         type="text"
         data-role='address'
@@ -42,7 +46,7 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
       </div>
       
       <button aria-label='Remove contact information' className='remove-btn' type='button' onClick={handleRemoveField} value={refObj.keyId} disabled={contactLength <= 1}>
-        <CloseIcon path={mdiClose}/>
+        <CloseIcon/>
       </button>
     </div>
   )
@@ -103,7 +107,7 @@ const ContactInfo = function ({handleSaveFormValues, savedFormValues, submitOnce
       <h3>Contact</h3>
       <>{ContactFields}</>
       <button className='add-info-btn' type="button" onClick={handleAddNewContact}>
-        <AddIcon className='add-icon' path={mdiPlus}/>
+        <AddIcon/>
         Add Contact
       </button>
     </div>

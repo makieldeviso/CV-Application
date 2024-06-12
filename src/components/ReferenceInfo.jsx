@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
+import { WarnIcon } from "./Icons";
+
 const ReferenceField = function ({refObj, handleChangeRefValue, submitOnce}) {
 
   const fieldAttributes = (role) => {
@@ -23,22 +25,34 @@ const ReferenceField = function ({refObj, handleChangeRefValue, submitOnce}) {
       <h4>Reference {refObj.keyId === 'reference-1' ? 1 : 2}:</h4>
 
       <div className='input-field'>
-        <label htmlFor={`name-${refObj.keyId}`}>Name: </label>
+        <label htmlFor={`name-${refObj.keyId}`}>
+          Name:
+          {submitOnce && refObj.name.length === 0 && <WarnIcon/>}
+        </label>
         <input {...fieldAttributes('name')} placeholder="Enter name of reference"/>
       </div>
 
       <div className='input-field'>
-        <label htmlFor={`position-${refObj.keyId}`}>Position: </label>
+        <label htmlFor={`position-${refObj.keyId}`}>
+          Position:
+          {submitOnce && refObj.position.length === 0 && <WarnIcon/>}
+        </label>
         <input {...fieldAttributes('position')} placeholder="Enter the position of your reference in their current job"/>
       </div>
 
       <div className='input-field'>
-        <label htmlFor={`company-${refObj.keyId}`}>Company Name: </label>
+        <label htmlFor={`company-${refObj.keyId}`}>
+          Company Name:
+          {submitOnce && refObj.company.length === 0 && <WarnIcon/>}
+        </label>
         <input {...fieldAttributes('company')} placeholder="Enter the current company name of your reference"/>
       </div>
 
       <div className='input-field'>
-        <label htmlFor={`phone-${refObj.keyId}`}>Phone: </label>
+        <label htmlFor={`phone-${refObj.keyId}`}>
+          Phone:
+          {submitOnce && refObj.phone.length === 0 && <WarnIcon/>}
+        </label>
         <input {...fieldAttributes('phone')} placeholder="Enter phone number of your reference"/>
       </div>
 
