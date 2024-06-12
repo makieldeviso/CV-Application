@@ -49,7 +49,7 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       </div>
 
       <button aria-label='Remove education information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveEduc} disabled={educLength <= 1}>
-        <CloseIcon path={mdiClose} size={1}/>
+        <CloseIcon path={mdiClose}/>
       </button>
 
     </div>

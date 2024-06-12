@@ -34,17 +34,19 @@ function App() {
       <SlideButton/>
     </header>
 
-    <main className='main-content'>
+    <main className='main-content form-view'>
       <Form submitVerified={handleSubmitVerified}/>
       <div className='template-viewer'>
-  
-        <CVTemplate refState={verifiedValues}/>
 
+        <div className='cv-cont'>
+          <CVTemplate refState={verifiedValues}/>
+        </div>
+        
         {/* pseudo footer */}
         <div className="footer-cont">
           <p>Copyright&copy; 2024 - Fred Mark Baldeviso</p>
           <a className="github-link" href="https://github.com/makieldeviso" target="_blank" >
-            <GithubIcon path={mdiGithub} size={1} />
+            <GithubIcon path={mdiGithub} />
             <span className="link-text">makieldeviso</span>
           </a>
         </div>

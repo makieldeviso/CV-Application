@@ -79,7 +79,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
         onClick={removeExpFunc}
         disabled={expLength <= 1}
       >
-        <CloseIcon path={mdiClose} size={1}/>
+        <CloseIcon path={mdiClose}/>
       </button>    
     </div>
   )

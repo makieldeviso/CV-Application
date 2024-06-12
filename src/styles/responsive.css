@@ -1,14 +1,8 @@
-
-/* 
-@media only screen and (max-width: 1439px) {
- 
-} */
-
 .slide-btn {
   justify-self: end;
   align-self: center;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 3px solid var(--lighter-blue);
   background-color: var(--dark-blue);
@@ -48,3 +42,120 @@
   padding-right: 0;
 }
 
+
+@media only screen and (max-width: 769px) {
+  
+  .main-content.form-view {
+    grid-template-columns: 1fr 0fr;
+  }
+
+  .main-content.cv-view {
+    grid-template-columns: 0fr 1fr;
+  }
+
+  .main-content.cv-view .template-viewer {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .main-content.form-view .template-viewer {
+    padding-left: 0;
+    padding-right: 0; 
+  }
+
+  .main-content .info-form {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .slide-btn {
+    margin: 0;
+  }
+
+  .info-form {
+    padding: calc(var(--padding) * 0.5);
+  }
+
+  .info-grp {
+    padding: calc(var(--padding) * 0.5);
+    gap: calc(var(--margin)* 0.5);
+  }
+
+  .info-grp h3 {
+    font-size: 1.3rem;
+  }
+
+  .info-grp label {
+    font-size: 0.8rem;
+  }
+
+  .info-grp input, .info-grp textarea {
+    font-size: 0.9rem;
+  }
+
+  .input-field {
+    gap: calc(var(--margin)* 0.3);
+    margin-bottom: calc(var(--margin) * 0.5);
+  }
+
+  .remove-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+  }
+  .rate-btns-cont {
+    padding: calc(var(--padding) * 0.5);
+  }
+
+  .rate-btn {
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    font-size: 0.8rem;
+  }
+
+  .add-info-btn {
+    font-size: 0.9rem;
+  }
+
+  .reference-info h4 {
+    font-size: 1rem;
+    margin-bottom: calc(var(--margin) * 0.5);
+  }
+
+  .form-btns-cont {
+    margin: calc(var(--margin) * 0.5);
+  }
+
+  .form-btns-cont button {
+    width: 100px;
+    font-size: 1rem;
+  }
+
+  .cv-cont {
+    margin: calc(var(--margin) * 0.5);
+  }
+  .cv-template {
+    transform-origin: 0 top;
+  
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    z-index: 1;
+  }
+
+  .main-content.cv-view .footer-cont {
+    margin: 4px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, max-content);
+    justify-items: end;
+    gap: 0;
+  }
+
+  .footer-cont p, a.github-link {
+    font-size: 0.8rem;
+  }
+
+}

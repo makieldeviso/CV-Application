@@ -35,20 +35,25 @@
 
   --template-col-1: 300px;
   --template-col-2: 450px;
+  
 }
 
 div#root {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 8vh 92vh;
+  position: relative;
 }
 
 .header-content {
+  width: 100%;
   padding: calc(var(--padding) * 0.5) var(--padding);
   background-color: var(--dark-blue);
   display: grid;
   grid-template-columns: max-content max-content;
   justify-content: space-between;
+
+  position: fixed;
+  z-index: 3;
 }
 
 .banner {
@@ -77,21 +82,26 @@ div#root {
 }
 
 .main-content { 
+  position: relative;
   display: grid;
   grid-template-columns: 545px 1fr;
   justify-content: start;
+  background-color: var(--dark-blue);
+  padding-top: 60px;
+  height: 100vh;
 }
 
 /* Form styling (end) */
 .info-form {
   height: 100%;
-  overflow-y: scroll;
   padding: var(--padding);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--margin);
   background-color: var(--dark-blue);
   transition: padding 0.3s ease-in-out;
+
+  overflow-y: scroll;
 }
 
 .form-fields {
@@ -487,26 +497,34 @@ button svg {
 /* Template Styling (start) */
 .template-viewer {
   height: 100%;
+  position: relative;
   overflow-y: scroll;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr max-content;
   justify-items: center;
   padding: calc(var(--padding) * 0.5);
+  background-color: var(--off-white);
+}
+
+.cv-cont {
+  margin: calc(var(--margin) * 0.5);
+  overflow-y: scroll;
+  width: 100%;
+  position: relative;
 }
 
 .cv-template {
   width: max-content;
   border: 1px solid black;
   height: max-content;
-  margin: var(--margin);
+  margin: auto;
   display: grid;
   grid-template-columns: var(--template-col-1) var(--template-col-2);
   grid-template-rows: max-content 1fr;
   grid-template-areas: 
     "intro intro"
     "column-1 column-2";
-
-  /* transform: scale(50%) translateY(-50%); */
 }
 
 .cv-template p {
@@ -776,13 +794,14 @@ p.template-contact-type {
 .footer-cont {
   display: flex;
   align-items: center;
-  margin: var(--margin);
+  margin: calc(var(--margin) * 0.5);
   gap: 8px;
-  width: calc(var(--template-col-1) + var(--template-col-2));
-  justify-content: end;
+  justify-content: center;
+  justify-self: end;
 }
 
 .footer-cont p {
+  font-size: 0.8rem;
   font-family: var(--header-font);
   color: var(--template-brown);
 }
@@ -790,6 +809,7 @@ p.template-contact-type {
 a.github-link {
   display: flex;
   gap: 4px;
+  font-size: 0.8rem;
   text-decoration: none;
   align-items: center;
   color: var(--template-brown);
@@ -801,6 +821,10 @@ a.github-link:visited {
 
 a.github-link:hover {
   color: var(--light-blue);
+}
+
+a.github-link svg {
+  width: 1rem;
 }
 
 a.github-link span {

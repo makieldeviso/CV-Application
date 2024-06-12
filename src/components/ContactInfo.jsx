@@ -42,7 +42,7 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
       </div>
       
       <button aria-label='Remove contact information' className='remove-btn' type='button' onClick={handleRemoveField} value={refObj.keyId} disabled={contactLength <= 1}>
-        <CloseIcon path={mdiClose} size={1}/>
+        <CloseIcon path={mdiClose}/>
       </button>
     </div>
   )

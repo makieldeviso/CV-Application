@@ -41,7 +41,7 @@ const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill,
       </div>
     
     <button aria-label='Remove expertise information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveSkill} disabled={skillLength <= 1}>
-      <CloseIcon path={mdiClose} size={1}/>
+      <CloseIcon path={mdiClose}/>
     </button>
     </div>
   )
