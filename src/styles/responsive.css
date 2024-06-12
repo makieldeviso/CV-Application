@@ -108,10 +108,6 @@
     font-size: 1rem;
   }
 
-  .rate-btns-cont {
-    padding: calc(var(--padding) * 0.5);
-  }
-
   .rate-btn {
     width: 20px;
     height: 20px;

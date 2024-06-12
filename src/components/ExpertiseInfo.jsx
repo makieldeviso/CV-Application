@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-import CloseIcon from '@mdi/react';
-import AddIcon from '@mdi/react';
-import { mdiClose, mdiPlus } from '@mdi/js';
+import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
 
 const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill, handleChangeRating, skillLength, submitOnce}) {
 
@@ -26,6 +24,8 @@ const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill,
 
   return (
     <div className='skill-cont' >
+      {submitOnce && refObj.skill.length === 0 && <WarnIcon addClass='warn-skill'/>}
+      {submitOnce && refObj.rating === 0 && <WarnIcon addClass='warn-rating'/>}
       <input
         type = "text"
         data-key = {refObj.keyId}
@@ -41,7 +41,7 @@ const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill,
       </div>
     
     <button aria-label='Remove expertise information' className='remove-btn' type='button' value={refObj.keyId} onClick={handleRemoveSkill} disabled={skillLength <= 1}>
-      <CloseIcon path={mdiClose}/>
+      <CloseIcon/>
     </button>
     </div>
   )
@@ -128,7 +128,7 @@ const ExpertiseInfo = function ({handleSaveFormValues, savedFormValues, submitOn
       </div>
       
       <button type="button"  className='add-info-btn' onClick={handleAddExpertise}>
-        <AddIcon className='add-icon' path={mdiPlus}/>
+        <AddIcon/>
         Add Expertise
       </button>
     </div>

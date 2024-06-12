@@ -145,7 +145,7 @@ div#root {
   height: 20px;
 }
 
-.info-grp label .warn-icon path{
+.warn-icon path{
   fill: red !important;
 }
 
@@ -294,22 +294,52 @@ button svg {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  gap:var(--margin);
+  gap:calc(var(--margin));
 }
 
 .skill-cont {
   display: grid;
-  grid-template-columns: 1fr 1fr max-content;
+  grid-template-columns: 1fr max-content max-content;
+  grid-template-rows: 25px max-content;
   width: 100%;
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 5px;
   align-items: center;
   justify-items: start;
+  grid-template-areas: 
+    'warn-icon-1 warn-icon-2 .'
+    'input rating remove-btn';
+}
+
+.skill-cont input {
+  grid-area: input;
+}
+
+.skill-cont .remove-btn {
+  grid-area: remove-btn;
+}
+
+.skill-cont .warn-icon {
+  width: 20px;
+  height: 20px;
+  justify-self: end;
+  align-self: center;
+}
+
+.skill-cont .warn-icon.warn-skill {
+  grid-area: warn-icon-1;
+}
+
+.skill-cont .warn-icon.warn-rating {
+  grid-area: warn-icon-2;
 }
 
 .rate-btns-cont {
+  grid-area: rating;
+  justify-self: center;
+
   display: flex;
   justify-content: center;
-  padding: var(--padding);
   align-items: center;
   gap: calc(var(--margin) * 0.3);
 }
