@@ -11,18 +11,22 @@ const capitalizeString = function (string) {
 
 const calculateScale = function () {
   const screenSize = window.screen.width;
-
-  if (screenSize > 1023) return
-
+  
   const cvCont = document.querySelector('div.cv-cont');
   const cvTemplate = document.querySelector('div.cv-template');
-  const scaleFactor = screenSize / 820;
+  let scaleFactor = cvCont.clientWidth / (cvTemplate.clientWidth + 100);
 
-  cvTemplate.style.transform = `scale(${scaleFactor})`;
-  // templateViewer.style.gridTemplateRows = `${templateViewerHeight * 0.8}px max-content`;
+  if (screenSize < 768) {
+    // Note: Since smaller screen uses 0fr to animate change,
+    // Use screenSize instead
+    scaleFactor = screenSize / (cvTemplate.clientWidth + 100);
+  } 
 
+  if (scaleFactor > 1 ) { 
+    cvTemplate.style.transform = `scale(1)`;
+  } else {
+    cvTemplate.style.transform = `scale(${scaleFactor})`;
+  }
 }
-
-
 
 export {capitalizeString, calculateScale}

@@ -103,6 +103,11 @@
     height: 20px;
     border-radius: 5px;
   }
+
+  .skill-header p {
+    font-size: 1rem;
+  }
+
   .rate-btns-cont {
     padding: calc(var(--padding) * 0.5);
   }
@@ -134,24 +139,6 @@
 
   .cv-cont {
     margin: calc(var(--margin) * 0.5);
-  }
-  .cv-template {
-    transform-origin: 0 top;
-  
-    position: absolute;
-    top: 0px;
-    left: 5px;
-    z-index: 1;
-  }
-
-  .main-content.cv-view .footer-cont {
-    margin: 4px;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, max-content);
-    justify-items: end;
-    gap: 0;
   }
 
   .footer-cont p, a.github-link {

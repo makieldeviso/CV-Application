@@ -285,9 +285,11 @@ button svg {
 
 .skill-cont {
   display: grid;
-  grid-template-columns: 1fr repeat(2, max-content);
+  grid-template-columns: 1fr 1fr max-content;
+  width: 100%;
   gap: 10px;
   align-items: center;
+  justify-items: start;
 }
 
 .rate-btns-cont {
@@ -498,7 +500,7 @@ button svg {
 .template-viewer {
   height: 100%;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: hidden;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr max-content;
@@ -525,6 +527,15 @@ button svg {
   grid-template-areas: 
     "intro intro"
     "column-1 column-2";
+  
+  transform-origin: 0 top;
+  transition: transform 0.1s ease-in-out;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .cv-template p {
@@ -794,14 +805,16 @@ p.template-contact-type {
 .footer-cont {
   display: flex;
   align-items: center;
-  margin: calc(var(--margin) * 0.5);
+  margin: 5px;
   gap: 8px;
-  justify-content: center;
+  justify-content: end;
   justify-self: end;
+  flex-wrap: wrap;
 }
 
 .footer-cont p {
   font-size: 0.8rem;
+  text-align: end;
   font-family: var(--header-font);
   color: var(--template-brown);
 }

@@ -5,8 +5,6 @@ import RightChevronIcon from '@mdi/react';
 
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 
-import { calculateScale } from '../scripts/utilities';
-
 const SlideButton = function () {
   // Note: formView === true; form is in full view, CV template is cropped
   const [formView, setFormView] = useState(true);
@@ -19,8 +17,6 @@ const SlideButton = function () {
       setFormView(false);
       main.classList.remove('form-view');
       main.classList.add('cv-view');
-
-      calculateScale();
    
     } else {
        // Switch to form view
@@ -28,7 +24,7 @@ const SlideButton = function () {
       main.classList.remove('cv-view');
       main.classList.add('form-view');
     }    
-    
+
   }
 
   return (
