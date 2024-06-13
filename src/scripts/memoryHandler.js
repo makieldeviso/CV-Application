@@ -6,6 +6,7 @@ const defaultEmptyState = {
     designation: '',
     address: '',
     competency: '',
+    keyId:crypto.randomUUID(),
   },
 
   contactsInfo: [{

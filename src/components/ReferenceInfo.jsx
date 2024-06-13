@@ -66,7 +66,7 @@ const ReferenceInfo = function ({handleSaveFormValues, savedFormValues, submitOn
 
   useEffect(() => {
     setReferences(savedFormValues)
-  }, [savedFormValues])
+  }, [savedFormValues, submitOnce])
 
   // Create two reference field automatically
   // Note: Two reference at most, don't add another

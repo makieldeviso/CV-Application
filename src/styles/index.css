@@ -154,7 +154,7 @@ div#root {
   padding: calc(var(--padding) * 0.5);
   font-size: 1.1rem;
   border-radius: 10px;
-  border: none;
+  border: 1px solid transparent;
   border-bottom: 3px solid transparent;
   background-color: var(--off-white);
   transition: 
@@ -182,6 +182,12 @@ div#root {
   background-color: rgba(208, 72, 72, 0.3);
   border: 1px solid var(--red);
   border-bottom: 3px solid var(--red);
+}
+
+.info-grp input[aria-invalid = 'true']:focus, .info-grp textarea[aria-invalid = 'true']:focus {
+  background-color: var(--off-white);
+  border: 1px solid transparent;
+  border-bottom: 3px solid var(--light-blue);
 }
 
 .input-fields {

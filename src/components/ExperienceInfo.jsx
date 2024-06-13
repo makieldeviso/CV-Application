@@ -106,7 +106,7 @@ const ExperienceInfo = function ({handleSaveFormValues, savedFormValues, submitO
 
   useEffect(() => {
     setExperiences(savedFormValues)
-  }, [savedFormValues])
+  }, [savedFormValues, submitOnce])
 
   const handleAddExperience = function () {
     const keyId = crypto.randomUUID();

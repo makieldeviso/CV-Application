@@ -36,7 +36,11 @@ const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill,
         aria-invalid = {`${submitOnce && refObj.skill.length === 0 ? 'true' : 'false'}`}
       />
 
-      <div className='rate-btns-cont' aria-label={`${submitOnce && refObj.rating === 0 ? 'Skill unrated' : `Skill rated with ${refObj.rating}`}`}>
+      <div 
+        className='rate-btns-cont' 
+        id = {`rating-${refObj.keyId}`}
+        aria-label={`${submitOnce && refObj.rating === 0 ? 'Skill unrated' : `Skill rated with ${refObj.rating}`}`}
+      >
         {RateBtns}
       </div>
     
@@ -52,7 +56,7 @@ const ExpertiseInfo = function ({handleSaveFormValues, savedFormValues, submitOn
 
   useEffect(() => {
     setSkills(savedFormValues)
-  }, [savedFormValues])
+  }, [savedFormValues, submitOnce])
 
   const handleAddExpertise = function () {
     const keyId = crypto.randomUUID();

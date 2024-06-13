@@ -68,7 +68,7 @@ const EducationInfo = function ({handleSaveFormValues, savedFormValues, submitOn
 
   useEffect(() => {
     setEducations(savedFormValues)
-  }, [savedFormValues])
+  }, [savedFormValues, submitOnce])
   
   const handleAddEducation = function () {
     const newKey = crypto.randomUUID();

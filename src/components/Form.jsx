@@ -36,10 +36,12 @@ const Form = function ({submitVerified}) {
     setLocalStorageFormValues(updatedFormValues);
   }
 
-  const handleSubmit = async function () {
-    setSubmitOnce(true);
+  const handleSubmit = function () {
+    setSubmitOnce((s) => s = true);
 
-    const validationResult = await verifySubmission(formValues);
+
+    verifySubmission(formValues)
+    // setSubmitOnce((s) => s = false);
 
     submitVerified(formValues);
   }
@@ -70,7 +72,7 @@ const Form = function ({submitVerified}) {
       {
         handleSaveFormValues: handleSaveFormValues,
         savedFormValues: formValues[infoType],
-        submitOnce: submitOnce
+        submitOnce: submitOnce,
       }
     )
   }

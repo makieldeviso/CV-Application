@@ -57,7 +57,7 @@ const ContactInfo = function ({handleSaveFormValues, savedFormValues, submitOnce
 
   useEffect(() => {
     setContacts(savedFormValues)
-  }, [savedFormValues])
+  }, [savedFormValues, submitOnce])
 
   const handleRemoveField = function (event) {
     const remainState = contacts.filter((contact => contact.keyId !== event.target.value));

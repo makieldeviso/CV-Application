@@ -8,10 +8,11 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
   const inputAttributes = (role) => {
     return (
       {
+        'data-key': refObj.keyId,
         'data-role': role,
         className: 'basic-info-field',
         name: `${role}-field`,
-        id: `${role}-field`,
+        id: `${role}-${refObj.keyId}`,
         onChange: handleValueChange,
         value: refObj[role],
         'aria-invalid': `${refObj.submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
