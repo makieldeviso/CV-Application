@@ -241,7 +241,7 @@ div#root {
 }
 
 .info-grp input[type='file'] {
-  visibility: hidden;
+  /* visibility: hidden; */
   width: 0;
   height: 0;
   padding: 0;

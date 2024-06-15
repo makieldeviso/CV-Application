@@ -11,7 +11,7 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       {
         'data-key': refObj.keyId,
         'data-role': role,
-        className: `basic-info-field ${role}-field`,
+        className: `basic-info-field`,
         name: `${role}-field`,
         id: `${role}-${refObj.keyId}`,
         onChange: handleValueChange,

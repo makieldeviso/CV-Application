@@ -59,7 +59,7 @@ const Form = function ({submitVerified}) {
           reader.onerror = reject;
         })
       }
-      const profileInput = document.querySelector('.profile-field')
+      const profileInput = document.querySelector('[data-role="profile"]')
       const profileInputValue = await convertFile(profileInput.files[0]);
       const modBasicInfo = {...formValues.basicInfo, profile64: profileInputValue}
 
