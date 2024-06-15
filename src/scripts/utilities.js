@@ -29,4 +29,9 @@ const calculateScale = function () {
   }
 }
 
-export {capitalizeString, calculateScale}
+const getFileName = function (nameString) {
+  const fakePathRegex =  /^C:\\fakepath\\/
+  return nameString.replace(fakePathRegex, '');
+}
+
+export {capitalizeString, calculateScale, getFileName}

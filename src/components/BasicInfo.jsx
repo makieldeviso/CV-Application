@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
 import { WarnIcon } from "./Icons";
+import { getFileName } from "../scripts/utilities";
 
 const BasicInputFields = function ({refObj, handleValueChange}) {
 
@@ -19,15 +20,22 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       }
     )
   }
-  
+
   return (
     <div className='input-fields'>
 
-      <div className='input-field'>
-        <label className='input-label' htmlFor={`profile-${refObj.keyId}`}>
+      <div className='input-field profile-field'>
+        <p className='mod-label'>
           Profile picture:
           {refObj.submitOnce && refObj.profile.length === 0 && <WarnIcon/>}
+        </p>
+        
+        <label className='input-label profile-label' htmlFor={`profile-${refObj.keyId}`}>
+          Browse
         </label>
+        <span className={`file-name ${refObj.submitOnce && refObj.profile.length === 0 ? 'invalid' : 'valid'}`}>
+          {!refObj.profile ? 'Choose a photo...' : getFileName(refObj.profile)}
+        </span>
         <input {...inputAttributes('profile')} type='file' accept='image/*'/>
       </div>
 
@@ -79,7 +87,7 @@ const BasicInfo = function ({handleSaveFormValues, savedFormValues, submitOnce})
 
   const handleValueChange = async function (event) {
     const inputRole = event.target.dataset.role;
- 
+    
     setBasicValue({...basicValue, [inputRole]: event.target.value});
     
     // Save to Form component state
