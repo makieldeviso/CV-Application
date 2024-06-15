@@ -5,15 +5,18 @@ import CircleIcon from '@mdi/react';
 import { mdiAccountOutline, mdiCircleOutline  } from '@mdi/js';
 
 const IntroTemplate = function ({refObj}) {
+
   const nameDisplay = refObj.name.length !== 0 ? refObj.name : 'First Name Surname';
   const designationDisplay = refObj.designation.length !== 0 ? refObj.designation : 'Designation';
   const competencyDisplay = refObj.competency.length !== 0 ? refObj.competency : 'Competency';
-
+  console.log(refObj)
   return (
     <div className='intro'>
 
         <div className='picture-sec'>
-          <ProfileIcon className='picture-blank' path={mdiAccountOutline} size={1} />
+          {refObj.profile64 
+          ? <img className='profile-picture' src={refObj.profile64} alt='Profile'/> 
+          : <ProfileIcon className='picture-blank' path={mdiAccountOutline} size={1} />  }
         </div>
 
         <div className='header-sec'>
@@ -232,7 +235,8 @@ const basicInfoPropTypes = {
       name: PropTypes.string,
       designation: PropTypes.string,
       address: PropTypes.string,
-      competency: PropTypes.string
+      competency: PropTypes.string,
+      profile64: PropTypes.string
   })
 }
 

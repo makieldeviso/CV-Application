@@ -10,7 +10,7 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       {
         'data-key': refObj.keyId,
         'data-role': role,
-        className: 'basic-info-field',
+        className: `basic-info-field ${role}-field`,
         name: `${role}-field`,
         id: `${role}-${refObj.keyId}`,
         onChange: handleValueChange,
@@ -19,11 +19,20 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       }
     )
   }
-
+  
   return (
     <div className='input-fields'>
+
       <div className='input-field'>
-        <label className='input-label' htmlFor='name-field'>
+        <label className='input-label' htmlFor={`profile-${refObj.keyId}`}>
+          Profile picture:
+          {refObj.submitOnce && refObj.profile.length === 0 && <WarnIcon/>}
+        </label>
+        <input {...inputAttributes('profile')} type='file' accept='image/*'/>
+      </div>
+
+      <div className='input-field'>
+        <label className='input-label' htmlFor={`name-${refObj.keyId}`}>
           Name:
           {refObj.submitOnce && refObj.name.length === 0 && <WarnIcon/>}
         </label>
@@ -31,7 +40,7 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       </div>
 
       <div className='input-field'>
-        <label className='input-label' htmlFor='designation-field'>
+        <label className='input-label' htmlFor={`designation-${refObj.keyId}`}>
           Designation:
           {refObj.submitOnce && refObj.designation.length === 0 && <WarnIcon/>}
         </label>
@@ -39,7 +48,7 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       </div>
 
       <div className='input-field'>
-        <label className='input-label' htmlFor='address-field'>
+        <label className='input-label' htmlFor={`address-${refObj.keyId}`}>
           Address:
           {refObj.submitOnce && refObj.address.length === 0 && <WarnIcon/>}
         </label>
@@ -47,7 +56,7 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       </div>
 
       <div className='input-field'>
-        <label className='input-label' htmlFor='competency-field'>
+        <label className='input-label' htmlFor={`competency-${refObj.keyId}`}>
           Competency:
           {refObj.submitOnce && refObj.competency.length === 0 && <WarnIcon/>}
         </label>
@@ -68,14 +77,15 @@ const BasicInfo = function ({handleSaveFormValues, savedFormValues, submitOnce})
     setBasicValue({...savedFormValues, submitOnce: submitOnce})
   }, [savedFormValues, submitOnce])
 
-  const handleValueChange = function (event) {
+  const handleValueChange = async function (event) {
     const inputRole = event.target.dataset.role;
+ 
     setBasicValue({...basicValue, [inputRole]: event.target.value});
-
+    
     // Save to Form component state
     handleSaveFormValues('basicInfo', {...basicValue, [inputRole]: event.target.value});
   }
- 
+  
   return (
     <div className='basic-info info-grp'>
       <h3>Basic Information</h3>

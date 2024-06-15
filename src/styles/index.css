@@ -565,7 +565,7 @@ button svg {
 
 .cv-cont {
   margin: calc(var(--margin) * 0.5);
-  overflow-y: scroll;
+  overflow: auto;
   width: 100%;
   position: relative;
 }
@@ -582,7 +582,7 @@ button svg {
     "intro intro"
     "column-1 column-2";
   
-  transform-origin: 0 top;
+  transform-origin: var(--margin) top;
   transition: transform 0.1s ease-in-out;
 
   position: absolute;
@@ -653,6 +653,16 @@ p.sec-header {
   border: 1px solid black;
   border-radius: 50%;
   background-color: gray;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border: 1px solid var(--light-blue);
+  border-radius: 50%;
+  background-color: gray;
+  object-fit: cover;
+  object-position: center;
 }
 
 .picture-blank path {

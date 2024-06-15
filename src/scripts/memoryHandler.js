@@ -2,6 +2,7 @@ const storageName = 'CVApplicationByMakieldeviso';
 
 const defaultEmptyState = {
   basicInfo: {
+    profile: '',
     name: '',
     designation: '',
     address: '',
@@ -74,8 +75,11 @@ const getLocalStorageFormValues = function () {
   const savedValues = JSON.parse(localStorage.getItem(storageName));
   
   if (savedValues) {
-    return Object.hasOwn(savedValues, 'formValues')? savedValues.formValues : defaultEmptyState;
-  } else {
+    const formValues =  Object.hasOwn(savedValues, 'formValues')? savedValues.formValues : defaultEmptyState;
+    formValues.basicInfo.profile = '';
+    return formValues;
+
+  } else {  
     return defaultEmptyState;
   }
   

@@ -36,14 +36,36 @@ const Form = function ({submitVerified}) {
     setLocalStorageFormValues(updatedFormValues);
   }
 
-  const handleSubmit = function () {
+  const handleSubmit = async function () {
     setSubmitOnce((s) => s = true);
 
 
-    verifySubmission(formValues)
-    // setSubmitOnce((s) => s = false);
+    const result = verifySubmission(formValues)
 
-    submitVerified(formValues);
+    if (result) {
+      // Note: If a successful submit, reset submitOnce to disable invalid indicators
+      setSubmitOnce((s) => s = false);
+
+      // Adds a base64 image from the profile picture input value
+      const convertFile = function (file) {
+        if (!file) return ''
+        return new Promise ((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            resolve(reader.result)
+          }
+
+          reader.onerror = reject;
+        })
+      }
+      const profileInput = document.querySelector('.profile-field')
+      const profileInputValue = await convertFile(profileInput.files[0]);
+      const modBasicInfo = {...formValues.basicInfo, profile64: profileInputValue}
+
+      // If no invalid input fields, submit verified values
+      submitVerified({...formValues, basicInfo: modBasicInfo});
+    }    
   }
   
   const handleOpenClearDialog = function (event) {
