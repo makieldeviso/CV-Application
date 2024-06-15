@@ -141,4 +141,19 @@
     font-size: 0.8rem;
   }
 
+  /* profile picture input type=file (start) */
+  .mod-label {
+    font-size: 0.8rem;
+  }
+
+  .info-grp label.profile-label {
+    font-size: 0.9rem;
+  }
+
+  .input-field.profile-field .file-name {
+    font-size: 0.9rem;
+  }
+
+  /* profile picture input type=file (start) */
+
 }
