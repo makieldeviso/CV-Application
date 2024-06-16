@@ -107,11 +107,6 @@ div#root {
   width: 110px;
   display: flex;
   justify-content: center;
-  transform: translateX(0);
-}
-
-.form-nav.shown {
-  transform: translateX(0);
 }
 
 .form-nav ul {
