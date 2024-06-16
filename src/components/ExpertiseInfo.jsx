@@ -120,7 +120,7 @@ const ExpertiseInfo = function ({handleSaveFormValues, savedFormValues, submitOn
   })
 
   return (
-    <div className="expertise-info info-grp">
+    <div className="expertise-info info-grp" id='form-expertise'>
       <h3>Expertise</h3>
       <div className='skill-header'>
         <p>Skills</p>

@@ -103,7 +103,7 @@ const ContactInfo = function ({handleSaveFormValues, savedFormValues, submitOnce
   }
 
   return (
-    <div className="contact-info info-grp">
+    <div className="contact-info info-grp" id='form-contact'>
       <h3>Contact</h3>
       <>{ContactFields}</>
       <button className='add-info-btn' type="button" onClick={handleAddNewContact}>

@@ -113,7 +113,7 @@ const EducationInfo = function ({handleSaveFormValues, savedFormValues, submitOn
   })
 
   return (
-    <div className="education-info info-grp">
+    <div className="education-info info-grp" id='form-education'>
       <h3>Education</h3>
       <>{EducInputFields}</>
 

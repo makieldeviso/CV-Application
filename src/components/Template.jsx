@@ -9,7 +9,7 @@ const IntroTemplate = function ({refObj}) {
   const nameDisplay = refObj.name.length !== 0 ? refObj.name : 'First Name Surname';
   const designationDisplay = refObj.designation.length !== 0 ? refObj.designation : 'Designation';
   const competencyDisplay = refObj.competency.length !== 0 ? refObj.competency : 'Competency';
-  console.log(refObj)
+  
   return (
     <div className='intro'>
 

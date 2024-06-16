@@ -95,7 +95,7 @@ const BasicInfo = function ({handleSaveFormValues, savedFormValues, submitOnce})
   }
   
   return (
-    <div className='basic-info info-grp'>
+    <div className='info-grp' id='form-basic'>
       <h3>Basic Information</h3>
       <BasicInputFields handleValueChange={handleValueChange} refObj={basicValue}/>
     </div>

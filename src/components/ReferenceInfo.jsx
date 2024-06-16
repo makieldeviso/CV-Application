@@ -99,7 +99,7 @@ const ReferenceInfo = function ({handleSaveFormValues, savedFormValues, submitOn
   })
 
   return (
-    <div className="reference-info info-grp">
+    <div className="reference-info info-grp" id='form-reference'>
       <h3>References</h3>
       <>{ReferencesFields}</>
   

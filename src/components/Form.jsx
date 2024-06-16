@@ -7,16 +7,13 @@ import EducationInfo from "./EducationInfo";
 import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
+import FormNav from "./FormNav";
+
+import { SendIcon, EraserIcon } from "./Icons";
 
 import { ConfirmClearDialog } from "./ConfirmDialog";
-
-import SubmitIcon from '@mdi/react';
-import ClearIcon from '@mdi/react';
-import { mdiSendVariant, mdiEraserVariant } from '@mdi/js';
-
 import {defaultEmptyState, setLocalStorageFormValues, setLocalStorageSubmittedValues, getLocalStorageFormValues} from "../scripts/memoryHandler";
 import verifySubmission from "../scripts/verifyForm";
-// import verifySubmitted from "../scripts/verifyForm";
 
 const Form = function ({submitVerified}) {
   
@@ -102,6 +99,9 @@ const Form = function ({submitVerified}) {
   return (
     
       <form className='info-form' action="">
+        
+        <FormNav/>
+
         <div className='form-fields'> 
           <BasicInfo {...assignProps('basicInfo')}/>
           <ContactInfo {...assignProps('contactsInfo')}/>
@@ -113,12 +113,12 @@ const Form = function ({submitVerified}) {
 
         <div className='form-btns-cont'>
           <button className='clear-btn' type='button' onClick={handleOpenClearDialog} value='open-modal'>
-            <ClearIcon path={mdiEraserVariant} size={1}/>
+            <EraserIcon/>
             Clear
           </button>
 
           <button className='submit-btn' type='button' onClick={handleSubmit}>
-            <SubmitIcon path={mdiSendVariant} size={1}/>
+            <SendIcon/>
             Submit
           </button>
         </div>
