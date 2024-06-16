@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect} from 'react'
 import Form from './components/Form.jsx'
 import CVTemplate from './components/Template.jsx'
 import SlideButton from './components/Slider.jsx';
+import { NavOpener } from './components/FormNav.jsx';
 
 import { setLocalStorageSubmittedValues, getLocalStorageSubmittedValues } from './scripts/memoryHandler.js';
 
@@ -37,7 +38,11 @@ function App() {
         <h1 className='page-title'>CV Application</h1>
       </div>
 
-      <SlideButton/>
+      <div className='menu-btns'>
+        <NavOpener/>
+        <SlideButton/>
+      </div>
+      
     </header>
 
     {/* transitionEnd to animate resize and responsive screen  */}

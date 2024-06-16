@@ -28,7 +28,7 @@ const SlideButton = function () {
   }
 
   return (
-    <button className='slide-btn' onClick={handleSlide} aria-label={formView ? 'Show CV Template': 'Return to form fields' }>
+    <button className='slide-btn menu-btn' onClick={handleSlide} aria-label={formView ? 'Show CV Template': 'Return to form fields' }>
       {formView ? <LeftChevronIcon path={mdiChevronLeft}/> : <RightChevronIcon path={mdiChevronRight}/> }
     </button>
   )

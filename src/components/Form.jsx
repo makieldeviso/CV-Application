@@ -7,7 +7,7 @@ import EducationInfo from "./EducationInfo";
 import ExpertiseInfo from "./ExpertiseInfo";
 import ExperienceInfo from "./ExperienceInfo";
 import ReferenceInfo from "./ReferenceInfo";
-import FormNav from "./FormNav";
+import { FormNav } from "./FormNav";
 
 import { SendIcon, EraserIcon } from "./Icons";
 

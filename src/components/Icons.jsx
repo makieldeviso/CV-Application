@@ -11,6 +11,8 @@ import SchoolOutline from '@mdi/react';
 import ToolboxOutline from '@mdi/react';
 import HeadPlusOutline from '@mdi/react';
 import AccountMultiple from '@mdi/react';
+import MenuOpen from '@mdi/react';
+import MenuClose from '@mdi/react';
 import { 
   mdiAlertCircleOutline, 
   mdiClose, 
@@ -22,30 +24,32 @@ import {
   mdiSchoolOutline,
   mdiToolboxOutline,
   mdiHeadPlusOutline,
-  mdiAccountMultiple
+  mdiAccountMultiple,
+  mdiMenuOpen ,
+  mdiMenuClose
+  
  } from '@mdi/js';
 
  
-
-
-<AccountMultiple path={mdiAccountMultiple} size={1} />
-
-
 const NavIcons = function ({iconName}) {
-
   const Icons = {
     BasicInfoIcon : <InformationBoxOutline path={mdiInformationBoxOutline} className='nav-icon' />,
     ContactIcon : <ContactsOutline path={mdiContactsOutline} className='nav-icon' />,
     EducationIcon : <SchoolOutline path={mdiSchoolOutline} className='nav-icon' />,
     ExpertiseIcon : <ToolboxOutline path={mdiToolboxOutline} className='nav-icon' />,
     ExperienceIcon : <HeadPlusOutline path={mdiHeadPlusOutline} className='nav-icon' />,
-    ReferenceIcon : <AccountMultiple path={mdiAccountMultiple} className='nav-icon' />
+    ReferenceIcon : <AccountMultiple path={mdiAccountMultiple} className='nav-icon' />,
+    NavOpenIcon : <MenuOpen path={mdiMenuOpen} />,
+    NavCloseIcon : <MenuClose path={mdiMenuClose} />
   }
   
   return (
     <>{Icons[iconName]}</>
   )
+}
 
+NavIcons.propTypes = {
+  iconName: PropTypes.string,
 }
 
 const SendIcon = function () {
