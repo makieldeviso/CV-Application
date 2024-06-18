@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 import LeftChevronIcon from '@mdi/react';
 import RightChevronIcon from '@mdi/react';

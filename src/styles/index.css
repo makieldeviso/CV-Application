@@ -6,7 +6,6 @@
   box-sizing: border-box;
   font-family: var(--common-font);
   scroll-behavior: smooth;
-  
 }
 
 :root {
@@ -38,7 +37,6 @@
   --template-col-2: 450px;
 
   --min-width: 320px;
-  
 }
 
 div#root {
@@ -187,7 +185,6 @@ div#root {
   grid-template-areas: 
     'nav form'
     '. btns';
-
 }
 
 .form-fields {
@@ -726,12 +723,8 @@ button svg {
   cursor: pointer;
   filter: brightness(1.1);
 }
-
-
 /* Confirm clear dialog (end) */
-
 /* Form styling (end) */
-
 
 /* Template Styling (start) */
 .template-viewer {
@@ -788,7 +781,6 @@ button svg {
   height: 20px;
 }
 
-
 .cv-template {
   width: max-content;
   border: 1px solid black;
@@ -839,12 +831,10 @@ p.sec-header {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, max-content) 1fr;
- 
 }
 
 .column-1 > div {
   width: 100%;
-  /* padding: calc(var(--padding) * 0.5); */
   padding: calc(var(--padding) * 0.5) 0 calc(var(--padding) * 0.5) var(--padding);
 }
 
@@ -987,11 +977,9 @@ p.template-contact-type {
 .rating.unrated {
   background-color: white;
 }
-
 /* Expertise template (end) */
 
 /* Experience template (start) */
-
 .experience-sec {
   padding: calc(var(--padding) * 0.5) var(--padding);
   display: grid;
@@ -1028,7 +1016,6 @@ p.template-contact-type {
   background-color: white;
 }
 
-  
 .exp-start-end {
   display: flex;
   justify-content: start;
@@ -1052,7 +1039,6 @@ p.template-contact-type {
   font-weight: bold;
   margin: 8px 0;
 }
-
 /* Experience template (end) */
 
 /* Reference template (start) */
@@ -1090,9 +1076,7 @@ p.reference-name {
 .reference-phone .phone-label {
   font-weight: bold;
 }
-
 /* Reference template (start) */
-
 /* Template Styling (end) */
 
 /* pseudo footer (start) */
@@ -1137,5 +1121,4 @@ a.github-link svg {
 a.github-link span {
   font-family: var(--header-font);
 }
-
 /* footer (end) */

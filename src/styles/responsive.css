@@ -73,7 +73,6 @@
     grid-template-areas:
     'form'
     'btns';
-
   }
 
   .menu-btns {
@@ -161,7 +160,6 @@
   .input-field.profile-field .file-name {
     font-size: 0.9rem;
   }
-
   /* profile picture input type=file (start) */
 
   /* form nav (start) */
@@ -201,7 +199,6 @@
   .menu-btn.nav-opener:has(~.slide-btn[value='false']) {
     display: none;
   }
-
   /* form nav (end) */
 
   .print-btn {
