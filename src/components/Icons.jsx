@@ -13,6 +13,7 @@ import HeadPlusOutline from '@mdi/react';
 import AccountMultiple from '@mdi/react';
 import MenuOpen from '@mdi/react';
 import MenuClose from '@mdi/react';
+import PrinterOutline from '@mdi/react';
 import { 
   mdiAlertCircleOutline, 
   mdiClose, 
@@ -26,11 +27,13 @@ import {
   mdiHeadPlusOutline,
   mdiAccountMultiple,
   mdiMenuOpen ,
-  mdiMenuClose
+  mdiMenuClose,
+  mdiPrinterOutline
   
  } from '@mdi/js';
 
- 
+const PrintIcon = () => <PrinterOutline path={mdiPrinterOutline} className='print-icon'/>
+
 const NavIcons = function ({iconName}) {
   const Icons = {
     BasicInfoIcon : <InformationBoxOutline path={mdiInformationBoxOutline} className='nav-icon' />,
@@ -92,4 +95,4 @@ const AddIcon = function () {
 
 
 
-export { WarnIcon, CloseIcon, AddIcon, SendIcon, EraserIcon, NavIcons }
+export { WarnIcon, CloseIcon, AddIcon, SendIcon, EraserIcon, NavIcons, PrintIcon}

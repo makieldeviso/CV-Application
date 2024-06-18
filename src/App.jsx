@@ -3,6 +3,7 @@ import Form from './components/Form.jsx'
 import CVTemplate from './components/Template.jsx'
 import SlideButton from './components/Slider.jsx';
 import { NavOpener } from './components/FormNav.jsx';
+import PrintBtn from './components/PrintButton.jsx';
 
 import { setLocalStorageSubmittedValues, getLocalStorageSubmittedValues } from './scripts/memoryHandler.js';
 
@@ -51,6 +52,7 @@ function App() {
       <Form submitVerified={handleSubmitVerified}/>
 
       <div className='template-viewer'>
+        <PrintBtn/>
         {/* CV template inside container */}
         <div className='cv-cont'>
           <CVTemplate refState={verifiedValues}/>
