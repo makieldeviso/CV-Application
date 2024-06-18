@@ -168,8 +168,8 @@ div#root {
 }
 
 .form-nav li:hover {
-  transform: translateX(-5px);
-  box-shadow: 5px 3px 3px 1px rgba(5, 59, 80, 0.5);
+  transform: translateX(5px);
+  box-shadow: -5px 3px 3px 1px rgba(5, 59, 80, 0.5);
 }
 
 .info-form {
