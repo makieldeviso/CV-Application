@@ -36,6 +36,8 @@
 
   --template-col-1: 300px;
   --template-col-2: 450px;
+
+  --min-width: 320px;
   
 }
 
@@ -43,10 +45,12 @@ div#root {
   display: grid;
   grid-template-columns: 1fr;
   position: relative;
+  min-width: var(--min-width);
 }
 
 .header-content {
   width: 100%;
+  min-width: var(--min-width);
   padding: calc(var(--padding) * 0.5) var(--padding);
   background-color: var(--dark-blue);
   display: grid;

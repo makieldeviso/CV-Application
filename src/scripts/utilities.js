@@ -16,6 +16,11 @@ const calculateScale = function () {
   const cvTemplate = document.querySelector('div.cv-template');
   let scaleFactor = cvCont.clientWidth / (cvTemplate.clientWidth + 100);
 
+  if (screenSize <= 320) {
+    // min width of the app is 320px
+    return
+  }
+
   if (screenSize < 768) {
     // Note: Since smaller screen uses 0fr to animate change,
     // Use screenSize instead

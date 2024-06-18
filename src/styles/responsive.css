@@ -197,6 +197,11 @@
     border-radius: 5px;
   }
 
+  /* Hides the nav opener when in CV view */
+  .menu-btn.nav-opener:has(~.slide-btn[value='false']) {
+    display: none;
+  }
+
   /* form nav (end) */
 
   .print-btn {
