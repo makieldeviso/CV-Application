@@ -314,6 +314,11 @@ div#root {
   transform: scale(0.9);
 }
 
+.info-grp label.profile-label:hover ~ input {
+  outline: none;
+  outline-offset: none;
+}
+
 .input-field.profile-field .file-name {
   padding: calc(var(--padding)* 0.5);
   font-size: 1.1rem;
