@@ -1,8 +1,7 @@
-# React + Vite
+# CV Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CV Application web app. Fill up the input fields provided and submit fo create a CV.
 
-Currently, two official plugins are available:
+Print feature loads a printable 1 page CV in A4 size. Requires the user to check default print setting and activate Background graphics option to include background colors and images for the CV.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Can be used via mobile devices, responsive styling included in the app.
