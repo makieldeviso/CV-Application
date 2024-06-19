@@ -67,67 +67,74 @@
 @media only screen and (max-width: 769px) {
   @media print {
 
-    @page {
-      size: A4;
-      margin: 0.25in;
-    }
-  
-    div#root.print > * {
-      display: none;
-    }
-  
-    div#root.print .main-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      padding: 0;
-    }
-  
-    div#root.print .main-content .info-form {
-      display: none;
-    }
-  
-    div#root.print .print-btn {
-      display: none;
-    }
-  
-    div#root.print .footer-cont {
-      display: none;
-    }
-  
-    div#root.print .template-viewer {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      background-color: white;
-      justify-items: center;
-  
-      width: 100%;
-      padding: 0;
-    }
-  
-    div#root.print .cv-cont {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      justify-self: center;
-      border: 1px solid rgba(0, 0, 0, 0.5);
-  
-      display: flex;
-      justify-content: center;
-    }
-  
-    div#root.print .cv-template {
-      border: 1px solid rgba(0, 0, 0, 0.5);
-      width: 100%;
-      height: 100%;
-      transform: scale(1) !important; 
-      transform-origin: unset;
-  
-      grid-template-columns: 3in 1fr;
-    }
-  
-    div#root.print .intro {
-      grid-template-columns: 3in 1fr;
-    }
+  @page {
+    size: A4;
+    margin: 0.25in;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+    color-adjust: exact !important;                 /* Firefox 48 – 96 */
+    print-color-adjust: exact !important;           /* Firefox 97+, Safari 15.4+ */
+  }
+
+  div#root > * {
+    display: none;
+  }
+
+  div#root.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  div#root .main-content .info-form {
+    display: none;
+  }
+
+  div#root .print-btn {
+    display: none;
+  }
+
+  div#root .footer-cont {
+    display: none;
+  }
+
+  div#root .template-viewer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-color: white;
+    justify-items: center;
+
+    width: 100%;
+    padding: 0;
+  }
+
+  div#root .cv-cont {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-self: center;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+  }
+
+  div#root .cv-template {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    transform: scale(1) !important; 
+    transform-origin: unset;
+
+    grid-template-columns: 3in 1fr;
+  }
+
+  div#root .intro {
+    grid-template-columns: 3in 1fr;
   }
 }
+}
+
