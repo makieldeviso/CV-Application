@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
+import { hideFormNav } from "../scripts/utilities";
 
 const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, educLength, submitOnce}) {
   
@@ -16,6 +17,7 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       'name': `${role}-${refObj.keyId}`,
       value: refObj[role],
       onChange: handleChangeEducValue,
+      onFocus: hideFormNav,
       'aria-invalid': `${submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
     })
   }

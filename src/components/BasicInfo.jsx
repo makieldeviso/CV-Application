@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
 import { WarnIcon } from "./Icons";
-import { getFileName } from "../scripts/utilities";
+import { getFileName, hideFormNav } from "../scripts/utilities";
 
 const BasicInputFields = function ({refObj, handleValueChange}) {
 
@@ -16,7 +16,8 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
         id: `${role}-${refObj.keyId}`,
         onChange: handleValueChange,
         value: refObj[role],
-        'aria-invalid': `${refObj.submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
+        'aria-invalid': `${refObj.submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`,
+        onFocus: hideFormNav,
       }
     )
   }
@@ -33,9 +34,11 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
         <label className='input-label profile-label' htmlFor={`profile-${refObj.keyId}`}>
           Browse
         </label>
+
         <span className={`file-name ${refObj.submitOnce && refObj.profile.length === 0 ? 'invalid' : 'valid'}`}>
           {!refObj.profile ? 'Choose a photo...' : getFileName(refObj.profile)}
         </span>
+
         <input {...inputAttributes('profile')} type='file' accept='image/*'/>
       </div>
 
@@ -93,7 +96,7 @@ const BasicInfo = function ({handleSaveFormValues, savedFormValues, submitOnce})
     // Save to Form component state
     handleSaveFormValues('basicInfo', {...basicValue, [inputRole]: event.target.value});
   }
-  
+ 
   return (
     <div className='info-grp' id='form-basic'>
       <h3>Basic Information</h3>

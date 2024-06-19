@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
+import { hideFormNav } from "../scripts/utilities";
 
 const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill, handleChangeRating, skillLength, submitOnce}) {
 
@@ -33,6 +34,7 @@ const SkillField = function ({refObj, handleChangeSkillValue, handleRemoveSkill,
         placeholder = "Enter Skill"
         value = {refObj.skill} 
         onChange = {handleChangeSkillValue}
+        onFocus = {hideFormNav}
         aria-invalid = {`${submitOnce && refObj.skill.length === 0 ? 'true' : 'false'}`}
       />
 

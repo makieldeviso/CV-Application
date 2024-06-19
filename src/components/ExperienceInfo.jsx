@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
+import { hideFormNav } from "../scripts/utilities";
 
 const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, expLength, submitOnce}) {
  
@@ -14,6 +15,7 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       id: `${role}-${refObj.keyId}`,
       value: refObj[role],
       onChange: changeExpValueFunc,
+      onFocus: hideFormNav,
       'aria-invalid': `${submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`   
     })
   } 

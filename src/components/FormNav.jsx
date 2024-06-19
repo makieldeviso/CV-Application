@@ -1,6 +1,7 @@
 import { NavIcons } from "./Icons"
 import { useState } from "react";
 
+
 const NavOpener = function () {
   const [navStatus, setNavStatus] = useState(false);
 

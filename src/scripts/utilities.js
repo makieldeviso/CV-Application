@@ -39,4 +39,12 @@ const getFileName = function (nameString) {
   return nameString.replace(fakePathRegex, '');
 }
 
-export {capitalizeString, calculateScale, getFileName}
+const hideFormNav = function () {
+  const formNavBtn = document.querySelector('.nav-opener');
+
+  if (formNavBtn.value === 'true') {
+    formNavBtn.click();
+  }
+} 
+
+export {capitalizeString, calculateScale, getFileName, hideFormNav}

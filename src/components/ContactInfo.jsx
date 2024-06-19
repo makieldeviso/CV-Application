@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types'
 
 import { WarnIcon, CloseIcon, AddIcon } from "./Icons";
+import { hideFormNav } from "../scripts/utilities";
 
 const ContactField = function ({refObj, handleRemoveField, handleContactValueChange, contactLength, submitOnce}) {
  
@@ -21,6 +22,7 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
           name={`label-${refObj.keyId}`}
           placeholder="e.g. Phone, E-mail, LinkedIn"
           onChange={handleContactValueChange}
+          onFocus = {hideFormNav}
           value={refObj.label}
           aria-invalid = {`${submitOnce && refObj.label.length === 0 ? 'true' : 'false'}`}
         />
@@ -38,14 +40,19 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
         data-key={refObj.keyId}
         id={`address-${refObj.keyId}`}
         name={`address-${refObj.keyId}`}
-        placeholder="e.g. +639159054014, placeholder@gmail.com"
+        placeholder="e.g. +639123456789, email.address@email.com"
         onChange={handleContactValueChange}
+        onFocus = {hideFormNav}
         value={refObj.address}
         aria-invalid = {`${submitOnce && refObj.address.length === 0 ? 'true' : 'false'}`}
       />
       </div>
       
-      <button aria-label='Remove contact information' className='remove-btn' type='button' onClick={handleRemoveField} value={refObj.keyId} disabled={contactLength <= 1}>
+      <button 
+        className='remove-btn' type='button' 
+        onClick={handleRemoveField} value={refObj.keyId} disabled={contactLength <= 1}
+        aria-label='Remove contact information' 
+      >
         <CloseIcon/>
       </button>
     </div>

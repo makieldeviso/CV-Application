@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { WarnIcon } from "./Icons";
+import { hideFormNav } from "../scripts/utilities";
 
 const ReferenceField = function ({refObj, handleChangeRefValue, submitOnce}) {
 
@@ -15,6 +16,7 @@ const ReferenceField = function ({refObj, handleChangeRefValue, submitOnce}) {
         name: `${role}-${refObj.keyId}`,
         value: refObj[role],
         onChange: handleChangeRefValue,
+        onFocus: hideFormNav,
         'aria-invalid': `${submitOnce && refObj[role].length === 0 ? 'true' : 'false'}`
       }
     )
