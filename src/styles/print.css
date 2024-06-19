@@ -1,9 +1,9 @@
-@page {
-  size: A4;
-  margin: 0.25in;
-}
-
 @media print {
+
+  @page {
+    size: A4;
+    margin: 0.25in;
+  }
 
   div#root.print > * {
     display: none;
