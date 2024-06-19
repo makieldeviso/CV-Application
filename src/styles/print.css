@@ -1,140 +1,67 @@
 @media print {
 
   @page {
-    size: A4;
-    margin: 0.25in;
+    size: A4 !important;
+    margin: 0.25in !important;
   }
 
   div#root.print > * {
-    display: none;
+    display: none !important;
   }
 
   div#root.print .main-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 0;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    padding: 0 !important;
   }
 
   div#root.print .main-content .info-form {
-    display: none;
+    display: none !important;
   }
 
   div#root.print .print-btn {
-    display: none;
+    display: none !important;
   }
 
   div#root.print .footer-cont {
-    display: none;
+    display: none !important;
   }
 
   div#root.print .template-viewer {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    background-color: white;
-    justify-items: center;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr !important;
+    background-color: white !important;
+    justify-items: center !important;
 
     width: 100%;
-    padding: 0;
+    padding: 0 !important;
   }
 
   div#root.print .cv-cont {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    justify-self: center;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    justify-self: center !important;
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
 
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
   }
 
   div#root.print .cv-template {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
+    width: 100% !important;
+    height: 100% !important;
     transform: scale(1) !important; 
-    transform-origin: unset;
+    transform-origin: unset !important;
 
-    grid-template-columns: 3in 1fr;
+    grid-template-columns: 3in 1fr !important;
   }
 
   div#root.print .intro {
-    grid-template-columns: 3in 1fr;
+    grid-template-columns: 3in 1fr !important;
   }
 }
 
-@media only screen and (max-width: 769px) {
-  @media print {
-
-  @page {
-    size: A4;
-    margin: 0.25in;
-  }
-
-  * {
-    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
-    color-adjust: exact !important;                 /* Firefox 48 – 96 */
-    print-color-adjust: exact !important;           /* Firefox 97+, Safari 15.4+ */
-  }
-
-  div#root > * {
-    display: none;
-  }
-
-  div#root.main-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 0;
-  }
-
-  div#root .main-content .info-form {
-    display: none;
-  }
-
-  div#root .print-btn {
-    display: none;
-  }
-
-  div#root .footer-cont {
-    display: none;
-  }
-
-  div#root .template-viewer {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    background-color: white;
-    justify-items: center;
-
-    width: 100%;
-    padding: 0;
-  }
-
-  div#root .cv-cont {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    justify-self: center;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-
-    display: flex;
-    justify-content: center;
-  }
-
-  div#root .cv-template {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    transform: scale(1) !important; 
-    transform-origin: unset;
-
-    grid-template-columns: 3in 1fr;
-  }
-
-  div#root .intro {
-    grid-template-columns: 3in 1fr;
-  }
-}
-}
 
