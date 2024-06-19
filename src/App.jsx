@@ -11,7 +11,7 @@ import ProfileIcon from '@mdi/react';
 import GithubIcon from '@mdi/react';
 
 import { mdiFaceManProfile, mdiGithub} from '@mdi/js';
-import { calculateScale } from './scripts/utilities.js';
+import { calculateScale, disablePrintBtn } from './scripts/utilities.js';
 
 // Check local storage if submitted values are stored
 const savedSubmittedValues = getLocalStorageSubmittedValues();
@@ -23,6 +23,10 @@ function App() {
   useEffect(() => {
     window.addEventListener('resize', calculateScale);
     window.addEventListener('load', calculateScale);
+
+    window.addEventListener('resize', disablePrintBtn);
+    window.addEventListener('load', disablePrintBtn);
+    
   }, [])
  
   const handleSubmitVerified = function (verifiedState) {

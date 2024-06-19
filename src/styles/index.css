@@ -773,6 +773,10 @@ button svg {
   transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
+.print-btn:disabled {
+  visibility: hidden;
+}
+
 .print-btn:hover {
   cursor: pointer;
   filter: brightness(1.1);

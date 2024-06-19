@@ -47,4 +47,16 @@ const hideFormNav = function () {
   }
 } 
 
-export {capitalizeString, calculateScale, getFileName, hideFormNav}
+const disablePrintBtn = function () {
+  const screenWidth = window.screen.width;
+  const printBtn = document.querySelector('button.print-btn');
+
+  if (screenWidth < 769) {
+    printBtn.disabled = true;
+  } else {
+    printBtn.disabled = false;
+  }
+
+}
+
+export {capitalizeString, calculateScale, getFileName, hideFormNav, disablePrintBtn}
