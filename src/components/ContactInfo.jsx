@@ -11,8 +11,8 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
       <div className="contact-field input-field">
         <label htmlFor={`label-${refObj.keyId}`} className="label-contact-type">
           Contact type:
-          {submitOnce && refObj.label.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.label.length === 0 && <WarnIcon/>}
         <input
           type="text"
           data-role='label'
@@ -29,23 +29,23 @@ const ContactField = function ({refObj, handleRemoveField, handleContactValueCha
       </div>
       
       <div className="contact-field input-field">
-      <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">
-        Contact address:
+        <label htmlFor={`address-${refObj.keyId}`} className="label-contact-add">
+          Contact address:
+        </label>
         {submitOnce && refObj.address.length === 0 && <WarnIcon/>}
-      </label>
-      <input
-        type="text"
-        data-role='address'
-        className="input-contact-add"
-        data-key={refObj.keyId}
-        id={`address-${refObj.keyId}`}
-        name={`address-${refObj.keyId}`}
-        placeholder="e.g. +639123456789, email.address@email.com"
-        onChange={handleContactValueChange}
-        onFocus = {hideFormNav}
-        value={refObj.address}
-        aria-invalid = {`${submitOnce && refObj.address.length === 0 ? 'true' : 'false'}`}
-      />
+        <input
+          type="text"
+          data-role='address'
+          className="input-contact-add"
+          data-key={refObj.keyId}
+          id={`address-${refObj.keyId}`}
+          name={`address-${refObj.keyId}`}
+          placeholder="e.g. +639123456789, email.address@email.com"
+          onChange={handleContactValueChange}
+          onFocus = {hideFormNav}
+          value={refObj.address}
+          aria-invalid = {`${submitOnce && refObj.address.length === 0 ? 'true' : 'false'}`}
+        />
       </div>
       
       <button 

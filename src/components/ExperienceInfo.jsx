@@ -26,8 +26,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       <div key={`start-${refObj.keyId}`} className={`input-field exp-start`} >
         <label htmlFor={`start-${refObj.keyId}`}>
            Start: 
-           {submitOnce && refObj.start.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.start.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('start')}
           placeholder="Enter date/ year you started this job"/>
@@ -36,8 +36,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       <div key={`end-${refObj.keyId}`} className={`input-field exp-end`} >
         <label htmlFor={`end-${refObj.keyId}`}>
           End:
-          {submitOnce && refObj.end.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.end.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('end')}
           placeholder="Enter date/ year you left this job "
@@ -47,8 +47,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       <div key={`company-${refObj.keyId}`} className={`input-field exp-company`} >
         <label htmlFor={`company-${refObj.keyId}`}>
           Company:
-          {submitOnce && refObj.company.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.company.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('company')}
           placeholder="Enter company name"
@@ -58,8 +58,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       <div key={`companyAddress-${refObj.keyId}`} className={`input-field exp-companyAddress`} >
         <label htmlFor={`companyAddress-${refObj.keyId}`}>
           Company Address:
-          {submitOnce && refObj.companyAddress.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.companyAddress.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('companyAddress')}
           placeholder="Enter company address"
@@ -69,8 +69,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       <div key={`position-${refObj.keyId}`} className={`input-field exp-position`} >
         <label htmlFor={`position-${refObj.keyId}`}>
           Position:
-          {submitOnce && refObj.position.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.position.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('position')}
           placeholder="Enter position for this previous job"
@@ -80,8 +80,8 @@ const ExperienceField = function ({refObj, changeExpValueFunc, removeExpFunc, ex
       <div key={`desc-${refObj.keyId}`} className={`input-field exp-desc`} >
         <label htmlFor={`desc-${refObj.keyId}`}>
           Description/ Contribution:
-          {submitOnce && refObj.desc.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.desc.length === 0 && <WarnIcon/>}
         <textarea
           {...assignProps('desc')} 
           rows={5}

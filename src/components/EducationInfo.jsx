@@ -27,8 +27,8 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       <div className='year-field input-field'>
         <label htmlFor={`yearGraduated-${refObj.keyId}`}>
           Year Graduated:
-          {submitOnce && refObj.yearGraduated.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.yearGraduated.length === 0 && <WarnIcon/>}
         <input
           {...assignProps('yearGraduated')}
           placeholder="Enter year graduated"
@@ -38,8 +38,8 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       <div className='degree-field input-field'>
         <label htmlFor={`degree-${refObj.keyId}`}>
           Degree:
-          {submitOnce && refObj.degree.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.degree.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('degree')}
           placeholder="e.g. High School, Computer Science"
@@ -49,8 +49,8 @@ const EducField = function ({refObj, handleRemoveEduc, handleChangeEducValue, ed
       <div className='school-field input-field'>
         <label htmlFor={`school-${refObj.keyId}`}>
           School:
-          {submitOnce && refObj.school.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.school.length === 0 && <WarnIcon/>}
         <input 
           {...assignProps('school')}
           placeholder="e.g. Manila High School, Harvard University"

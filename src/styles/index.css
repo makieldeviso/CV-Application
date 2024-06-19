@@ -215,19 +215,26 @@ div#root {
 }
 
 .info-grp label {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+
   font-size: 1rem;
   width: max-content;
   height: 25px;
   min-height: max-content;
   color: rgba(0, 0, 0, 0.8);
+
   display: grid;
   grid-template-columns: 1fr max-content;
   align-items: center;
 }
 
-.info-grp label .warn-icon {
+.warn-icon {
   width: 20px;
   height: 20px;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: end;
 }
 
 .warn-icon path{
@@ -235,6 +242,8 @@ div#root {
 }
 
 .info-grp input, .info-grp textarea {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
   width: 100%;
   padding: calc(var(--padding) * 0.5);
   font-size: 1.1rem;
@@ -271,45 +280,41 @@ div#root {
   grid-template-columns: 1fr max-content;
   align-items: center;
 
-  grid-column: 1 / 3;
-}
-
-.mod-label .warn-icon {
-  width: 20px;
-  height: 20px;
-  justify-self: end;
+  grid-column: 1 / 2;
 }
 
 .info-grp label.profile-label {
   font-size: 1rem;
   
+  background-color: transparent;
+
+  height: max-content;
+  width: max-content;
+
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 8px;
+
+  transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.browse-pseudo-btn {
+  width: max-content;
   background-color: var(--dark-blue);
   border: 3px solid var(--lighter-blue);
   border-radius: 10px;
   color: var(--off-white);
   box-shadow: 0 3px 3px 1px rgba(5, 59, 80, 0.5);
-
-  padding: calc(var(--padding) * 0.5) var(--padding);
-  height: max-content;
-  width: max-content;
-
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
+  padding: calc(var(--padding) * 0.5);
 }
 
-.info-grp label.profile-label:hover {
+.browse-pseudo-btn:hover {
   cursor: pointer;
   filter: brightness(1.1);
-}
-
-.info-grp label.profile-label:active {
-  transform: scale(0.9);
 }
 
 .info-grp label.profile-label:hover ~ input {
@@ -325,9 +330,6 @@ div#root {
   border-bottom: 3px solid transparent;
   background-color: var(--off-white);
   color: rgba(0, 0, 0, 0.6);
-
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
 }
 
 .input-field.profile-field .file-name.invalid {
@@ -337,7 +339,7 @@ div#root {
 }
 
 .info-grp input[type='file'] {
-  /* visibility: hidden; */
+  filter: opacity(0);
   width: 0;
   height: 0;
   padding: 0;
@@ -386,11 +388,13 @@ div#root {
 }
 
 .input-field {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content 1fr;
+  justify-content: start;
+  align-items: center;
+  row-gap: 5px;
+
   margin-bottom: calc(var(--margin) * 1.5);
   width: 100%;
   grid-column: 1 / 3;

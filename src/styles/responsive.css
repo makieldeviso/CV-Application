@@ -101,7 +101,7 @@
   }
 
   .input-field {
-    gap: calc(var(--margin)* 0.3);
+    row-gap: 5px;
     margin-bottom: calc(var(--margin) * 0.5);
   }
 

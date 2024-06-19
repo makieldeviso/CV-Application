@@ -29,32 +29,32 @@ const ReferenceField = function ({refObj, handleChangeRefValue, submitOnce}) {
       <div className='input-field'>
         <label htmlFor={`name-${refObj.keyId}`}>
           Name:
-          {submitOnce && refObj.name.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.name.length === 0 && <WarnIcon/>}
         <input {...fieldAttributes('name')} placeholder="Enter name of reference"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`position-${refObj.keyId}`}>
           Position:
-          {submitOnce && refObj.position.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.position.length === 0 && <WarnIcon/>}
         <input {...fieldAttributes('position')} placeholder="Enter the position of your reference in their current job"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`company-${refObj.keyId}`}>
           Company Name:
-          {submitOnce && refObj.company.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.company.length === 0 && <WarnIcon/>}
         <input {...fieldAttributes('company')} placeholder="Enter the current company name of your reference"/>
       </div>
 
       <div className='input-field'>
         <label htmlFor={`phone-${refObj.keyId}`}>
           Phone:
-          {submitOnce && refObj.phone.length === 0 && <WarnIcon/>}
         </label>
+        {submitOnce && refObj.phone.length === 0 && <WarnIcon/>}
         <input {...fieldAttributes('phone')} placeholder="Enter phone number of your reference"/>
       </div>
 

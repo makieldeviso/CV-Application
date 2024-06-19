@@ -28,16 +28,14 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       <div className='input-field profile-field'>
         <p className='mod-label'>
           Profile picture:
-          {refObj.submitOnce && refObj.profile.length === 0 && <WarnIcon/>}
         </p>
-        
+        {refObj.submitOnce && refObj.profile.length === 0 && <WarnIcon/>}
         <label className='input-label profile-label' htmlFor={`profile-${refObj.keyId}`}>
-          Browse
+          <span className={`file-name ${refObj.submitOnce && refObj.profile.length === 0 ? 'invalid' : 'valid'}`}>
+            {!refObj.profile ? 'Choose a photo...' : getFileName(refObj.profile)}
+          </span>
+          <span className='browse-pseudo-btn'>Browse:</span> 
         </label>
-
-        <span className={`file-name ${refObj.submitOnce && refObj.profile.length === 0 ? 'invalid' : 'valid'}`}>
-          {!refObj.profile ? 'Choose a photo...' : getFileName(refObj.profile)}
-        </span>
 
         <input {...inputAttributes('profile')} type='file' accept='image/*'/>
       </div>
@@ -45,32 +43,32 @@ const BasicInputFields = function ({refObj, handleValueChange}) {
       <div className='input-field'>
         <label className='input-label' htmlFor={`name-${refObj.keyId}`}>
           Name:
-          {refObj.submitOnce && refObj.name.length === 0 && <WarnIcon/>}
         </label>
+        {refObj.submitOnce && refObj.name.length === 0 && <WarnIcon/>}
         <input {...inputAttributes('name')} placeholder="Enter full name"/>
       </div>
 
       <div className='input-field'>
         <label className='input-label' htmlFor={`designation-${refObj.keyId}`}>
           Designation:
-          {refObj.submitOnce && refObj.designation.length === 0 && <WarnIcon/>}
         </label>
+        {refObj.submitOnce && refObj.designation.length === 0 && <WarnIcon/>}
         <input {...inputAttributes('designation')} placeholder="Enter desired position"/>
       </div>
 
       <div className='input-field'>
         <label className='input-label' htmlFor={`address-${refObj.keyId}`}>
           Address:
-          {refObj.submitOnce && refObj.address.length === 0 && <WarnIcon/>}
         </label>
+        {refObj.submitOnce && refObj.address.length === 0 && <WarnIcon/>}
         <input {...inputAttributes('address')} placeholder="Enter address/ mailing address"/>
       </div>
 
       <div className='input-field'>
         <label className='input-label' htmlFor={`competency-${refObj.keyId}`}>
           Competency:
-          {refObj.submitOnce && refObj.competency.length === 0 && <WarnIcon/>}
         </label>
+        {refObj.submitOnce && refObj.competency.length === 0 && <WarnIcon/>}
         <textarea 
           {...inputAttributes('competency')} 
           rows={5}
