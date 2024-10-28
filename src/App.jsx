@@ -64,7 +64,7 @@ function App() {
         
         {/* pseudo footer */}
         <div className="footer-cont">
-          <p>Copyright&copy; 2024 - Fred Mark Baldeviso</p>
+          <p>Copyright&copy; {(new Date()).getFullYear()} - Fred Mark Baldeviso</p>
           <a className="github-link" href="https://github.com/makieldeviso" target="_blank" >
             <GithubIcon path={mdiGithub} />
             <span className="link-text">makieldeviso</span>
